@@ -15,7 +15,7 @@ if(isset($_POST['actionVendorProfile'])) {
 	$updateProfileResult = mysqli_query($conn,$updateProfileQuery);
 	
 	if($updateProfileResult) {
-		header("Location:../user_vendor/profile.php");
+		header("Location:../user_vendor/index.php");
 	} else {
 		mysqli_error($conn);
 	}

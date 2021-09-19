@@ -15,7 +15,7 @@ if(isset($_POST['actionAdminProfile'])) {
 	$updateProfileResult = mysqli_query($conn,$updateProfileQuery);
 	
 	if($updateProfileResult) {
-		header("Location:../user_admin/profile.php");
+		header("Location:../user_admin/index.php");
 	} else {
 		mysqli_error($conn);
 	}

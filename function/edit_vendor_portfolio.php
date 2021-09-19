@@ -12,7 +12,7 @@ if(isset($_POST['actionEditPortfolio'])) {
 	$updatePortfolioResult = mysqli_query($conn,$updatePortfolioQuery);
 	
 	if($updatePortfolioResult) {
-		header("Location:../user_vendor/edit-manage-portfolio.php?PID=$id");
+		header("Location:../user_vendor/index.php");
 	} else {
 		mysqli_error($conn);
 	}
