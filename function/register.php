@@ -6,11 +6,12 @@ if(isset($_POST['actionRegister'])) {
  	$lname 		= $_POST['lname'];
  	$email		= $_POST['email'];
  	$pass 	    = $_POST['password'];
+ 	$position = "None";
  	$empty = "";
 
  	// creation for vendor account
  	$db  = mysqli_connect("localhost","root","","filmcraft");
- 	$sql = "INSERT INTO vendor (vendorId,vendorEmail,vendorPassword,vendorFirstName,vendorLastName,vendorGender,vendorBirthdate,vendorNumber,vendorAddress,vendorType,vendorPosition) VALUES (NULL,'$email','$pass','$fname','$lname','$empty','$empty','$empty','$empty','$empty','$empty') ";
+ 	$sql = "INSERT INTO vendor (vendorId,vendorEmail,vendorPassword,vendorFirstName,vendorLastName,vendorGender,vendorBirthdate,vendorNumber,vendorAddress,vendorType,vendorPosition) VALUES (NULL,'$email','$pass','$fname','$lname','$empty','$empty','$empty','$empty','$empty','$position') ";
  	if(mysqli_query($db,$sql)) {
 
  	$latest_id = mysqli_insert_id($db);

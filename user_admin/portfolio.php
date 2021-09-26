@@ -202,6 +202,7 @@ include("header.php");
                                         $conn = mysqli_connect("localhost","root","","filmcraft");
                                         $query = "SELECT * FROM portfolio
                                         JOIN vendor ON portfolio.vendor_Id = vendor.vendorId
+                                        WHERE vendor.vendorStatus = '1'
                                         ";
                                         $result = mysqli_query($conn,$query);
                                         while($row = mysqli_fetch_assoc($result)) {

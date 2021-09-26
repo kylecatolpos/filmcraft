@@ -228,7 +228,7 @@ body {
                             <h6 class="m-0 font-weight-bold text-primary">Edit Account Profile</h6>
                         </div>
 
-                       <form action="../function/admin_profile.php" method="POST" enctype="multipart/form-data">
+                       <form method="POST" enctype="multipart/form-data">
                         <div class="card-body">
 
                     <input type="hidden" value="<?php echo $displayId ?>" name="id">
@@ -246,7 +246,7 @@ body {
                                         <!-- Profile picture help block-->
                                         <div class="small font-italic text-muted mb-4">Upload Image Here</div>
                                         <!-- Profile picture upload button-->
-                                        <button class="btn btn-primary" type="button">Upload new image</button>
+                                        <input type="file" name="image" id="upload">
                                     </div>
                                 </div>
                             </div>
@@ -356,3 +356,28 @@ body {
 include("footer.php");
 
 ?>
+
+<script>
+    $('#upload').on('click', function() {
+        var file_data = $('#pic').prop('files')[0];
+        var form_data = new FormData();  // Create a FormData object
+
+        console.log(form_data);
+
+        form_data.append('file', file_data);  // Append all element in FormData  object
+
+        $.ajax({
+                url         : 'upload.php',     // point to server-side PHP script 
+                dataType    : 'text',           // what to expect back from the PHP script, if anything
+                cache       : false,
+                contentType : false,
+                processData : false,
+                data        : form_data,                         
+                type        : 'post',
+                success     : function(output){
+                    alert(output);              // display response from the PHP script, if any
+                }
+         });
+         $('#pic').val('');                     /* Clear the input type file */
+    });
+</script>

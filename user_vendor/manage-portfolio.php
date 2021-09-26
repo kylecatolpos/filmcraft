@@ -267,7 +267,7 @@ body {
                     <a href="#" class="btn btn-link text-muted">Show all</a>
                 </div>
                  <!-- <a href="add-works-portfolio.php?VWID=<?php echo $workid ?>" class="btn btn-primary">ADD WORKS</a> -->
-                 <a href="#" class="btn btn-primary">ADD WORKS</a>
+                 <a href="#add-works-portfolio.php" class="btn btn-primary">ADD WORKS</a>
                 <hr>
                          <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

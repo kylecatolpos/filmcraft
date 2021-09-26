@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2021 at 01:40 PM
+-- Generation Time: Sep 26, 2021 at 12:48 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -82,13 +82,6 @@ CREATE TABLE `portfolio` (
   `portfolioRating` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `portfolio`
---
-
-INSERT INTO `portfolio` (`portfolioId`, `vendor_Id`, `vendorWork_Id`, `portfolioFirstName`, `portfolioLastName`, `portfolioAddress`, `portfolioEmail`, `portfolioRating`) VALUES
-(3, 8, 8, 'Kyle', 'Catolpos', 'Cebu City', 'kyle@gmail.com', '5');
-
 -- --------------------------------------------------------
 
 --
@@ -106,15 +99,9 @@ CREATE TABLE `vendor` (
   `vendorNumber` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `vendorAddress` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `vendorType` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `vendorPosition` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+  `vendorPosition` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `vendorStatus` tinyint(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `vendor`
---
-
-INSERT INTO `vendor` (`vendorId`, `vendorEmail`, `vendorPassword`, `vendorFirstName`, `vendorLastName`, `vendorGender`, `vendorBirthdate`, `vendorNumber`, `vendorAddress`, `vendorType`, `vendorPosition`) VALUES
-(8, 'kyle@gmail.com', 'kyle', 'Kyle', 'Catolpos1', 'Male', 'test', 'test', 'test', '', '');
 
 --
 -- Indexes for dumped tables
@@ -164,13 +151,13 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `portfolio`
 --
 ALTER TABLE `portfolio`
-  MODIFY `portfolioId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `portfolioId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `vendor`
 --
 ALTER TABLE `vendor`
-  MODIFY `vendorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `vendorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -36,15 +36,15 @@ body {
         <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#395232">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon">
-                     <img src="img/filmcraft.png" width="150">
+                     <img src="../resources/img/filmcraft.png" width="150">
                 </div>
             </a>
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
                 </li>
@@ -54,16 +54,16 @@ body {
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="manage-portfolio.html">
-                    <i class="fas fa-users"></i>
+                <a class="nav-link" href="manage-portfolio.php">
+                    <i class="fas fa-fw fa-users"></i>
                     <span>Manage Portfolio</span></a>
                 </li>
 
 
               <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="manage-booking.html">
-                   <i class="far fa-bookmark"></i>
+                <a class="nav-link" href="manage-booking.php">
+                   <i class="far fa-fw fa-bookmark"></i>
                     <span>Manage Booking</span></a>
                 </li>
         </ul>
@@ -168,16 +168,16 @@ body {
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Kyle Rhyme Catolpos</span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="../resources/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="profile.html">
+                                <a class="dropdown-item" href="profile.php">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="manage-subscription.html">
+                                <a class="dropdown-item" href="manage-subscription.php">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
@@ -206,20 +206,23 @@ body {
                             <h6 class="m-0 font-weight-bold text-primary">Adding Works</h6>
                         </div>
 
+                        <form action="../function/add_works.php" method="POST" enctype="multipart/form-data">
+
+
                         <div class="card-body">
                                <div class="col-md-12 mx-auto">
-        <div class="row">
+                          <div class="row">
                             <div class="col-xl-4">
                                 <!-- Profile picture card-->
                                 <div class="card mb-4 mb-xl-0">
                                     <div class="card-header">Add New Works  </div>
                                     <div class="card-body text-center">
                                         <!-- Profile picture image-->
-                                        <img class="img-account-profile rounded-circle mb-2" src="assets/img/illustrations/profiles/profile-1.png" alt="">
+                                        <img class="img-account-profile rounded-circle mb-2" src="../resources/assets/img/illustrations/profiles/profile-1.png" alt="">
                                         <!-- Profile picture help block-->
                                         <div class="small font-italic text-muted mb-4">Add Works Image Here</div>
                                         <!-- Profile picture upload button-->
-                                        <button class="btn btn-primary" type="button">Upload File</button>
+                                        <input type="file" name="images">
                                     </div>
                                 </div>
                             </div>
@@ -228,7 +231,6 @@ body {
                                 <div class="card mb-4">
                                     <div class="card-header">Add Works Done</div>
                                     <div class="card-body">
-                                        <form>
                                             <!-- Form Group (username)-->
                                             <div class="mb-3">
                                                 <label class="small mb-1" for="inputUsername">Type of Occasion</label>
@@ -238,13 +240,14 @@ body {
                                         
                                             <!-- Save changes button-->
                                             <button class="btn btn-primary" type="button">Save changes</button>
-                                        </form>
+                                            <a></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
     </div>
                         </div>
+                     </form>
                     </div>
 
                 </div>
@@ -284,23 +287,8 @@ body {
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<?php 
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+include("footer.php");
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
-
-</body>
-
-</html>
+?>
