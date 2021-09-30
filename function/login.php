@@ -15,6 +15,7 @@ if(isset($_POST['actionLogin'])) {
         $row = mysqli_fetch_assoc($result);
         $_SESSION['adminId'] = $row['adminId'];
         $_SESSION['displayName'] = $row['adminFirstName'].' '. $row['adminLastName'];
+        $_SESSION['displayImage'] = $row['adminProfileImage'];
         header("Location:../user_admin/index.php"); 
     } else {
 
@@ -25,6 +26,7 @@ if(isset($_POST['actionLogin'])) {
         $row = mysqli_fetch_assoc($result);
         $_SESSION['vendorId'] = $row['vendorId'];
         $_SESSION['displayName'] = $row['vendorFirstName'].' '. $row['vendorLastName'];
+        $_SESSION['displayImage'] = $row['vendorProfileImage'];
         header("Location:../user_vendor/index.php"); 
      } else {
     	header("Location:../login.php");

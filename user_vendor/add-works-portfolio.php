@@ -234,13 +234,13 @@ body {
                                             <!-- Form Group (username)-->
                                             <div class="mb-3">
                                                 <label class="small mb-1" for="inputUsername">Type of Occasion</label>
-                                                <input class="form-control" id="inputUsername" type="text" placeholder="Enter type of occasion" value="Wedding">
+                                                <input class="form-control" id="inputUsername" type="text" placeholder="Enter type of occasion" name="occassion">
                                             </div>
                                             <!-- Form Row-->
                                         
                                             <!-- Save changes button-->
                                             <button class="btn btn-primary" type="button">Save changes</button>
-                                            <a></a>
+                                            <a class="btn btn-danger text-white" href="manage-portfolio.php">Cancel</a>
                                     </div>
                                 </div>
                             </div>

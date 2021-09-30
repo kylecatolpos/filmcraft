@@ -21,6 +21,8 @@ while($getRow = mysqli_fetch_assoc($getResult)) {
 
 
 
+
+
 ?>
 
 <style>
@@ -182,8 +184,8 @@ body {
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $displayName ?></span>
-                                <img class="img-profile rounded-circle"
-                                    src="../resources/img/undraw_profile.svg">
+                                 <img class="img-profile rounded-circle"
+                                    src="<?php echo $displayImage ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -266,8 +268,7 @@ body {
                     <h5 class="mb-0">Works Done</h5>
                     <a href="#" class="btn btn-link text-muted">Show all</a>
                 </div>
-                 <!-- <a href="add-works-portfolio.php?VWID=<?php echo $workid ?>" class="btn btn-primary">ADD WORKS</a> -->
-                 <a href="#add-works-portfolio.php" class="btn btn-primary">ADD WORKS</a>
+                <a href="add-works-portfolio.php?VWID=<?php echo $workid ?>" class="btn btn-primary">ADD WORKS</a>
                 <hr>
                          <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -279,10 +280,20 @@ body {
                                     </thead>
                                   
                                     <tbody>
+                                      <?php 
+
+                                      $conn  = mysqli_connect("localhost","root","","filmcraft");
+                                      $queryWorks = "SELECT * FROM works WHERE portfolioWorks_id = '$workid' ";
+                                      $resultWorks = mysqli_query($conn,$queryWorks);
+
+                                      while($rowWorks = mysqli_fetch_assoc($resultWorks)) {
+
+                                      ?>
                                         <tr>
                                             <td><img src="../resources/img/logo-try.png" width="100"></td>
-                                            <td>Wedding</td>
+                                            <td><?php echo $rowWorks['occasion'] ?></td>
                                         </tr>
+                                      <?php } ?>
                                       </tbody>
                                 </table>
                    </div>

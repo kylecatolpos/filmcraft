@@ -1,6 +1,7 @@
 <?php 
 
 if(isset($_POST['actionAdminProfile'])) {
+	$conn = mysqli_connect("localhost","root","","filmcraft");
 	$id				= $_POST["id"];
 	$email 			= $_POST["email"];
 	$firstname		= $_POST["firstname"];
@@ -10,8 +11,24 @@ if(isset($_POST['actionAdminProfile'])) {
 	$birthdate		= $_POST["birthdate"];
 	$gender			= $_POST["gender"];
 
-	$conn = mysqli_connect("localhost","root","","filmcraft");
-	$updateProfileQuery = "UPDATE admin SET `adminEmail` = '$email', `adminFirstName` = '$firstname', `adminLastName` = '$lastname', `adminAddress` = '$address', `adminNumber` = '$phonenumber', `adminBirthdate` = '$birthdate', `adminGender` = '$gender' WHERE `adminId` = '$id' ";
+	// for image
+	$filename = "";
+	$maxsize = 5242880; // 5MB
+	$date = date("Y-m-d");
+	if(isset($_FILES['files'])) {
+		if($_FILES['files']['type'] == "image/png" || $_FILES['files']['type'] == "image/jpeg") {
+			if($_FILES['files']['type'] == "image/png" || $_FILES['files']['type'] == "image/jpeg") {
+				if($_FILES['files']['type'] < $maxsize) {
+					$filename = "../files/images/profile_pic/" .$date."_".$_FILES['files']['name'];
+						move_uploaded_file($_FILES['files']['tmp_name'], $filename);	
+						 $display_files = $filename;
+			    	 }
+	   	 	       }
+	   	 	     }
+	   	 	   }
+	// end of image code
+          
+	$updateProfileQuery = "UPDATE admin SET `adminEmail` = '$email', `adminFirstName` = '$firstname', `adminLastName` = '$lastname', `adminAddress` = '$address', `adminNumber` = '$phonenumber', `adminBirthdate` = '$birthdate', `adminGender` = '$gender', `adminProfileImage` = '$display_files'  WHERE `adminId` = '$id' ";
 	$updateProfileResult = mysqli_query($conn,$updateProfileQuery);
 	
 	if($updateProfileResult) {
@@ -19,9 +36,8 @@ if(isset($_POST['actionAdminProfile'])) {
 	} else {
 		mysqli_error($conn);
 	}
-
-}
-
+ 
+  }
 
 
 ?>

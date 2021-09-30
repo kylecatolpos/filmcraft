@@ -6,5 +6,7 @@ session_start();
 $displayName = $_SESSION['displayName'];
 // get current admin id
 $displayId = $_SESSION['adminId'];
+// display image
+$displayImage = $_SESSION['displayImage'];
 
 ?>

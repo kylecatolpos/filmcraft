@@ -192,8 +192,8 @@ body {
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $displayName ?></span>
-                                <img class="img-profile rounded-circle"
-                                    src="../resources/img/undraw_profile.svg">
+                                 <img class="img-profile rounded-circle"
+                                    src="<?php echo $displayImage ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -244,7 +244,7 @@ body {
                                     <div class="card-header">Profile Picture</div>
                                     <div class="card-body text-center">
                                         <!-- Profile picture image-->
-                                        <img class="img-account-profile rounded-circle mb-2" src="../resources/img/user-profile-default.png" width="150" alt="">
+                                        <img class="img-account-profile rounded-circle mb-2" src="<?php echo $displayImage ?>" width="150" alt="">
                                         <!-- Profile picture help block-->
                                         <div class="small font-italic text-muted mb-4">Upload Image Here</div>
                                         <!-- Profile picture upload button-->

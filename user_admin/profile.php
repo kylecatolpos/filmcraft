@@ -190,7 +190,7 @@ body {
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $displayName ?></span>
                                 <img class="img-profile rounded-circle"
-                                    src="../resources/img/undraw_profile.svg">
+                                    src="<?php echo $displayImage ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -228,7 +228,7 @@ body {
                             <h6 class="m-0 font-weight-bold text-primary">Edit Account Profile</h6>
                         </div>
 
-                       <form method="POST" enctype="multipart/form-data">
+                       <form method="POST" action="../function/admin_profile.php" enctype="multipart/form-data">
                         <div class="card-body">
 
                     <input type="hidden" value="<?php echo $displayId ?>" name="id">
@@ -242,11 +242,11 @@ body {
                                     <div class="card-header">Profile Picture</div>
                                     <div class="card-body text-center">
                                         <!-- Profile picture image-->
-                                        <img class="img-account-profile rounded-circle mb-2" src="../resources/img/user-profile-default.png" width="150" alt="">
+                                        <img class="img-account-profile rounded-circle mb-2" src="<?php echo $displayImage ?>" style="width: 200px;height: 200px;">
                                         <!-- Profile picture help block-->
                                         <div class="small font-italic text-muted mb-4">Upload Image Here</div>
                                         <!-- Profile picture upload button-->
-                                        <input type="file" name="image" id="upload">
+                                        <input type="file" name="files" id="upload">
                                     </div>
                                 </div>
                             </div>
