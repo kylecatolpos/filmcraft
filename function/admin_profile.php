@@ -27,6 +27,13 @@ if(isset($_POST['actionAdminProfile'])) {
 	   	 	     }
 	   	 	   }
 	// end of image code
+	   	 	   
+	// check image if empty 
+	if($display_files == "") {
+		$display_files = $_POST['profile_image'];
+	} else {
+		$display_files = $display_files;
+	}
           
 	$updateProfileQuery = "UPDATE admin SET `adminEmail` = '$email', `adminFirstName` = '$firstname', `adminLastName` = '$lastname', `adminAddress` = '$address', `adminNumber` = '$phonenumber', `adminBirthdate` = '$birthdate', `adminGender` = '$gender', `adminProfileImage` = '$display_files'  WHERE `adminId` = '$id' ";
 	$updateProfileResult = mysqli_query($conn,$updateProfileQuery);

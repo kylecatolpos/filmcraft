@@ -4,6 +4,8 @@ include("sessions.php");
 
 include("header.php");
 
+$vendorWorksId = $_GET['VWID'];
+
 ?>
 
 
@@ -206,7 +208,9 @@ body {
                             <h6 class="m-0 font-weight-bold text-primary">Adding Works</h6>
                         </div>
 
-                        <form action="../function/add_works.php" method="POST" enctype="multipart/form-data">
+                        <form action="../function/add_vendor_works.php" method="POST" enctype="multipart/form-data">
+
+                        <input type="text" name="vendorWorksId" value="<?php echo $vendorWorksId ?>">
 
 
                         <div class="card-body">
@@ -220,9 +224,9 @@ body {
                                         <!-- Profile picture image-->
                                         <img class="img-account-profile rounded-circle mb-2" src="../resources/assets/img/illustrations/profiles/profile-1.png" alt="">
                                         <!-- Profile picture help block-->
-                                        <div class="small font-italic text-muted mb-4">Add Works Image Here</div>
+                                        <div class="small font-italic text-muted mb-4">Add Works Image/Videos Here</div>
                                         <!-- Profile picture upload button-->
-                                        <input type="file" name="images">
+                                        <input type="file" name="files">
                                     </div>
                                 </div>
                             </div>
@@ -239,7 +243,7 @@ body {
                                             <!-- Form Row-->
                                         
                                             <!-- Save changes button-->
-                                            <button class="btn btn-primary" type="button">Save changes</button>
+                                            <button class="btn btn-primary" type="submit" name="actionAddWorks">Save changes</button>
                                             <a class="btn btn-danger text-white" href="manage-portfolio.php">Cancel</a>
                                     </div>
                                 </div>

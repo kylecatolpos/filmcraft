@@ -17,6 +17,8 @@ while($getRow = mysqli_fetch_assoc($getResult)) {
     $phonenumber    = $getRow['adminNumber'];
     $address        = $getRow['adminAddress'];
 
+    $profile_image  = $getRow['adminProfileImage'];
+
     // check if gender is none;
     if($gender == 'None') {
        $displayGender = 'I prefer not to say';
@@ -232,6 +234,7 @@ body {
                         <div class="card-body">
 
                     <input type="hidden" value="<?php echo $displayId ?>" name="id">
+                    <input type="hidden" value="<?php echo $profile_image ?>" name="profile_image">
 
 
                      <div class="col-md-12 mx-auto">

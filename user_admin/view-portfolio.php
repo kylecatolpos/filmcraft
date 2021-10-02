@@ -26,6 +26,8 @@ while($portfolioInfoRow = mysqli_fetch_assoc($portfolioInfoResult)) {
 
     $address   = $portfolioInfoRow['portfolioAddress'];
     $email     = $portfolioInfoRow['portfolioEmail'];
+    $position           = $portfolioInfoRow['portfolioVendorPosition'];
+    $portfolio_image    = $portfolioInfoRow['portfolioProfileImage'];
 }
 
 ?>
@@ -233,10 +235,10 @@ body {
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="px-4 pt-0 pb-4 cover" style="background-color:#395232">
                 <div class="media align-items-end profile-head">
-                    <div class="profile mr-3 mb-4"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ-FTr8wwpK2fQ9E1h9uhr0avZSmuVKGAnb6X5Dmal-_Nhvw-kJ&usqp=CAU" alt="..." width="150" class="rounded mb-2 img-thumbnail"> </div>
+                    <div class="profile mr-3 mb-4"> <img src="<?php echo $portfolio_image ?>" alt="..." width="150" class="rounded mb-2 img-thumbnail"> </div>
                     <div class="media-body mb-5 text-white">
                         <h4 class="mt-0 mb-1"><?php echo $fullname ?></h4>
-                        <p class="small mb-4">Photographer</p>
+                        <p class="small mb-4"><?php echo $position ?></p>
                     </div>
                 </div>
             </div>
@@ -278,23 +280,45 @@ body {
                                             <th>Type of Occation</th>
                                          </tr>
                                     </thead>
-                                    <tbody>
-                                    <?php ?>
+                                     <tbody>
+                                      <?php 
+
+                                      $conn  = mysqli_connect("localhost","root","","filmcraft");
+                                      $queryWorks = "SELECT * FROM works WHERE portfolioWorks_id = '$workid' ";
+                                      $resultWorks = mysqli_query($conn,$queryWorks);
+
+                                      while($rowWorks = mysqli_fetch_assoc($resultWorks)) {
+
+                                      ?>
                                         <tr>
-                                            <td><img src="../resources/img/miss.jpg  " width="100"></td>
-                                            <td>Pageant</td>
-                                        <tr>
-                                            <td><img src="../resources/img/wedds.jpg " width="100"></td>
-                                            <td>Wedding</td>
-                                            <tr>
-                                                <td><img src="../resources/img/debut.jpg " width="100"></td>
-                                                <td>Debut</td>  
-                                            </tr>
+
+                                            <?php 
+
+                                            if ($rowWorks['occassion_file_type'] == 'image/png' || $rowWorks['occassion_file_type'] == 'image/jpeg') {
+
+
+                                            ?>
+
+                                            <td><img src="<?php echo $rowWorks['occassion_file'] ?>" width="320" height="240"></td>
+                                             <td><?php echo $rowWorks['occassion_file_type'] ?></td>
+                                            <td><?php echo $rowWorks['occassion'] ?></td>
+
+                                        <?php } else if($rowWorks['occassion_file_type'] == 'video/mp4') { ?>
+
+                                            <td><video width="320" height="240" controls controlsList="nodownload">
+                                                  <source src="<?php echo $rowWorks['occassion_file'] ?>" type="<?php echo $rowWorks['occassion_file_type'] ?>">
+                                                 </video>
+                                             </td>
+                                            <td><?php echo $rowWorks['occassion_file_type'] ?></td>
+                                            <td><?php echo $rowWorks['occassion'] ?></td>
+
+
+                                             <?php } ?>
+
+
                                         </tr>
-                                    </tr>
-                                    <?php ?>
-                                    </tbody>
-                                </table>
+                                      <?php } ?>
+                                      </tbody>                                </table>
                                             </div>
                                         </div>
                                     </div>

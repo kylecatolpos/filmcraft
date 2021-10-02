@@ -18,6 +18,8 @@ while($getRow = mysqli_fetch_assoc($getResult)) {
     $phonenumber    = $getRow['vendorNumber'];
     $address        = $getRow['vendorAddress'];
 
+    $profile_image  = $getRow['vendorProfileImage'];
+
      // check if gender is none;
     if($gender == 'None') {
        $displayGender = 'I prefer not to say';
@@ -231,10 +233,12 @@ body {
                             <h6 class="m-0 font-weight-bold text-primary">Edit Account Profile</h6>
                         </div>
 
-                       <form action="../function/vendor_profile.php" method="POST" enctype="multipart/form-data">
+                       <form method="POST" action="../function/vendor_profile.php" enctype="multipart/form-data">
                         <div class="card-body">
 
                     <input type="hidden" value="<?php echo $displayId ?>" name="id">
+                    <input type="hidden" value="<?php echo $profile_image ?>" name="profile_image">
+
 
                      <div class="col-md-12 mx-auto">
                          <div class="row">
@@ -244,11 +248,11 @@ body {
                                     <div class="card-header">Profile Picture</div>
                                     <div class="card-body text-center">
                                         <!-- Profile picture image-->
-                                        <img class="img-account-profile rounded-circle mb-2" src="<?php echo $displayImage ?>" width="150" alt="">
+                                        <img class="img-account-profile rounded-circle mb-2" src="<?php echo $displayImage ?>" style="width: 200px;height: 200px;">
                                         <!-- Profile picture help block-->
                                         <div class="small font-italic text-muted mb-4">Upload Image Here</div>
                                         <!-- Profile picture upload button-->
-                                        <button class="btn btn-primary" type="button">Upload new image</button>
+                                        <input type="file" name="files" id="upload">
                                     </div>
                                 </div>
                             </div>
@@ -293,6 +297,8 @@ body {
                                                     <input class="form-control" id="inputBirthday" type="text" placeholder="Enter your birthday" value="<?php echo $birthdate ?>" name="birthdate">
                                                 </div>
                                                  <div class="col-md-4">
+
+
                                                     <label class="small mb-1" for="inputBirthday">Gender</label>
                                                     <select class="form-control" name="gender">
                                                         <option value="<?php echo $displayGender ?>" hidden><?php echo $displayGender ?></option>

@@ -218,7 +218,7 @@ include("header.php");
                                         ?>
                                         <tr>
                                             <td><?php echo $concatName ?></td>
-                                            <td>Photographer</td>
+                                            <td><?php echo $fetchPosition ?></td>
                                             <td><a href="view-portfolio.php?VID=<?php echo $fetchId ?>" class="btn btn-primary">View</a></td>
                                         </tr>
                                        <?php } ?>

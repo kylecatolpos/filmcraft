@@ -20,6 +20,8 @@ while($portfolioInfoRow = mysqli_fetch_assoc($portfolioInfoResult)) {
 
     $address   = $portfolioInfoRow['portfolioAddress'];
     $email     = $portfolioInfoRow['portfolioEmail'];
+    $position  = $portfolioInfoRow['portfolioVendorPosition'];
+
 }
 
 
@@ -228,19 +230,24 @@ body {
                              <div class="card mb-4">
                                     <div class="card-header">Edit Porfolio Details</div>
                                     <div class="card-body">
-                                        <form action="../function/edit_vendor_portfolio.php" method="POST">
+                                        <form action="../function/edit_vendor_portfolio.php" method="POST" enctype="multipart/form-data">
 
                                             <input type="hidden" value="<?php echo $PID ?>" name="id">
 
-                                            <div class="mb-3">
-                                                <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                                                <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="<?php echo $email ?>" name="email">
+                                             <div class="row gx-3 mb-3">
+                                                <!-- Form Group (first name)-->
+                                                <div class="col-md-6">
+                                                    <label class="small mb-1" for="inputFirstName">Portfolio Profile Image</label>
+                                                    <input class="form-control" id="inputFirstName" type="file" name="files">
+                                                </div>
+                                                <!-- Form Group (last name)-->
+                                                <div class="col-md-6">
+                                                    <label class="small mb-1" for="inputLastName">Email Address</label>
+                                                    <input class="form-control" id="inputLastName" type="text" placeholder="Enter your email address" value="<?php echo $email ?>" name="email">
+                                                </div>
                                             </div>
-                                            <!-- Form Group (username)-->
-                                            <div class="mb-3">
-                                                <label class="small mb-1" for="inputMyDescription">My Description</label>
-                                                <input class="form-control" id="inputMyDescription" type="text" placeholder="Enter portfolio description" value="" name="description">
-                                            </div>
+
+                                        
                                               <!-- Form Row-->
                                             <div class="row gx-3 mb-3">
                                                 <!-- Form Group (first name)-->
@@ -254,9 +261,31 @@ body {
                                                     <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" value="<?php echo $lastname ?>" name="lastname">
                                                 </div>
                                             </div>
-                                             <div class="mb-3">
-                                                <label class="small mb-1" for="inputAddress">Address</label>
-                                                <input class="form-control" id="inputAddress" type="text" placeholder="Enter your address" value="<?php echo $address ?>" name="address">
+
+                                             <div class="row gx-3 mb-3">
+                                                <!-- Form Group (first name)-->
+                                                <div class="col-md-8">
+                                                    <label class="small mb-1" for="inputAddress">Address</label>
+                                                    <input class="form-control" id="inputAddress" type="text" placeholder="Enter your address" value="<?php echo $address ?>" name="address">
+                                                </div>
+                                                <!-- Form Group (last name)-->
+                                                <div class="col-md-4">
+                                                    <label class="small mb-1" for="inputLastName">Position</label>
+                                                    <select class="form-control" name="position">
+                                                        <option value="<?php echo $position ?>" hidden selected ><?php echo $position ?></option>
+                                                        <option value="None">None</option>
+                                                        <option value="Photographer">Photographer</option>
+                                                        <option value="Videographer">Videographer</option>
+                                                        <option value="Both">Photographer and Videographer</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <!-- Form Group (username)-->
+                                            <div class="mb-3">
+                                                <label class="small mb-1" for="inputMyDescription">My Description</label>
+                                                <input class="form-control" id="inputMyDescription" type="text" placeholder="Enter portfolio description" value="" name="description">
                                             </div>
                                             <!-- Form Row-->
                                             <!-- Save changes button-->

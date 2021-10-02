@@ -9,12 +9,14 @@ $getInfoSql = "SELECT * FROM portfolio WHERE vendor_Id = '$displayId' ";
 $getResult  = mysqli_query($conn,$getInfoSql);
 
 while($getRow = mysqli_fetch_assoc($getResult)) {
-    $workid         = $getRow["vendorWork_Id"];
-    $id             = $getRow['portfolioId'];
-    $email          = $getRow['portfolioEmail'];
-    $firstname      = $getRow['portfolioFirstName'];
-    $lastname       = $getRow['portfolioLastName'];
-    $address        = $getRow['portfolioAddress'];
+    $workid             = $getRow["vendorWork_Id"];
+    $id                 = $getRow['portfolioId'];
+    $email              = $getRow['portfolioEmail'];
+    $firstname          = $getRow['portfolioFirstName'];
+    $lastname           = $getRow['portfolioLastName'];
+    $address            = $getRow['portfolioAddress'];
+    $position           = $getRow['portfolioVendorPosition'];
+    $portfolio_image    = $getRow['portfolioProfileImage'];
 
     $fullname  = $firstname.' '.$lastname;
 }
@@ -229,10 +231,10 @@ body {
         <div class="bg-white shadow rounded overflow-hidden">
             <div class="px-4 pt-0 pb-4 cover" style="background-color:#395232">
                 <div class="media align-items-end profile-head">
-                    <div class="profile mr-3 mb-4"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ-FTr8wwpK2fQ9E1h9uhr0avZSmuVKGAnb6X5Dmal-_Nhvw-kJ&usqp=CAU" alt="..." width="130" class="rounded mb-2 img-thumbnail"> </div>
+                    <div class="profile mr-3 mb-4"> <img src="<?php echo $portfolio_image ?>" alt="..." width="130" class="rounded mb-2 img-thumbnail" style="height: 100px;"> </div>
                     <div class="media-body mb-5 text-white">
                         <h4 class="mt-0 mb-1"><?php echo $fullname ?></h4>
-                        <p class="small mb-4">Photographer</p>
+                        <p class="small mb-4"><?php echo $position ?></p>
                     </div>
                 </div>
             </div>
@@ -275,6 +277,7 @@ body {
                                     <thead>
                                         <tr>
                                             <th>Image/Video</th>
+                                            <th>File Type</th>
                                             <th>Name</th>
                                          </tr>
                                     </thead>
@@ -290,8 +293,31 @@ body {
 
                                       ?>
                                         <tr>
-                                            <td><img src="../resources/img/logo-try.png" width="100"></td>
-                                            <td><?php echo $rowWorks['occasion'] ?></td>
+
+                                            <?php 
+
+                                            if ($rowWorks['occassion_file_type'] == 'image/png' || $rowWorks['occassion_file_type'] == 'image/jpeg') {
+
+
+                                            ?>
+
+                                            <td><img src="<?php echo $rowWorks['occassion_file'] ?>" width="320" height="240"></td>
+                                             <td><?php echo $rowWorks['occassion_file_type'] ?></td>
+                                            <td><?php echo $rowWorks['occassion'] ?></td>
+
+                                        <?php } else if($rowWorks['occassion_file_type'] == 'video/mp4') { ?>
+
+                                            <td><video width="320" height="240" controls controlsList="nodownload">
+                                                  <source src="<?php echo $rowWorks['occassion_file'] ?>" type="<?php echo $rowWorks['occassion_file_type'] ?>">
+                                                 </video>
+                                             </td>
+                                            <td><?php echo $rowWorks['occassion_file_type'] ?></td>
+                                            <td><?php echo $rowWorks['occassion'] ?></td>
+
+
+                                             <?php } ?>
+
+
                                         </tr>
                                       <?php } ?>
                                       </tbody>

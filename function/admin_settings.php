@@ -10,7 +10,7 @@ if($_GET['VID']) {
   var_dump($conn);
 
   if($res) {
-  	//header('Location:../user_admin/settings.php');
+  	header('Location:../user_admin/settings.php');
   } else {
   	echo "Error";
   }
