@@ -11,7 +11,8 @@ if(isset($_POST['actionAddWorks'])) {
 
 	$filename = "";
 	//$maxsize = 5242880; // 5MB
-	$maxsize = 1073741824; // 1GB ??
+	//$maxsize = 1073741824; // 1GB ??
+	$maxsize = 41943040; // 40MB MAX
 	$date = date("Y-m-d");
 	if(isset($_FILES['files'])) {
 		if($_FILES['files']['type'] == "image/png" || $_FILES['files']['type'] == "image/jpeg") {

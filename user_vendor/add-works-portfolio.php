@@ -210,7 +210,7 @@ body {
 
                         <form action="../function/add_vendor_works.php" method="POST" enctype="multipart/form-data">
 
-                        <input type="text" name="vendorWorksId" value="<?php echo $vendorWorksId ?>">
+                        <input type="hidden" name="vendorWorksId" value="<?php echo $vendorWorksId ?>">
 
 
                         <div class="card-body">
