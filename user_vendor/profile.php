@@ -294,7 +294,7 @@ body {
                                                 <!-- Form Group (birthday)-->
                                                 <div class="col-md-4">
                                                     <label class="small mb-1" for="inputBirthday">Birthday</label>
-                                                    <input class="form-control" id="inputBirthday" type="text" placeholder="Enter your birthday" value="<?php echo $birthdate ?>" name="birthdate">
+                                                    <input class="form-control" id="inputBirthday" type="date" placeholder="Enter your birthday" value="<?php echo $birthdate ?>" name="birthdate">
                                                 </div>
                                                  <div class="col-md-4">
 
