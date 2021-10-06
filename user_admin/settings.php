@@ -238,7 +238,9 @@ body {
 						  	<div class="card">
 						  		<div class="card-body">
 						  	
-						  	  <h1 class="text-center"><strong>Account Management for Vendors</strong></h1>
+						
+                               <!-- Page Heading -->
+                            <h1 class="h3 mb-5 text-gray-800">Account Management for Vendors</h1>
 
 						  	  <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable">

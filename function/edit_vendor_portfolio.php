@@ -24,6 +24,12 @@ if(isset($_POST['actionEditPortfolio'])) {
 	   	 	     }
 	   	 	   }
 	// end of image code
+
+  if($_POST['image'] == "") {
+  	$display_files = $display_files;
+  } else {
+  	$display_files = $_POST["image"];
+  }
   
   $conn = mysqli_connect("localhost","root","","filmcraft");
 	$updatePortfolioQuery = "UPDATE portfolio SET `portfolioEmail` = '$email', `portfolioFirstName` = '$firstname', `portfolioLastName` = '$lastname', `portfolioAddress` = '$address' , `portfolioVendorPosition` = '$position' ,  `portfolioProfileImage` = '$display_files' WHERE `portfolioId` = '$id' ";

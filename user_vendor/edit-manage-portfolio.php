@@ -22,6 +22,8 @@ while($portfolioInfoRow = mysqli_fetch_assoc($portfolioInfoResult)) {
     $email     = $portfolioInfoRow['portfolioEmail'];
     $position  = $portfolioInfoRow['portfolioVendorPosition'];
 
+    $image     = $portfolioInfoRow['portfolioProfileImage'];
+
 }
 
 
@@ -197,7 +199,7 @@ body {
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="manage-subscription.php">
+                                <a class="dropdown-item" href="settings.php">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
@@ -233,6 +235,7 @@ body {
                                         <form action="../function/edit_vendor_portfolio.php" method="POST" enctype="multipart/form-data">
 
                                             <input type="hidden" value="<?php echo $PID ?>" name="id">
+                                            <input type="hidden" value="<?php echo $image ?>" name="image">
 
                                              <div class="row gx-3 mb-3">
                                                 <!-- Form Group (first name)-->

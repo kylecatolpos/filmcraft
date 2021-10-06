@@ -196,7 +196,7 @@ body {
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item" href="manage-subscription.php">
+                                <a class="dropdown-item" href="settings.php">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
@@ -240,15 +240,15 @@ body {
             </div>
 
             <div class="bg-light p-4 d-flex justify-content-center text-center mt-3">
-                <ul class="list-inline mb-0">
+               <ul class="list-inline mb-0">
                     <li class="list-inline-item mx-5">
-                        <h5 class="font-weight-bold mb-0 d-block">-</h5><small class="text-muted">NULL</small>
+                        <h5 class="font-weight-bold mb-0 d-block"><span class="badge badge-danger badge-btn">(Not Verified)</span></h5><small class="text-muted">Account</small>
                     </li>
                     <li class="list-inline-item mx-5">
-                        <h5 class="font-weight-bold mb-0 d-block">1,044</h5><small class="text-muted">Posted Files</small>
+                        <h5 class="font-weight-bold mb-0 d-block">5,000 PHP</h5><small class="text-muted">Booking Rate</small>
                     </li>
                     <li class="list-inline-item mx-5">
-                        <h5 class="font-weight-bold mb-0 d-block">4.7</h5><small class="text-muted">Ratings</small>
+                        <h5 class="font-weight-bold mb-0 d-block">4.5</h5><small class="text-muted">Ratings </small>
                     </li>
                 </ul>
             </div>
@@ -277,7 +277,7 @@ body {
                                     <thead>
                                         <tr>
                                             <th>Image/Video</th>
-                                            <th>File Type</th>
+                                           <!--  <th>File Type</th> -->
                                             <th>Name</th>
                                          </tr>
                                     </thead>
@@ -302,7 +302,7 @@ body {
                                             ?>
 
                                             <td><img src="<?php echo $rowWorks['occassion_file'] ?>" width="320" height="240"></td>
-                                             <td><?php echo $rowWorks['occassion_file_type'] ?></td>
+                                            <!--  <td><?php //echo $rowWorks['occassion_file_type'] ?></td> -->
                                             <td><?php echo $rowWorks['occassion'] ?></td>
 
                                         <?php } else if($rowWorks['occassion_file_type'] == 'video/mp4') { ?>
@@ -311,7 +311,7 @@ body {
                                                   <source src="<?php echo $rowWorks['occassion_file'] ?>" type="<?php echo $rowWorks['occassion_file_type'] ?>">
                                                  </video>
                                              </td>
-                                            <td><?php echo $rowWorks['occassion_file_type'] ?></td>
+                                            <!-- <td><?php //echo $rowWorks['occassion_file_type'] ?></td> -->
                                             <td><?php echo $rowWorks['occassion'] ?></td>
 
 

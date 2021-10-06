@@ -157,7 +157,7 @@ include("header.php");
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item active" href="manage-subscription.php">
+                                <a class="dropdown-item active" href="settings.php">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
@@ -177,6 +177,23 @@ include("header.php");
                  <!-- Begin Page Content -->
                 <div class="container-fluid">
 
+                     <!-- Page Heading -->
+                    <h1 class="h3 mb-5 text-gray-800">Settings</h1>
+
+                      <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                           <a class="nav-link active" id="subscription-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Account Subscription</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="report-tab" data-toggle="tab" href="#1contact" role="tab" aria-controls="contact" aria-selected="false">Generate Reports</a>
+                        </li>
+                     </ul>
+
+                     <div class="tab-content" id="myTabContent">
+                          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="card">
+                                <div class="card-body">
+
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-5 text-gray-800">Account Subscription</h1>
@@ -184,83 +201,78 @@ include("header.php");
                     <!-- Content Row -->
                     <div class="row justify-content-center">
                                 <!-- Pricing column 1-->
-                                <div class="col-xl-4 col-lg-6 mb-4 mb-xl-0">
+                                <div class="col-xl-6 col-lg-6 mb-4 mb-xl-0">
                                     <div class="card h-100">
                                         <div class="card-header bg-transparent">
-                                            <span class="badge bg-primary-soft text-primary rounded-pill py-2 px-3 mb-2" style="font-size:32px;">Free</span>
+                                            <span class="badge bg-secondary-soft text-secondary rounded-pill py-2 px-3 mb-2" style="font-size:32px;">Free</span>
                                             <div class="pricing-columns-price">
-                                                $0
-                                                <span>/month</span>
+                                                Free For Verified Users
+                                                <span></span>
                                             </div>
                                         </div>
                                         <div class="card-body p-0">
                                             <ul class="list-group list-group-flush">
                                                 <li class="list-group-item">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle text-primary me-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                                    1 user account
+                                                   <i class="fa fa-check-circle mr-2" style="font-size:20px;"></i>
+                                                    No Bookings
                                                 </li>
-                                                <li class="list-group-item">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle text-primary me-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                                    Remove ads
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle text-primary me-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                                    Premium assets
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle text-primary me-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                                    Saved projects
+                                                 <li class="list-group-item">
+                                                   <i class="fa fa-check-circle mr-2" style="font-size:20px;"></i>
+                                                    No Access to Mobile App
                                                 </li>
                                             </ul>
                                         </div>
-                                        <a class="card-footer d-flex align-items-center justify-content-between" href="#!">
+                                        <a class="card-footer d-flex align-items-center justify-content-between text-secondary" href="#!" style="text-decoration: none;">
                                             Get started!
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                           <i class="fa fa-arrow-circle-right" style="font-size:20px;"></i>
                                         </a>
                                     </div>
                                 </div>
                                 <!-- Pricing column 2-->
-                                <div class="col-xl-4 col-lg-6 mb-4 mb-xl-0">
+                                <div class="col-xl-6 col-lg-6 mb-4 mb-xl-0">
                                     <div class="card h-100">
                                         <div class="card-header bg-transparent">
-                                            <span class="badge bg-secondary-soft text-secondary rounded-pill py-2 px-3 mb-2" style="font-size:32px;">Basic</span>
+                                            <span class="badge bg-primary-soft text-primary rounded-pill py-2 px-3 mb-2" style="font-size:32px;">Basic</span>
                                             <div class="pricing-columns-price">
-                                                500
-                                                <span>/month</span>
+                                                500 Pesos
+                                                <span>/ Month</span>
                                             </div>
                                         </div>
                                         <div class="card-body p-0">
                                             <ul class="list-group list-group-flush">
                                                 <li class="list-group-item">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle text-secondary me-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                                    Up to 5 user accounts
+                                                   <i class="fa fa-check-circle mr-2" style="color:#4e73df;font-size:20px;"></i>
+                                                    Unlimited Bookings
                                                 </li>
                                                 <li class="list-group-item">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle text-secondary me-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                                    Remove ads
+                                                   <i class="fa fa-check-circle mr-2" style="color:#4e73df;font-size:20px;"></i>
+                                                    Can Display Portfolio
                                                 </li>
-                                                <li class="list-group-item">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle text-secondary me-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                                    Premium assets
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle text-secondary me-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                                    Saved projects
-                                                </li>
-                                                <li class="list-group-item">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle text-secondary me-2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                                                    Team collaboration tools
+                                                <li class="list-group-item mb-5">
+                                                   <i class="fa fa-check-circle mr-2" style="color:#4e73df;font-size:20px;"></i>
+                                                    Has Access to Mobile App
                                                 </li>
                                             </ul>
                                         </div>
-                                        <a class="card-footer d-flex align-items-center justify-content-between text-secondary" href="#!">
+                                        <a class="card-footer d-flex align-items-center justify-content-between" href="#!" style="text-decoration: none;">
                                             Get started!
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                           <i class="fa fa-arrow-circle-right" style="font-size:20px;"></i>
                                         </a>
                                     </div>
                                 </div>
+
+                                    </div>
+                            </div>
+                          </div>
+                          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab"><div class="card">
+                                <div class="card-body">
+                                    Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.
+                                </div>
+                            </div></div>
+                          <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                        </div>
                                 <!-- Pricing column 3-->
-                                <div class="col-xl-4 col-lg-6">
+                              <!--   <div class="col-xl-4 col-lg-6">
                                     <div class="pricing-table">
                                         <div class="card h-100">
                                             <div class="card-header bg-transparent">
@@ -308,7 +320,7 @@ include("header.php");
                                             </a>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                 </div>
                 <!-- /.container-fluid -->
