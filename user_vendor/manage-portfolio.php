@@ -277,7 +277,7 @@ body {
                                     <thead>
                                         <tr>
                                             <th>Image/Video</th>
-                                           <!--  <th>File Type</th> -->
+                                            <th>Occassion Type</th>
                                             <th>Name</th>
                                          </tr>
                                     </thead>
@@ -298,11 +298,10 @@ body {
 
                                             if ($rowWorks['occassion_file_type'] == 'image/png' || $rowWorks['occassion_file_type'] == 'image/jpeg') {
 
-
                                             ?>
 
                                             <td><img src="<?php echo $rowWorks['occassion_file'] ?>" width="320" height="240"></td>
-                                            <!--  <td><?php //echo $rowWorks['occassion_file_type'] ?></td> -->
+                                            <td><?php echo $rowWorks['occassion_type'] ?></td>
                                             <td><?php echo $rowWorks['occassion'] ?></td>
 
                                         <?php } else if($rowWorks['occassion_file_type'] == 'video/mp4') { ?>
@@ -311,9 +310,8 @@ body {
                                                   <source src="<?php echo $rowWorks['occassion_file'] ?>" type="<?php echo $rowWorks['occassion_file_type'] ?>">
                                                  </video>
                                              </td>
-                                            <!-- <td><?php //echo $rowWorks['occassion_file_type'] ?></td> -->
+                                            <td><?php echo $rowWorks['occassion_type'] ?></td>
                                             <td><?php echo $rowWorks['occassion'] ?></td>
-
 
                                              <?php } ?>
 

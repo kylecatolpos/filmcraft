@@ -39,6 +39,10 @@
                                     <div class="text-center">
                                         <a class="small" href="register.php" style="color:white">Create an Account!</a>
                                     </div>
+
+                                    <div class="text-center mt-4">
+                                        <p class="text-white">Copyright © Filmcraft 2021</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

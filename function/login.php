@@ -8,7 +8,10 @@ if(isset($_POST['actionLogin'])) {
  	$email 	  	= $_POST['email'];
  	$password 	= $_POST['password'];
 
- 	$sql = "SELECT * FROM admin WHERE (`adminEmail` LIKE '$email') AND (`adminPassword` LIKE '$password')";
+    // hash password
+    $hash_password = md5($password);
+
+ 	$sql = "SELECT * FROM admin WHERE (`adminEmail` LIKE '$email') AND (`adminPassword` LIKE '$hash_password')";
  	$conn = mysqli_connect("localhost","root","","filmcraft");
     $result = mysqli_query($conn, $sql);
     if(mysqli_num_rows($result) > 0){
@@ -19,7 +22,7 @@ if(isset($_POST['actionLogin'])) {
         header("Location:../user_admin/index.php"); 
     } else {
 
-    $sql = "SELECT * FROM vendor WHERE (`vendorEmail` LIKE '$email') AND (`vendorPassword` LIKE '$password')";
+    $sql = "SELECT * FROM vendor WHERE (`vendorEmail` LIKE '$email') AND (`vendorPassword` LIKE '$hash_password')";
  	$conn = mysqli_connect("localhost","root","","filmcraft");
     $result = mysqli_query($conn, $sql);
     if(mysqli_num_rows($result) > 0) {

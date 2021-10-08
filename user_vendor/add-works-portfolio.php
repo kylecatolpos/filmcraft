@@ -238,7 +238,17 @@ body {
                                             <!-- Form Group (username)-->
                                             <div class="mb-3">
                                                 <label class="small mb-1" for="inputUsername">Type of Occasion</label>
-                                                <input class="form-control" id="inputUsername" type="text" placeholder="Enter type of occasion" name="occassion">
+                                                <select class="form-control" name="occassion_type">
+                                                    <option hidden selected>Select Occassion Type</option>
+                                                    <option value="Wedding">Wedding</option>
+                                                    <option value="Birthday">Birthday</option>
+                                                    <option value="Others">Others</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="small mb-1" for="inputUsername">Type of Occasion</label>
+                                                <input class="form-control" id="inputUsername" type="text" placeholder="Enter occassion name" name="occassion">
                                             </div>
                                             <!-- Form Row-->
                                         

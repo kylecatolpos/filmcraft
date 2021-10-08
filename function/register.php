@@ -10,9 +10,12 @@ if(isset($_POST['actionRegister'])) {
  	$empty = "";
  	$image = "../files/images/profile_pic/default-profile.png";
 
+ 	// hash password
+ 	$hash_password = md5($pass);
+
  	// creation for vendor account
  	$db  = mysqli_connect("localhost","root","","filmcraft");
- 	$sql = "INSERT INTO vendor (vendorId,vendorEmail,vendorPassword,vendorFirstName,vendorLastName,vendorGender,vendorBirthdate,vendorNumber,vendorAddress,vendorType,vendorPosition,vendorProfileImage) VALUES (NULL,'$email','$pass','$fname','$lname','$empty','$empty','$empty','$empty','$empty','$position','$image') ";
+ 	$sql = "INSERT INTO vendor (vendorId,vendorEmail,vendorPassword,vendorFirstName,vendorLastName,vendorGender,vendorBirthdate,vendorNumber,vendorAddress,vendorType,vendorPosition,vendorProfileImage) VALUES (NULL,'$email','$hash_password','$fname','$lname','$empty','$empty','$empty','$empty','$empty','$position','$image') ";
  	if(mysqli_query($db,$sql)) {
 
  	$latest_id = mysqli_insert_id($db);

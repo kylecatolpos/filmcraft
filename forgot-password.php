@@ -40,6 +40,11 @@
                                     <div class="text-center">
                                         <a class="small" href="login.php" style="color:white">Already have an account? Login!</a>
                                     </div>
+
+                                     <div class="text-center mt-4">
+                                        <p class="text-white">Copyright © Filmcraft 2021</p>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

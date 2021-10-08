@@ -6,6 +6,7 @@ if(isset($_POST['actionAddWorks'])) {
 	// POST variables
 	$vendorWorksId = $_POST['vendorWorksId'];
 	$occassion = $_POST['occassion'];
+	$occassion_type = $_POST['occassion_type'];
 
 	// code for image / videos
 
@@ -23,7 +24,7 @@ if(isset($_POST['actionAddWorks'])) {
 						 $display_files = $filename;
 						 $image_file_type = $_FILES['files']['type'];
 						  $conn = mysqli_connect("localhost","root","","filmcraft");
-			                $sqlInsertImages = "INSERT INTO works (worksId,portfolioWorks_Id,occassion,occassion_file,occassion_file_type) VALUES (NULL,'$vendorWorksId','$occassion','$display_files','$image_file_type')";
+			                $sqlInsertImages = "INSERT INTO works (worksId,portfolioWorks_Id,occassion,occassion_type,occassion_file,occassion_file_type) VALUES (NULL,'$vendorWorksId','$occassion','$occassion_type','$display_files','$image_file_type')";
 			                $resultInsertImages = mysqli_query($conn,$sqlInsertImages);
 
 			                	if($resultInsertImages) {
@@ -58,7 +59,7 @@ if(isset($_POST['actionAddWorks'])) {
 			                $display_files = $target_file;
 			                $videos_file_type = $_FILES['files']['type'];
 			                $conn = mysqli_connect("localhost","root","","filmcraft");
-			                $sqlInsertVideo = "INSERT INTO works (worksId,portfolioWorks_Id,occassion,occassion_file,occassion_file_type) VALUES (NULL,'$vendorWorksId','$occassion','$display_files','$videos_file_type')";
+			                $sqlInsertVideo = "INSERT INTO works (worksId,portfolioWorks_Id,occassion,occassion_type,occassion_file,occassion_file_type) VALUES (NULL,'$vendorWorksId','$occassion','$occassion_type','$display_files','$videos_file_type')";
 			                $resultInsertVideo = mysqli_query($conn,$sqlInsertVideo);
 
 			                	if($resultInsertVideo) {
