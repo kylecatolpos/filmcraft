@@ -237,12 +237,20 @@ body {
                                     <div class="card-body">
                                             <!-- Form Group (username)-->
                                             <div class="mb-3">
-                                                <label class="small mb-1" for="inputUsername">Type of Occasion</label>
+                                                <label class="small mb-1" for="inputUsername">Type of Event</label>
                                                 <select class="form-control" name="occassion_type">
-                                                    <option hidden selected>Select Occassion Type</option>
-                                                    <option value="Wedding">Wedding</option>
-                                                    <option value="Birthday">Birthday</option>
-                                                    <option value="Others">Others</option>
+                                                    <option hidden selected>Select Event Type</option>
+                                                    <?php  
+
+                                                     $conn  = mysqli_connect("localhost","root","","filmcraft");
+                                                     $queryEvents = "SELECT * FROM events ORDER BY eventName";
+                                                     $resultEvents = mysqli_query($conn,$queryEvents);
+
+                                                     while($rowEvents = mysqli_fetch_assoc($resultEvents)) {
+
+                                                    ?>
+                                                    <option value="<?php echo $rowEvents['eventId'] ?>"><?php echo $rowEvents['eventName'] ?></option>
+                                                    <?php } ?>
                                                 </select>
                                             </div>
 

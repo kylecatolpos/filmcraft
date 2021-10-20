@@ -186,29 +186,57 @@ include("header.php");
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
+                                            <th>Customer Name</th>
                                             <th>Vendor Booked</th>
                                             <th>Status</th>
-                                            <th>Date</th>
+                                            <th>Start Of Transaction</th>
+                                            <th>End Of Transaction</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                  
                                     <tbody>
 
+                                        <?php 
+
+                                        $conn = mysqli_connect("localhost","root","","filmcraft");
+                                        $queryBooking = "SELECT * FROM booking JOIN customer ON booking.customer_Id = customer.customerId JOIN vendor ON booking.vendor_Id = vendor.vendorId 
+                                        WHERE booking.vendor_Id = '$displayId' 
+                                        ";
+                                        $resultBooking = mysqli_query($conn,$queryBooking);
+                                        while($rowBooking = mysqli_fetch_assoc($resultBooking)) {
+
+                                        $cfname = $rowBooking['customerFirstName'];
+                                        $clname = $rowBooking['customerLastName'];
+
+                                        $customerFullName = $cfname.' '.$clname;
+
+                                        $vfname = $rowBooking['vendorFirstName'];
+                                        $vlname = $rowBooking['vendorLastName'];
+
+                                        $vendorFullName = $vfname.' '.$vlname;
+
+                                        $bookingStartDate = $rowBooking['bookingStartDate'];
+                                        $bookingEndDate = $rowBooking['bookingEndDate'];
+
+                                        ?>
+
                                         <tr>
-                                            <td>Charles Chan</td>
-                                            <td>Tiger Nixon</td>
+                                            <td><?php echo $customerFullName ?></td>
+                                            <td><?php echo $vendorFullName ?></td>
                                             <td>Pending</td>
-                                            <td>7:38 PM 5/25/21</td>
+                                            <td><?php echo $bookingStartDate ?></td>
+                                            <td><?php echo $bookingEndDate ?></td>
                                             <td>
-                                                <button class="btn btn-primary">Accept</button>
-                                                <button class="btn btn-danger">Cancel</button>
+                                                <a class="btn btn-primary">Accept</a>
+                                                <a class="btn btn-danger">Decline</a>
                                             </td>
                                         </tr>
+
+                                        <?php } ?>
                                        
                                        
                                     </tbody>

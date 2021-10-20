@@ -19,9 +19,9 @@ while($getRow = mysqli_fetch_assoc($getResult)) {
     $portfolio_image    = $getRow['portfolioProfileImage'];
 
     $fullname  = $firstname.' '.$lastname;
+
+    $status = $getRow['portfolioStatus'];
 }
-
-
 
 
 
@@ -242,7 +242,21 @@ body {
             <div class="bg-light p-4 d-flex justify-content-center text-center mt-3">
                <ul class="list-inline mb-0">
                     <li class="list-inline-item mx-5">
-                        <h5 class="font-weight-bold mb-0 d-block"><span class="badge badge-danger badge-btn">(Not Verified)</span></h5><small class="text-muted">Account</small>
+                        <h5 class="font-weight-bold mb-0 d-block">
+                             <?php 
+
+                            if($status == 0) {
+
+                            ?>
+                            <span class="badge badge-danger badge-btn">(Not Verified)</span></h5>
+                            <?php 
+
+                            } else if($status == 1) {
+
+                            ?>
+                            <span class="badge badge-success badge-btn">(Verified)</span></h5>
+                            <?php } ?>
+                            <small class="text-muted">Account</small>
                     </li>
                     <li class="list-inline-item mx-5">
                         <h5 class="font-weight-bold mb-0 d-block">5,000 PHP</h5><small class="text-muted">Booking Rate</small>

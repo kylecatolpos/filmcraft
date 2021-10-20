@@ -7,3 +7,33 @@ https://www.google.com/search?q=wedding+photographer+freelance+ratings&source=lm
 https://www.indeed.com/cmp/Classic-Photographers/reviews
 
 https://www.upwork.com/l/ph/wedding-photography-freelancers-in-quezon-city/
+
+
+
+status meaning: 
+
+Account Admin :
+
+adminStatus = 1 - Active; 0 - Deactive
+
+adminUserType = admin - Ordinary admin account; superadmin - Can Add another admin account;
+
+Account Vendor : 
+
+vendorStatus = 1 - Active; 0 - Deactive
+
+vendorPosition = none; photographer; videographer; photographer and videographer
+
+vendorType = single/sole; group/company;
+
+vendorUserType = vendor only;
+
+portfolioStatus = 0 - not verified; 1 - verified; 2 - need to extend account
+
+portfolioVendorPosition = none; photographer; videographer; photographer and videographer
+
+Account Customer : 
+
+customerStatus = 1 - Active; 0 - Deactive
+
+customerUserType = vendor only;
