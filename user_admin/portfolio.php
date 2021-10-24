@@ -113,13 +113,25 @@ include("header.php");
                                         $result = mysqli_query($conn,$query);
                                         while($row = mysqli_fetch_assoc($result)) {
 
+
+
                                         $fetchId        = $row['vendor_Id'];
                                         $fetchFirstName = $row['vendorFirstName'];
                                         $fetchLastName  = $row['vendorLastName'];
 
                                         // concat name;
                                         $concatName     = $fetchFirstName.' '.$fetchLastName;
-                                        $fetchPosition  = $row['vendorPosition'];
+                                        $fetchPosition  = $row['portfolioVendorPosition'];
+
+                                         if($fetchPosition == "Both") {
+                                          $positionDisplay = "Photographer and Videographer";
+                                        } else if($fetchPosition == "None") {
+                                          $positionDisplay = "None";
+                                        } else if($fetchPosition == "Photographer") {
+                                            $positionDisplay = "Photographer";
+                                        } else if($fetchPosition == "Videographer") {
+                                            $positionDisplay = "Videographer";
+                                        }
 
                                         ?>
                                         <tr>

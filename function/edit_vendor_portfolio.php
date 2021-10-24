@@ -7,6 +7,11 @@ if(isset($_POST['actionEditPortfolio'])) {
   $lastname = $_POST['lastname'];
   $address = $_POST['address'];
   $position = $_POST['position'];
+  $start_price = $_POST['start-price'];
+  $end_price = $_POST['end-price'];
+  $description = $_POST['description'];
+
+
 
   // for image
 	$filename = "";
@@ -33,7 +38,7 @@ if(isset($_POST['actionEditPortfolio'])) {
 	}
   
   $conn = mysqli_connect("localhost","root","","filmcraft");
-	$updatePortfolioQuery = "UPDATE portfolio SET `portfolioEmail` = '$email', `portfolioFirstName` = '$firstname', `portfolioLastName` = '$lastname', `portfolioAddress` = '$address' , `portfolioVendorPosition` = '$position' ,  `portfolioProfileImage` = '$display_files' WHERE `portfolioId` = '$id' ";
+	$updatePortfolioQuery = "UPDATE portfolio SET `portfolioEmail` = '$email', `portfolioFirstName` = '$firstname', `portfolioLastName` = '$lastname', `portfolioAddress` = '$address' , `portfolioVendorPosition` = '$position' ,  `portfolioProfileImage` = '$display_files', `portfolioStartPrice` = '$start_price', `portfolioEndPrice` = '$end_price', `portfolioDescription` = '$description' WHERE `portfolioId` = '$id' ";
 	$updatePortfolioResult = mysqli_query($conn,$updatePortfolioQuery);
 	
 	if($updatePortfolioResult) {

@@ -30,6 +30,34 @@ while($portfolioInfoRow = mysqli_fetch_assoc($portfolioInfoResult)) {
     $portfolio_image    = $portfolioInfoRow['portfolioProfileImage'];
 
     $status = $portfolioInfoRow['portfolioStatus'];
+
+    $description = $portfolioInfoRow['portfolioDescription'];
+
+
+
+    // price range
+
+    if($portfolioInfoRow['portfolioStartPrice'] == 0) {
+       $start_price = 0;
+    } else {
+       $start_price = $portfolioInfoRow['portfolioStartPrice'];
+    }
+
+    if($portfolioInfoRow['portfolioEndPrice'] == 0) {
+        $end_price = "";
+    } else {
+        $end_price = $portfolioInfoRow['portfolioEndPrice'];
+    }
+
+    if($position == "Both") {
+      $positionDisplay = "Photographer and Videographer";
+    } else if($position == "None") {
+      $positionDisplay = "None";
+    } else if($position == "Photographer") {
+        $positionDisplay = "Photographer";
+    } else if($position == "Videographer") {
+        $positionDisplay = "Videographer";
+    }
 }
 
 ?>
@@ -171,7 +199,15 @@ body {
                             <small class="text-muted">Account</small>
                     </li>
                     <li class="list-inline-item mx-5">
-                        <h5 class="font-weight-bold mb-0 d-block">5,000 PHP</h5><small class="text-muted">Booking Rate</small>
+                        <?php 
+
+                        if($end_price != "") {
+                        ?>
+                        <h5 class="font-weight-bold mb-0 d-block"><?php echo $start_price ?> PHP - <?php echo $end_price ?> PHP</h5>
+                        <?php } else { ?>
+                          <h5 class="font-weight-bold mb-0 d-block"><?php echo $start_price ?> PHP </h5>
+                        <?php } ?>
+                        <small class="text-muted">Booking Rate</small>
                     </li>
                     <li class="list-inline-item mx-5">
                         <h5 class="font-weight-bold mb-0 d-block">4.5</h5><small class="text-muted">Ratings </small>
@@ -183,6 +219,7 @@ body {
                 <h5 class="mb-3">My Profile</h5>
                 <hr>
                 <div class="p-4 rounded shadow-sm bg-light">
+                    <p class="mb-3"><?php echo $description ?></p>
                     <p class="font-italic mb-0">Lives in <?php echo $address ?></p>
                     <p class="font-italic mb-0"><?php echo $email ?></p>
                     <p class="font-italic mb-0"></p>
