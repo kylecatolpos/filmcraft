@@ -21,7 +21,7 @@ include("header.php");
                 </div>
             </a>
 
-            <!-- Nav Item - Dashboard -->
+               <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -31,20 +31,28 @@ include("header.php");
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="portfolio.php">
+             <!-- Nav Item - Dashboard -->
+              <li class="nav-item">
+                <a class="nav-link" href="view_vendor.php">
                     <i class="fas fa-fw fa-users"></i>
-                    <span>Portfolio</span></a>
+                    <span>View Vendors</span></a>
+                </li>
+
+              <!-- Nav Item - Dashboard -->
+              <li class="nav-item active">
+                <a class="nav-link" href="find_vendor.php">
+                    <i class="fas fa-fw fa-location-arrow"></i>
+                    <span>Find Vendors</span></a>
                 </li>
 
 
               <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="booking.php">
-                    <i class="far fa-fw fa-bookmark"></i>
-                    <span>Booking</span></a>
+                <a class="nav-link" href="manage_booking.php">
+                    <i class="far fa-fw fa-bookmark"></i> 
+                    <span>Manage Bookings</span></a>
                 </li>
+
         </ul>
         <!-- End of Sidebar -->
 
@@ -177,54 +185,18 @@ include("header.php");
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-5 text-gray-800">Portfolio</h1>
+                    <h1 class="h3 mb-5 text-gray-800">Find Vendor</h1>
                   
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Manage Portfolio</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Locate All Available Vendor Near You</h6>
                         </div>
 
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTablex" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Vendor Name</th>
-                                            <th>Vendor Position</th>
-                                            <th>View Vendor</th>
-                                        </tr>
-                                    </thead>
-                                 
-                                    <tbody>
-                                        <?php 
-
-                                        $conn = mysqli_connect("localhost","root","","filmcraft");
-                                        $query = "SELECT * FROM portfolio
-                                        JOIN vendor ON portfolio.vendor_Id = vendor.vendorId
-                                        WHERE vendor.vendorStatus = '1'
-                                        ";
-                                        $result = mysqli_query($conn,$query);
-                                        while($row = mysqli_fetch_assoc($result)) {
-
-                                        $fetchId        = $row['vendor_Id'];
-                                        $fetchFirstName = $row['vendorFirstName'];
-                                        $fetchLastName  = $row['vendorLastName'];
-
-                                        // concat name;
-                                        $concatName     = $fetchFirstName.' '.$fetchLastName;
-                                        $fetchPosition  = $row['vendorPosition'];
-
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $concatName ?></td>
-                                            <td><?php echo $fetchPosition ?></td>
-                                            <td><a href="view-portfolio.php?VID=<?php echo $fetchId ?>" class="btn btn-primary">View</a></td>
-                                        </tr>
-                                       <?php } ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                           <div>
+                               <h1>Display Map</h1>
+                           </div>
                         </div>
                     </div>
 

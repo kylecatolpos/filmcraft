@@ -34,6 +34,8 @@ while($portfolioInfoRow = mysqli_fetch_assoc($portfolioInfoResult)) {
     $description = $portfolioInfoRow['portfolioDescription'];
 
 
+    $booking_rate = $portfolioInfoRow['portfolioBookingRate'];
+
 
     // price range
 
@@ -160,8 +162,8 @@ body {
                     <h1 class="h3 mb-5 text-gray-800">Portfolio</h1>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"></h6>
+                        <div class="card-header py-3 text-right">
+                            <a href="portfolio.php" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Return</a>
                         </div>
                         <div class="card-body">
                             <div class="row py-5 px-4">
@@ -182,21 +184,25 @@ body {
             <div class="bg-light p-4 d-flex justify-content-center text-center mt-3">
                 <ul class="list-inline mb-0">
                     <li class="list-inline-item mx-5">
-                        <h5 class="font-weight-bold mb-0 d-block">
                             <?php 
 
                             if($status == 0) {
 
                             ?>
+                            <h5 class="font-weight-bold mb-0 d-block"> 
                             <span class="badge badge-danger badge-btn">(Not Verified)</span></h5>
                             <?php 
 
                             } else if($status == 1) {
 
                             ?>
+                            <h5 class="font-weight-bold mb-0 d-block">
                             <span class="badge badge-success badge-btn">(Verified)</span></h5>
                             <?php } ?>
                             <small class="text-muted">Account</small>
+                    </li>
+                    <li class="list-inline-item mx-5">
+                        <h5 class="font-weight-bold mb-0 d-block"><?php echo $booking_rate ?> PHP</h5><small class="text-muted">Minimum Booking Rate </small>
                     </li>
                     <li class="list-inline-item mx-5">
                         <?php 
@@ -207,7 +213,7 @@ body {
                         <?php } else { ?>
                           <h5 class="font-weight-bold mb-0 d-block"><?php echo $start_price ?> PHP </h5>
                         <?php } ?>
-                        <small class="text-muted">Booking Rate</small>
+                        <small class="text-muted">Vendor Rate</small>
                     </li>
                     <li class="list-inline-item mx-5">
                         <h5 class="font-weight-bold mb-0 d-block">4.5</h5><small class="text-muted">Ratings </small>

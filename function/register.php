@@ -26,8 +26,9 @@ if(isset($_POST['actionRegister'])) {
  	if(mysqli_query($db,$sql)) {
  	$latest_id = mysqli_insert_id($db);
  	$portfolioStatus = 0;
+ 	$rate = 0;
  	// creation for portfolio
- 	$createPortfolioSql = "INSERT INTO portfolio (portfolioId,vendor_Id,vendorWork_Id,portfolioFirstName,portfolioLastName,portfolioAddress,portfolioEmail,portfolioVendorPosition,portfolioProfileImage,portfolioRating,portfolioStatus) VALUES (NULL,'$latest_id','$latest_id','$fname','$lname','$empty','$email','$position','$image','$empty','$portfolioStatus')";
+ 	$createPortfolioSql = "INSERT INTO portfolio (portfolioId,vendor_Id,vendorWork_Id,portfolioFirstName,portfolioLastName,portfolioAddress,portfolioEmail,portfolioVendorPosition,portfolioProfileImage,portfolioRating,portfolioBookingRate,portfolioStartPrice,portfolioEndPrice,portfolioDescription,portfolioStatus) VALUES (NULL,'$latest_id','$latest_id','$fname','$lname','$empty','$email','$position','$image','$empty','$rate','$rate','$rate','$empty','$portfolioStatus')";
  	$result = mysqli_query($db,$createPortfolioSql);
 
  	if($result) {

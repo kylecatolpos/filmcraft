@@ -10,8 +10,9 @@ if(isset($_POST['actionEditPortfolio'])) {
   $start_price = $_POST['start-price'];
   $end_price = $_POST['end-price'];
   $description = $_POST['description'];
+  $booking_rate = $_POST['booking-rate'];
 
-
+  $display_files = $_POST["image"];
 
   // for image
 	$filename = "";
@@ -29,16 +30,9 @@ if(isset($_POST['actionEditPortfolio'])) {
 	   	 	     }
 	   	 	   }
 	// end of image code
-
-	if($display_files == "") {
-		$display_files = $_POST["image"];
-	} else {
-			 $display_files = $display_files;
-   
-	}
   
   $conn = mysqli_connect("localhost","root","","filmcraft");
-	$updatePortfolioQuery = "UPDATE portfolio SET `portfolioEmail` = '$email', `portfolioFirstName` = '$firstname', `portfolioLastName` = '$lastname', `portfolioAddress` = '$address' , `portfolioVendorPosition` = '$position' ,  `portfolioProfileImage` = '$display_files', `portfolioStartPrice` = '$start_price', `portfolioEndPrice` = '$end_price', `portfolioDescription` = '$description' WHERE `portfolioId` = '$id' ";
+	$updatePortfolioQuery = "UPDATE portfolio SET `portfolioEmail` = '$email', `portfolioFirstName` = '$firstname', `portfolioLastName` = '$lastname', `portfolioAddress` = '$address' , `portfolioVendorPosition` = '$position' ,  `portfolioProfileImage` = '$display_files', `portfolioBookingRate` = '$booking_rate',  `portfolioStartPrice` = '$start_price', `portfolioEndPrice` = '$end_price', `portfolioDescription` = '$description' WHERE `portfolioId` = '$id' ";
 	$updatePortfolioResult = mysqli_query($conn,$updatePortfolioQuery);
 	
 	if($updatePortfolioResult) {

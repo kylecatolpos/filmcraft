@@ -4,59 +4,13 @@ include("sessions.php");
 
 include("header.php");
 
-// fix for by pass URL links
-// if($displayId == NULL) {
-//    header("Location:logout.php");
-// } else {
-
-// get select vendor ID
-$VID = $_GET['VID'];
-
-$conn               = mysqli_connect("localhost","root","","filmcraft");
-$portfolioInfoQuery    = "SELECT * FROM portfolio WHERE vendor_Id = '$VID' ";
-$portfolioInfoResult   = mysqli_query($conn,$portfolioInfoQuery);
-
-while($portfolioInfoRow = mysqli_fetch_assoc($portfolioInfoResult)) {
-    $id        = $portfolioInfoRow['portfolioId'];
-    $workid    = $portfolioInfoRow['vendorWork_Id'];
-    $firstname = $portfolioInfoRow['portfolioFirstName'];
-    $lastname  = $portfolioInfoRow['portfolioLastName'];
-
-    $fullname  = $firstname.' '.$lastname;
-
-    $address   = $portfolioInfoRow['portfolioAddress'];
-    $email     = $portfolioInfoRow['portfolioEmail'];
-    $position           = $portfolioInfoRow['portfolioVendorPosition'];
-    $portfolio_image    = $portfolioInfoRow['portfolioProfileImage'];
-}
-
 ?>
 
-<style>
-    
-    .profile-head {
-    transform: translateY(5rem)
-}
-
-.cover {
-    background-color: rgb(99, 39, 120);
-    background-size: cover;
-    background-repeat: no-repeat
-}
-
-body {
-    background: #654ea3;
-    background: linear-gradient(to right, #e96443, #904e95);
-    min-height: 100vh
-}
-
-</style>
 
 <body id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
         <!-- Sidebar -->
         <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#395232">
 
@@ -67,7 +21,7 @@ body {
                 </div>
             </a>
 
-            <!-- Nav Item - Dashboard -->
+               <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -77,20 +31,28 @@ body {
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="portfolio.php">
+             <!-- Nav Item - Dashboard -->
+              <li class="nav-item active">
+                <a class="nav-link" href="view_vendor.php">
                     <i class="fas fa-fw fa-users"></i>
-                    <span>Portfolio</span></a>
+                    <span>View Vendors</span></a>
+                </li>
+
+              <!-- Nav Item - Dashboard -->
+              <li class="nav-item">
+                <a class="nav-link" href="find_vendor.php">
+                    <i class="fas fa-fw fa-location-arrow"></i>
+                    <span>Find Vendors</span></a>
                 </li>
 
 
               <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="booking.php">
-                    <i class="far fa-fw fa-bookmark"></i>
-                    <span>Booking</span></a>
+                <a class="nav-link" href="manage_booking.php">
+                    <i class="far fa-fw fa-bookmark"></i> 
+                    <span>Manage Bookings</span></a>
                 </li>
+
         </ul>
         <!-- End of Sidebar -->
 
@@ -100,7 +62,7 @@ body {
             <!-- Main Content -->
             <div id="content">
 
-                   <!-- Topbar -->
+                     <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
@@ -191,7 +153,7 @@ body {
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $displayName; ?></span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $displayName ?></span>
                                <img class="img-profile rounded-circle"
                                     src="<?php echo $displayImage ?>">
                             </a>
@@ -218,121 +180,75 @@ body {
 
                 </nav>
                 <!-- End of Topbar -->
+
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-5 text-gray-800">Portfolio</h1>
+                    <h1 class="h3 mb-5 text-gray-800">View Vendor</h1>
+                  
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary"></h6>
+                            <h6 class="m-0 font-weight-bold text-primary">View All Available Vendor</h6>
                         </div>
+
                         <div class="card-body">
-                            <div class="row py-5 px-4">
-
-    <div class="col-md-12 mx-auto">
-        <!-- Profile widget -->
-        <div class="bg-white shadow rounded overflow-hidden">
-            <div class="px-4 pt-0 pb-4 cover" style="background-color:#395232">
-                <div class="media align-items-end profile-head">
-                    <div class="profile mr-3 mb-4"> <img src="<?php echo $portfolio_image ?>" alt="..." width="150" class="rounded mb-2 img-thumbnail"> </div>
-                    <div class="media-body mb-5 text-white">
-                        <h4 class="mt-0 mb-1"><?php echo $fullname ?></h4>
-                        <p class="small mb-4"><?php echo $position ?></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-light p-4 d-flex justify-content-center text-center mt-3">
-                <ul class="list-inline mb-0">
-                    <li class="list-inline-item mx-5">
-                        <h5 class="font-weight-bold mb-0 d-block"><span class="badge badge-danger badge-btn">(Not Verified)</span></h5><small class="text-muted">Account</small>
-                    </li>
-                    <li class="list-inline-item mx-5">
-                        <h5 class="font-weight-bold mb-0 d-block">5,000 PHP</h5><small class="text-muted">Booking Rate</small>
-                    </li>
-                    <li class="list-inline-item mx-5">
-                        <h5 class="font-weight-bold mb-0 d-block">4.5</h5><small class="text-muted">Ratings </small>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="px-4 py-3">
-                <h5 class="mb-3">My Profile</h5>
-                <hr>
-                <div class="p-4 rounded shadow-sm bg-light">
-                    <p class="font-italic mb-0">Lives in <?php echo $address ?></p>
-                    <p class="font-italic mb-0"><?php echo $email ?></p>
-                    <p class="font-italic mb-0"></p>
-                </div>
-            </div>
-
-            <div class="py-4 px-4">
-                <div class="d-flex align-items-center justify-content-between mb-3">
-                    <h5 class="mb-0">Works Done</h5><a href="show_works_done.php?VWID=<?php echo $workid?>" class="btn btn-link text-muted">Show all</a>
-                </div>
-                <hr>
-                         <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTablex" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Image/Video</th>
-                                            <th>Occassion Type</th> 
-                                            <th>Name</th>
-                                         </tr>
+                                            <th>Vendor Name</th>
+                                            <th>Vendor Position</th>
+                                            <th>View Vendor Portfolio</th>
+                                            <th>Booked Vendor</th>
+                                        </tr>
                                     </thead>
-                                     <tbody>
-                                      <?php 
+                                 
+                                    <tbody>
+                                        <?php 
 
-                                      $conn  = mysqli_connect("localhost","root","","filmcraft");
-                                      $queryWorks = "SELECT * FROM works WHERE portfolioWorks_id = '$workid' ";
-                                      $resultWorks = mysqli_query($conn,$queryWorks);
+                                        $conn = mysqli_connect("localhost","root","","filmcraft");
+                                        $query = "SELECT * FROM portfolio
+                                        JOIN vendor ON portfolio.vendor_Id = vendor.vendorId
+                                        WHERE vendor.vendorStatus = '1'
+                                        ";
+                                        $result = mysqli_query($conn,$query);
+                                        while($row = mysqli_fetch_assoc($result)) {
 
-                                      while($rowWorks = mysqli_fetch_assoc($resultWorks)) {
+                                        $fetchId        = $row['vendor_Id'];
+                                        $fetchFirstName = $row['vendorFirstName'];
+                                        $fetchLastName  = $row['vendorLastName'];
 
-                                      ?>
+                                        // concat name;
+                                        $concatName     = $fetchFirstName.' '.$fetchLastName;
+                                        $fetchPosition  = $row['vendorPosition'];
+
+                                        ?>
                                         <tr>
-
-                                            <?php 
-
-                                            if ($rowWorks['occassion_file_type'] == 'image/png' || $rowWorks['occassion_file_type'] == 'image/jpeg') {
-
-
-                                            ?>
-
-                                            <td><img src="<?php echo $rowWorks['occassion_file'] ?>" width="320" height="240"></td>
-                                            <td><?php echo $rowWorks['occassion_type'] ?></td>
-                                            <td><?php echo $rowWorks['occassion'] ?></td>
-
-                                        <?php } else if($rowWorks['occassion_file_type'] == 'video/mp4') { ?>
-
-                                            <td><video width="320" height="240" controls controlsList="nodownload">
-                                                  <source src="<?php echo $rowWorks['occassion_file'] ?>" type="<?php echo $rowWorks['occassion_file_type'] ?>">
-                                                 </video>
-                                             </td>
-                                            <td><?php echo $rowWorks['occassion_type'] ?></td>
-                                            <td><?php echo $rowWorks['occassion'] ?></td>
-
-
-                                             <?php } ?>
-
+                                            <td><?php echo $concatName ?></td>
+                                            <td><?php echo $fetchPosition ?></td>
+                                            <td><a href="view_portfolio.php?VID=<?php echo $fetchId ?>" class="btn btn-primary">View Portfolio</a></td>
+                                            <td><a href="view-portfolio.php?VID=<?php echo $fetchId ?>" class="btn btn-success">Booked Vendor</a></td>
 
                                         </tr>
-                                      <?php } ?>
-                                      </tbody>                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                       <?php } ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <!-- /.container-fluid -->
+
             </div>
             <!-- End of Main Content -->
+
+  
         </div>
         <!-- End of Content Wrapper -->
+
     </div>
     <!-- End of Page Wrapper -->
 
@@ -362,7 +278,7 @@ body {
     </div>
 
 <?php 
-// }
+
 include("footer.php");
 
 ?>

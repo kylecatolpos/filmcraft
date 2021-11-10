@@ -51,6 +51,9 @@ while($getRow = mysqli_fetch_assoc($getResult)) {
         $positionDisplay = "Videographer";
     }
 
+   // booking rate
+
+   $booking_rate = $getRow['portfolioBookingRate'];
 
 
 }
@@ -180,21 +183,25 @@ body {
             <div class="bg-light p-4 d-flex justify-content-center text-center mt-3">
                <ul class="list-inline mb-0">
                     <li class="list-inline-item mx-5">
-                        <h5 class="font-weight-bold mb-0 d-block">
                              <?php 
 
                             if($status == 0) {
 
-                            ?>
+                            ?> 
+                            <h5 class="font-weight-bold mb-0 d-block">
                             <span class="badge badge-danger badge-btn">(Not Verified)</span></h5>
                             <?php 
 
                             } else if($status == 1) {
 
                             ?>
+                            <h5 class="font-weight-bold mb-0 d-block">
                             <span class="badge badge-success badge-btn">(Verified)</span></h5>
                             <?php } ?>
                             <small class="text-muted">Account</small>
+                    </li>
+                      <li class="list-inline-item mx-5">
+                        <h5 class="font-weight-bold mb-0 d-block"><?php echo $booking_rate ?> PHP</h5><small class="text-muted">Minimum Booking Rate </small>
                     </li>
                     <li class="list-inline-item mx-5">
                         <?php 
@@ -205,9 +212,9 @@ body {
                         <?php } else { ?>
                           <h5 class="font-weight-bold mb-0 d-block"><?php echo $start_price ?> PHP </h5>
                         <?php } ?>
-                        <small class="text-muted">Booking Rate</small>
+                        <small class="text-muted">Vendor Rate</small>
                     </li>
-                    <li class="list-inline-item mx-5">
+                      <li class="list-inline-item mx-5">
                         <h5 class="font-weight-bold mb-0 d-block">4.5</h5><small class="text-muted">Ratings </small>
                     </li>
                 </ul>

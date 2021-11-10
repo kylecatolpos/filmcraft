@@ -66,7 +66,8 @@ body {
                 </div>
             </a>
 
-            <!-- Nav Item - Dashboard -->
+      
+                <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -76,19 +77,26 @@ body {
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="portfolio.php">
+             <!-- Nav Item - Dashboard -->
+              <li class="nav-item">
+                <a class="nav-link" href="view_vendor.php">
                     <i class="fas fa-fw fa-users"></i>
-                    <span>Portfolio</span></a>
+                    <span>View Vendors</span></a>
+                </li>
+
+              <!-- Nav Item - Dashboard -->
+              <li class="nav-item">
+                <a class="nav-link" href="find_vendor.php">
+                    <i class="fas fa-fw fa-location-arrow"></i>
+                    <span>Find Vendors</span></a>
                 </li>
 
 
               <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="booking.php">
-                    <i class="far fa-fw fa-bookmark"></i>
-                    <span>Booking</span></a>
+                <a class="nav-link" href="manage_booking.php">
+                    <i class="far fa-fw fa-bookmark"></i> 
+                    <span>Manage Bookings</span></a>
                 </li>
         </ul>
         <!-- End of Sidebar -->

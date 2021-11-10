@@ -28,6 +28,9 @@ while($portfolioInfoRow = mysqli_fetch_assoc($portfolioInfoResult)) {
 
     $end_price = $portfolioInfoRow['portfolioEndPrice'];
 
+
+    $booking_rate = $portfolioInfoRow['portfolioBookingRate'];
+
 }
 
 
@@ -175,6 +178,7 @@ body {
                                                 </div>
                                             </div>
 
+                            
                                              <div class="row gx-3 mb-3">
                                                 <!-- Form Group (first name)-->
                                                 <div class="col-md-8">
@@ -194,6 +198,7 @@ body {
                                                 </div>
                                             </div>
 
+                                     
                                               <!-- Form Group (username)-->
                                             <div class="">
                                                 <label class="small" for="inputMyPriceRange"><strong>Price Range:</strong></label>
@@ -202,14 +207,19 @@ body {
                                               <!-- Form Row-->
                                             <div class="row gx-3 mb-3">
                                                 <!-- Form Group start-price -->
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <label class="small mb-1" for="inputStartPrice">Starting Price</label>
                                                     <input class="form-control" id="inputStartPrice" type="text" placeholder="Starting Price" value="<?php echo $start_price ?>" name="start-price">
                                                 </div>
                                                 <!-- Form Group end-price -->
-                                                <div class="col-md-6">
+                                                <div class="col-md-4">
                                                     <label class="small mb-1" for="inputEndPrice">End Price</label>
                                                     <input class="form-control" id="inputEndPrice" type="text" placeholder="End Price" value="<?php echo $end_price ?>" name="end-price">
+                                                </div>
+                                                 <!-- Form Group booking-rate -->
+                                                <div class="col-md-4">
+                                                    <label class="small mb-1" for="inputStartPrice">Booking Rate</label>
+                                                    <input class="form-control" id="inputStartPrice" type="text" placeholder="Booking Rate" value="<?php echo $booking_rate ?>" name="booking-rate">
                                                 </div>
                                             </div>
 
