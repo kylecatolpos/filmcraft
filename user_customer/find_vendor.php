@@ -4,6 +4,40 @@ include("sessions.php");
 
 include("header.php");
 
+ $array = array(
+                            "vendor_id" => "",
+                            "vendor_fullname" => "",
+                            "vendor_contactnum" => "",
+                            "vendor_address" => "",
+                            "lat" => "",
+                            "lng" => ""
+                          );
+$array1 = array();
+
+    $conn = mysqli_connect('localhost','root','','filmcraft');
+    $getVendor = "SELECT * FROM vendor";
+    $resultGetVendor = mysqli_query($conn,$getVendor);
+    while($get_vendor_row = mysqli_fetch_assoc($resultGetVendor)) {
+
+        $vfname = $get_vendor_row['vendorFirstName'];
+        $vlname = $get_vendor_row['vendorLastName'];
+        $vfullname = $vfname.' '.$vlname;
+
+          $array['vendor_id'] = $get_vendor_row['vendorId'];
+          $array['vendor_fullname'] = $vfullname;
+          $array['vendor_contactnum'] = $get_vendor_row['vendorNumber'];
+          $array['vendor_address'] = $get_vendor_row['vendorAddress'];
+          $array['lat'] = $get_vendor_row['vendorLatitude'];
+          $array['lng'] = $get_vendor_row['vendorLongitude'];
+          array_push($array1, $array);
+
+    }
+
+$sess = 1;
+
+
+
+
 ?>
 
 
@@ -195,7 +229,14 @@ include("header.php");
 
                         <div class="card-body">
                            <div>
-                               <h1>Display Map</h1>
+                                 <div class="col-md-12">
+                                      <div class="card" >
+                                         <div id="map" style="margin-top: 0 !important"></div>
+                                      </div>
+                                      <style type="text/css">
+                                         #map { height: 480px; }
+                                      </style>
+                                </div>
                            </div>
                         </div>
                     </div>

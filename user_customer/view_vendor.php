@@ -222,14 +222,24 @@ include("header.php");
 
                                         // concat name;
                                         $concatName     = $fetchFirstName.' '.$fetchLastName;
-                                        $fetchPosition  = $row['vendorPosition'];
+                                        $fetchPosition  = $row['portfolioVendorPosition'];
+
+                                          if($fetchPosition == "Both") {
+                                          $positionDisplay = "Photographer and Videographer";
+                                        } else if($fetchPosition == "None") {
+                                          $positionDisplay = "None";
+                                        } else if($fetchPosition == "Photographer") {
+                                            $positionDisplay = "Photographer";
+                                        } else if($fetchPosition == "Videographer") {
+                                            $positionDisplay = "Videographer";
+                                        }
 
                                         ?>
                                         <tr>
                                             <td><?php echo $concatName ?></td>
-                                            <td><?php echo $fetchPosition ?></td>
+                                            <td><?php echo $positionDisplay ?></td>
                                             <td><a href="view_portfolio.php?VID=<?php echo $fetchId ?>" class="btn btn-primary">View Portfolio</a></td>
-                                            <td><a href="view-portfolio.php?VID=<?php echo $fetchId ?>" class="btn btn-success">Booked Vendor</a></td>
+                                            <td><a href="book_vendor.php?VID=<?php echo $fetchId ?>" class="btn btn-success">Booked Vendor</a></td>
 
                                         </tr>
                                        <?php } ?>

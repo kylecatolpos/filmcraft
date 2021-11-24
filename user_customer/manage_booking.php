@@ -194,7 +194,8 @@ include("header.php");
                             
                                 <!-- Page Heading -->
                             <div class="card-title text-right" style="background-color:none;">
-                                 <a href="#settings-booking-history.php" class="btn btn-info">View Booking History</a>
+                                 <!-- <a href="#settings-booking-history.php" class="btn btn-info">View Booking History</a> -->
+                                 <a href="settings.php" class="btn btn-info">View Booking History</a>
                             </div>
                         </div>
                         <div class="card-body">

@@ -279,7 +279,7 @@ body {
                     <div class="media-body mb-5 text-white">
                         <h4 class="mt-0 mb-1"><?php echo $fullname ?></h4>
                         <p class="small mb-4"><?php echo $position ?></p>
-                          <a href="#" class="btn btn-success"> Booked Vendor </a>  
+                          <a href="book_vendor.php?VID=<?php echo $VID ?>" class="btn btn-success"> Booked Vendor </a>  
                           <!-- <a href="#" class="btn btn-primary"> Rate Vendor </a> -->
                     </div>
                 </div>

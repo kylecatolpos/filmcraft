@@ -232,11 +232,8 @@ body {
 
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
 						<li class="nav-item">
-						   <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Account Management</a>
-						</li>
-						<li class="nav-item">
-						    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#1profile" role="tab" aria-controls="profile" aria-selected="false">Admin Management</a>
-						</li>  
+						   <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Booking History</a>
+						</li> 
 						<li class="nav-item">
 						    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#1contact" role="tab" aria-controls="contact" aria-selected="false">Generate Reports</a>
 						</li>
@@ -248,7 +245,7 @@ body {
 						  	
 						
                                <!-- Page Heading -->
-                            <h1 class="h3 mb-5 text-gray-800">Account Management for Vendors</h1>
+                            <h1 class="h3 mb-5 text-gray-800">Customer Booking History</h1>
 
 						  	  <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable">
@@ -262,25 +259,7 @@ body {
                                     </thead>
                                  
                                    <tbody>
-                                      <?php 
-
-                                      $conn  = mysqli_connect("localhost","root","","filmcraft");
-                                      $getVendor = "SELECT * FROM vendor WHERE vendorStatus = 0";
-                                      $resultVendor = mysqli_query($conn,$getVendor);
-
-                                      while($rowVendor = mysqli_fetch_assoc($resultVendor)) {
-
-                                      ?>
-                                        <tr>
-                                            <td><?php echo $rowVendor['vendorFirstName'] ?> <?php echo $rowVendor['vendorLastName'] ?></td>
-                                            <td><?php echo $rowVendor['vendorPosition'] ?></td>
-                                            <td>Not Verified</td>
-                                            <td>
-                                               <a href="../function/admin_settings.php?VID=<?php echo $rowVendor['vendorId'] ?>" class="btn btn-primary btn-sm" href="">Accept</a>
-                                               <!-- <a class="btn btn-danger btn-sm">Cancel</a> -->
-                                            </td>
-                                       </tr>
-                                      <?php } ?>
+                                     
                                     </tbody>
                                 </table>
                             </div>
