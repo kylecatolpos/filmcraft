@@ -75,7 +75,7 @@
            if(obj[i].lat != "" && obj[i].lng != ""){
            var marker = L.marker([obj[i].lat, obj[i].lng]).addTo(mymap);
            if(sess != ''){
-               button = "<a  href='book_vendor.php?VID="+obj[i].vendor_id+"' class='btn btn-info text-white'>Book Vendor</a>"
+               button = "<a href='view_portfolio.php?VID="+obj[i].vendor_id+"' class='btn btn-info text-white'>View Portfolio</a>"
            }
            var html = "<b>"+obj[i].vendor_fullname+"</b>"+ 
                        "<p>"+obj[i].vendor_contactnum +"</p>" +
