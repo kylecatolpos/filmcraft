@@ -4,6 +4,10 @@ include("sessions.php");
 
 include("header.php");
 
+
+include("../function/database.php");
+$conn = $database;
+
 // fix for by pass URL links
 // if($displayId == NULL) {
 //    header("Location:logout.php");
@@ -12,7 +16,6 @@ include("header.php");
 // get select vendor ID
 $VID = $_GET['VID'];
 
-$conn               = mysqli_connect("localhost","root","","filmcraft");
 $portfolioInfoQuery    = "SELECT * FROM portfolio WHERE vendor_Id = '$VID' ";
 $portfolioInfoResult   = mysqli_query($conn,$portfolioInfoQuery);
 
@@ -249,7 +252,6 @@ body {
                                      <tbody>
                                       <?php 
 
-                                      $conn  = mysqli_connect("localhost","root","","filmcraft");
                                       $queryWorks = "SELECT * FROM works WHERE portfolioWorks_id = '$workid' ";
                                       $resultWorks = mysqli_query($conn,$queryWorks);
 

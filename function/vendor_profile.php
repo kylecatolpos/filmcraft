@@ -1,5 +1,9 @@
 <?php 
 
+
+include("database.php");
+$conn = $database;
+
 if(isset($_POST['actionVendorProfile'])) {
 	$id				= $_POST["id"];
 	$email 			= $_POST["email"];
@@ -34,7 +38,6 @@ if(isset($_POST['actionVendorProfile'])) {
 		$display_files = $display_files;
 	}
 
-	$conn = mysqli_connect("localhost","root","","filmcraft");
 	$updateProfileQuery = "UPDATE vendor SET `vendorEmail` = '$email', `vendorFirstName` = '$firstname', `vendorLastName` = '$lastname', `vendorAddress` = '$address', `vendorNumber` = '$phonenumber', `vendorBirthdate` = '$birthdate', `vendorGender` = '$gender', `vendorProfileImage` = '$display_files' WHERE `vendorId` = '$id' ";
 	$updateProfileResult = mysqli_query($conn,$updateProfileQuery);
 	

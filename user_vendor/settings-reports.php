@@ -4,6 +4,9 @@ include("sessions.php");
 
 include("header.php");
 
+include("../function/database.php");
+$conn = $database;
+
 ?>
 
 <body id="page-top">

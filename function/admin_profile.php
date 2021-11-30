@@ -1,7 +1,10 @@
 <?php 
 
+
+include("database.php");
+$conn = $database;
+
 if(isset($_POST['actionAdminProfile'])) {
-	$conn = mysqli_connect("localhost","root","","filmcraft");
 	$id				= $_POST["id"];
 	$email 			= $_POST["email"];
 	$firstname		= $_POST["firstname"];

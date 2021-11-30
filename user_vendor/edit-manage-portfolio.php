@@ -4,9 +4,11 @@ include("sessions.php");
 
 include("header.php");
 
+include("../function/database.php");
+$conn = $database;
+
 $PID = $_GET['PID'];
 
-$conn                  = mysqli_connect("localhost","root","","filmcraft");
 $portfolioInfoQuery    = "SELECT * FROM portfolio WHERE portfolioId = '$PID' ";
 $portfolioInfoResult   = mysqli_query($conn,$portfolioInfoQuery);
 

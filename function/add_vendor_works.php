@@ -1,6 +1,10 @@
 <?php
 
 
+
+include("database.php");
+$conn = $database;
+
 if(isset($_POST['actionAddWorks'])) {
 
 	// POST variables
@@ -23,8 +27,7 @@ if(isset($_POST['actionAddWorks'])) {
 						move_uploaded_file($_FILES['files']['tmp_name'], $filename);	
 						 $display_files = $filename;
 						 $image_file_type = $_FILES['files']['type'];
-						  $conn = mysqli_connect("localhost","root","","filmcraft");
-			                $sqlInsertImages = "INSERT INTO works (worksId,portfolioWorks_Id,occassion,occassion_type,occassion_file,occassion_file_type) VALUES (NULL,'$vendorWorksId','$occassion','$occassion_type','$display_files','$image_file_type')";
+						    $sqlInsertImages = "INSERT INTO works (worksId,portfolioWorks_Id,occassion,occassion_type,occassion_file,occassion_file_type) VALUES (NULL,'$vendorWorksId','$occassion','$occassion_type','$display_files','$image_file_type')";
 			                $resultInsertImages = mysqli_query($conn,$sqlInsertImages);
 
 			                	if($resultInsertImages) {
@@ -58,7 +61,6 @@ if(isset($_POST['actionAddWorks'])) {
 			             if(move_uploaded_file($_FILES['files']['tmp_name'], $target_file)) {
 			                $display_files = $target_file;
 			                $videos_file_type = $_FILES['files']['type'];
-			                $conn = mysqli_connect("localhost","root","","filmcraft");
 			                $sqlInsertVideo = "INSERT INTO works (worksId,portfolioWorks_Id,occassion,occassion_type,occassion_file,occassion_file_type) VALUES (NULL,'$vendorWorksId','$occassion','$occassion_type','$display_files','$videos_file_type')";
 			                $resultInsertVideo = mysqli_query($conn,$sqlInsertVideo);
 

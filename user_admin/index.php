@@ -4,6 +4,10 @@ include("sessions.php");
 
 include("header.php");
 
+
+include("../function/database.php");
+$conn = $database;
+
 // fix for by pass URL links
 // if($displayId == NULL) {
 //    header("Location:logout.php");

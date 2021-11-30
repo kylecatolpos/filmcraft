@@ -4,6 +4,9 @@ include("sessions.php");
 
 include("header.php");
 
+include("../function/database.php");
+$conn = $database;
+
 // fix for by pass URL links
 // if($displayId == NULL) {
 //    header("Location:logout.php");
@@ -205,7 +208,6 @@ include("header.php");
                                             <div class="row mt-5">
                                             <?php 
 
-                                            $conn       = mysqli_connect("localhost","root","","filmcraft");
                                             $getInfoEvents = "SELECT * FROM events ORDER BY eventName ASC";
                                             $getResultEvents  = mysqli_query($conn,$getInfoEvents);
 

@@ -4,6 +4,9 @@ include("sessions.php");
 
 include("header.php");
 
+include("../function/database.php");
+$conn = $database;
+
 ?>
 
 <body id="page-top">
@@ -107,7 +110,6 @@ include("header.php");
 
                                         <?php 
 
-                                        $conn = mysqli_connect("localhost","root","","filmcraft");
                                         $queryBooking = "SELECT * FROM booking JOIN customer ON booking.customer_Id = customer.customerId JOIN vendor ON booking.vendor_Id = vendor.vendorId 
                                         WHERE booking.vendor_Id = '$displayId' 
                                         ";

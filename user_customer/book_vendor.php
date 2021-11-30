@@ -2,10 +2,12 @@
    include("sessions.php");
    
    include("header.php");
+
+   include("../function/database.php");
+   $conn = $database;
    
    $VID = $_GET['VID'];
    
-   $conn               = mysqli_connect("localhost","root","","filmcraft");
    $portfolioInfoQuery    = "SELECT * FROM portfolio JOIN vendor ON portfolio.vendor_Id = vendor.vendorId WHERE portfolio.vendor_Id = '$VID'  ";
    $portfolioInfoResult   = mysqli_query($conn,$portfolioInfoQuery);
    

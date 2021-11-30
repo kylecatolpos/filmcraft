@@ -1,5 +1,10 @@
 <?php 
 
+
+
+include("database.php");
+$conn = $database;
+
 if(isset($_POST['actionEditPortfolio'])) {
   $id = $_POST['id'];
   $email = 	$_POST['email'];
@@ -31,8 +36,7 @@ if(isset($_POST['actionEditPortfolio'])) {
 	   	 	   }
 	// end of image code
   
-  $conn = mysqli_connect("localhost","root","","filmcraft");
-	$updatePortfolioQuery = "UPDATE portfolio SET `portfolioEmail` = '$email', `portfolioFirstName` = '$firstname', `portfolioLastName` = '$lastname', `portfolioAddress` = '$address' , `portfolioVendorPosition` = '$position' ,  `portfolioProfileImage` = '$display_files', `portfolioBookingRate` = '$booking_rate',  `portfolioStartPrice` = '$start_price', `portfolioEndPrice` = '$end_price', `portfolioDescription` = '$description' WHERE `portfolioId` = '$id' ";
+  	$updatePortfolioQuery = "UPDATE portfolio SET `portfolioEmail` = '$email', `portfolioFirstName` = '$firstname', `portfolioLastName` = '$lastname', `portfolioAddress` = '$address' , `portfolioVendorPosition` = '$position' ,  `portfolioProfileImage` = '$display_files', `portfolioBookingRate` = '$booking_rate',  `portfolioStartPrice` = '$start_price', `portfolioEndPrice` = '$end_price', `portfolioDescription` = '$description' WHERE `portfolioId` = '$id' ";
 	$updatePortfolioResult = mysqli_query($conn,$updatePortfolioQuery);
 	
 	if($updatePortfolioResult) {

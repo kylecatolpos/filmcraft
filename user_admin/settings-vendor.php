@@ -4,7 +4,9 @@ include("sessions.php");
 
 include("header.php");
 
-$conn       = mysqli_connect("localhost","root","","filmcraft");
+include("../function/database.php");
+$conn = $database;
+
 $getInfoSql = "SELECT * FROM admin WHERE adminId = '$displayId' ";
 $getResult  = mysqli_query($conn,$getInfoSql);
 
@@ -191,7 +193,6 @@ body {
                                    <tbody>
                                       <?php 
 
-                                      $conn  = mysqli_connect("localhost","root","","filmcraft");
                                       $getVendor = "SELECT * FROM portfolio JOIN vendor ON vendor.vendorId = portfolio.vendor_Id WHERE portfolio.portfolioStatus = 0 ";
                                       $resultVendor = mysqli_query($conn,$getVendor);
 

@@ -2,6 +2,10 @@
 
 session_start();
 
+
+include("database.php");
+$conn = $database;
+
 // code for login when user press 
 if(isset($_POST['actionLogin'])) {
 
@@ -18,8 +22,7 @@ if(isset($_POST['actionLogin'])) {
     
 
  	$sql = "SELECT * FROM admin WHERE (`adminEmail` LIKE '$email') AND (`adminPassword` LIKE '$hash_password') AND adminUserType = 'admin' ";
- 	$conn = mysqli_connect("localhost","root","","filmcraft");
-    $result = mysqli_query($conn, $sql);
+ 	$result = mysqli_query($conn, $sql);
 
 
     if(mysqli_num_rows($result) > 0) {
@@ -33,7 +36,6 @@ if(isset($_POST['actionLogin'])) {
 
 
     $sql = "SELECT * FROM vendor WHERE (`vendorEmail` LIKE '$email') AND (`vendorPassword` LIKE '$hash_password') AND vendorUserType = 'vendor' ";
-    $conn = mysqli_connect("localhost","root","","filmcraft");
     $result = mysqli_query($conn, $sql);
 
      
@@ -49,7 +51,6 @@ if(isset($_POST['actionLogin'])) {
 
     
     $sql = "SELECT * FROM customer WHERE (`customerEmail` LIKE '$email') AND (`customerPassword` LIKE '$hash_password') AND customerUserType = 'customer' ";
-    $conn = mysqli_connect("localhost","root","","filmcraft");
     $result = mysqli_query($conn, $sql);
 
   

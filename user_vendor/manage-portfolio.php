@@ -4,7 +4,9 @@ include("sessions.php");
 
 include("header.php");
 
-$conn       = mysqli_connect("localhost","root","","filmcraft");
+include("../function/database.php");
+$conn = $database;
+
 $getInfoSql = "SELECT * FROM portfolio WHERE vendor_Id = '$displayId' ";
 $getResult  = mysqli_query($conn,$getInfoSql);
 
@@ -254,7 +256,6 @@ body {
                                     <tbody>
                                       <?php 
 
-                                      $conn  = mysqli_connect("localhost","root","","filmcraft");
                                       $queryWorks = "SELECT * FROM works WHERE portfolioWorks_id = '$workid' ";
                                       $resultWorks = mysqli_query($conn,$queryWorks);
 

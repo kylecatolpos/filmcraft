@@ -4,6 +4,9 @@ include("sessions.php");
 
 include("header.php");
 
+include("../function/database.php");
+$conn = $database;
+
 ?>
 
 
@@ -208,7 +211,6 @@ include("header.php");
                                     <tbody>
                                         <?php 
 
-                                        $conn = mysqli_connect("localhost","root","","filmcraft");
                                         $query = "SELECT * FROM portfolio
                                         JOIN vendor ON portfolio.vendor_Id = vendor.vendorId
                                         WHERE vendor.vendorStatus = '1'

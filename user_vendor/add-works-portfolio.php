@@ -4,6 +4,9 @@ include("sessions.php");
 
 include("header.php");
 
+include("../function/database.php");
+$conn = $database;
+
 $vendorWorksId = $_GET['VWID'];
 
 ?>
@@ -148,7 +151,6 @@ body {
                                                     <option hidden selected>Select Event Type</option>
                                                     <?php  
 
-                                                     $conn  = mysqli_connect("localhost","root","","filmcraft");
                                                      $queryEvents = "SELECT * FROM events ORDER BY eventName";
                                                      $resultEvents = mysqli_query($conn,$queryEvents);
 

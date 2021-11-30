@@ -4,7 +4,9 @@ include("sessions.php");
 
 include("header.php");
 
-$conn       = mysqli_connect("localhost","root","","filmcraft");
+include("../function/database.php");
+$conn = $database;
+
 $getInfoSql = "SELECT * FROM admin WHERE adminId = '$displayId' ";
 $getResult  = mysqli_query($conn,$getInfoSql);
 

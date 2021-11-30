@@ -2,6 +2,9 @@
 
 include("header.php");
 
+include("../function/database.php");
+$conn = $database;
+
 ?>
 
 <style>

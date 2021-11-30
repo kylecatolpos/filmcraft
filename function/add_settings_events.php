@@ -1,6 +1,9 @@
 <?php
 
 
+include("database.php");
+$conn = $database;
+
 if(isset($_POST['actionAddWorks'])) {
 
 	// POST variables
@@ -21,8 +24,7 @@ if(isset($_POST['actionAddWorks'])) {
 					$filename = "../files/images/works/" .$date."_".$_FILES['files']['name'];
 						move_uploaded_file($_FILES['files']['tmp_name'], $filename);	
 						 $display_files = $filename;
-						   $conn = mysqli_connect("localhost","root","","filmcraft");
-			                $sqlInsertImages = "INSERT INTO events (eventId,eventName,eventDescription,eventImage) VALUES (NULL,'$eventname','$eventdescription','$display_files')";
+						    $sqlInsertImages = "INSERT INTO events (eventId,eventName,eventDescription,eventImage) VALUES (NULL,'$eventname','$eventdescription','$display_files')";
 			                $resultInsertImages = mysqli_query($conn,$sqlInsertImages);
 
 			                 var_dump($conn);

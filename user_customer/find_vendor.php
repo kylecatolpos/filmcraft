@@ -4,6 +4,9 @@ include("sessions.php");
 
 include("header.php");
 
+include("../function/database.php");
+$conn = $database;
+
  $array = array(
                             "vendor_id" => "",
                             "vendor_fullname" => "",
@@ -14,7 +17,6 @@ include("header.php");
                           );
 $array1 = array();
 
-    $conn = mysqli_connect('localhost','root','','filmcraft');
     $getVendor = "SELECT * FROM vendor";
     $resultGetVendor = mysqli_query($conn,$getVendor);
     while($get_vendor_row = mysqli_fetch_assoc($resultGetVendor)) {
