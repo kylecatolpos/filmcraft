@@ -57,7 +57,7 @@
             id: 'mapbox/streets-v11',
             tileSize: 512,
             zoomOffset: -1,
-            accessToken: 'pk.eyJ1IjoiaG9tZXNhbmRjb25kb3MiLCJhIjoiY2p4Y2xqdGM4MDA3aTNubXd1Zm84dXp5MyJ9.MLd-FoLj3qnmOVSqMVMfEQ'
+            accessToken: 'pk.eyJ1Ijoia3lsZWNhdG9scG9zIiwiYSI6ImNrd3U5MXVwdDFiZjcydm8ybXc4bmNxYXQifQ.TMJipMUmuyQ97V8xZdg4EQ'
          }).addTo(mymap);
                // end my current location
          var redIcon = new L.Icon({

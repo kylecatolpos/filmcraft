@@ -63,6 +63,9 @@ while($portfolioInfoRow = mysqli_fetch_assoc($portfolioInfoResult)) {
     } else if($position == "Videographer") {
         $positionDisplay = "Videographer";
     }
+
+    $portfolioSessionStatus = $portfolioInfoRow['portfolioSessionStatus'];
+
 }
 
 ?>
@@ -204,6 +207,26 @@ body {
                             <?php } ?>
                             <small class="text-muted">Account</small>
                     </li>
+                     <li class="list-inline-item mx-4">
+                             <?php 
+
+                            if($portfolioSessionStatus == 0) {
+
+                            ?> 
+                            <h5 class="font-weight-bold mb-0 d-block">
+                            <span class="badge badge-danger badge-btn">(Not In Session)</span></h5>
+                            <?php 
+
+                            } else if($portfolioSessionStatus == 1) {
+                            ?>
+                            <h5 class="font-weight-bold mb-0 d-block">
+                            <span class="badge badge-success badge-btn">(In Session)</span></h5>
+                            <?php } else if($portfolioSessionStatus == 2) { ?>
+                             <h5 class="font-weight-bold mb-0 d-block">
+                             <span class="badge badge-danger badge-btn">(Expire Session)</span></h5>
+                            <?php } ?>
+                            <small class="text-muted">Portfolio Session</small>
+                    </li>
                     <li class="list-inline-item mx-5">
                         <h5 class="font-weight-bold mb-0 d-block"><?php echo $booking_rate ?> PHP</h5><small class="text-muted">Minimum Booking Rate </small>
                     </li>
@@ -290,6 +313,62 @@ body {
                                               </table>
                                             </div>
                                         </div>
+
+             <!--     <div class="py-4 px-4">
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <h5 class="mb-0">Completed Booking Appointments</h5><a href="show_works_done.php?VWID=<?php// echo $workid?>" class="btn btn-link text-muted">View More</a>
+                </div>
+                <hr>
+                         <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Image/Video</th>
+                                            <th>Occassion Type</th> 
+                                            <th>Name</th>
+                                         </tr>
+                                    </thead>
+                                     <tbody>
+                                      <?php 
+
+                                      //$queryWorks// = "SELECT * FROM works WHERE portfolioWorks_id = '$workid' ";
+                                     // $resultWorks// = mysqli_query($conn,$queryWorks);
+
+                                      //while($rowWorks = mysqli_fetch_assoc($resultWorks)) {
+
+                                      ?>
+                                        <tr>
+
+                                            <?php 
+
+                                           // if ($rowWorks['occassion_file_type'] == 'image/png' || $rowWorks['occassion_file_type'] == 'image/jpeg') {
+
+
+                                            ?>
+
+                                            <td><img src="<?php //echo $rowWorks['occassion_file'] ?>" width="320" height="240"></td>
+                                            <td><?php// echo $rowWorks['occassion_type'] ?></td>
+                                            <td><?php //echo $rowWorks['occassion'] ?></td>
+
+                                        <?php //} else if($rowWorks['occassion_file_type'] == 'video/mp4')// { ?>
+
+                                            <td><video width="320" height="240" controls controlsList="nodownload">
+                                                  <source src="<?php// echo $rowWorks['occassion_file'] ?>" type="<?php //echo $rowWorks['occassion_file_type'] ?>">
+                                                 </video>
+                                             </td>
+                                            <td><?php// echo $rowWorks['occassion_type'] ?></td>
+                                            <td><?php //echo $rowWorks['occassion'] ?></td>
+
+
+                                             <?php// } ?>
+
+
+                                        </tr>
+                                      <?php// } ?>
+                                                 </tbody> 
+                                              </table>
+                                            </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>

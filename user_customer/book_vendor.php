@@ -237,10 +237,12 @@
                         </div>
                   </div>
                   <div class="card-body">
-                     <form method="POST" action="#" enctype="multipart/form-data">
+                     <form method="POST" action="../function/booking.php" enctype="multipart/form-data">
                         <div class="card-body">
-                           <input type="hidden" value="<?php echo $displayId ?>" name="id">
-                           <input type="hidden" value="<?php echo $profile_image ?>" name="profile_image">
+
+                           <input type="hidden" value="<?php echo $displayId ?>" name="customerID">
+                           <input type="hidden" value="<?php echo $fetchId ?>" name="vendorID">
+                           
                            <div class="col-md-12 mx-auto">
                               <div class="row">
                                  <div class="col-xl-12">
@@ -310,8 +312,28 @@
                                           <div class="row gx-3 mb-3">
                                              <!-- Form Group (first name)-->
                                              <div class="col-md-6">
-                                                <label class="small mb-1" for="inputUsername">Date of Event</label>
-                                                <input class="form-control" id="inputUsername" min="<?php echo date('Y-m-d'); ?>" type="date" placeholder="Enter date of the event" name="book_date">
+                                                <label class="small mb-1" for="inputUsername">Start Date of Event</label>
+                                                <input class="form-control" id="inputUsername" min="<?php echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>" type="date" name="start_date_event">
+                                             </div>
+
+                                              <div class="col-md-6">
+                                                <label class="small mb-1" for="inputUsername">End Date of Event</label>
+                                                <input class="form-control" id="inputUsername" min="<?php 
+                                                // $add_one_day = strtotime("+ 1 day");
+                                                //echo date('Y-m-d', $add_one_day);
+                                                echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>" type="date" name="end_date_event">
+                                             </div>
+                                          </div>
+                                          <div class="row gx-3 mb-3">
+                                          
+                                              <div class="col-md-6">
+                                                <label class="small mb-1" for="inputUsername">Start Time of the Event</label>
+                                                <input class="form-control" type="time" value="08:00:00" name="start_time_event" required>
+                                             </div>
+
+                                              <div class="col-md-6">
+                                                <label class="small mb-1" for="inputUsername">End Time of the Event</label>
+                                                <input class="form-control" type="time" name="end_time_event" value="22:00:00" required>
                                              </div>
                                              <!-- Form Group (last name)-->
                                            
@@ -319,15 +341,10 @@
                                           <!-- Form Row-->
                                           <div class="row gx-3 mb-3">
                                              <!-- Form Group (first name)-->
-                                             <div class="col-md-6">
-                                                <label class="small mb-1" for="inputUsername">Starting Time of Event</label>
-                                                <input class="form-control" id="inputUsername" type="time" placeholder="Enter starting time of the event" name="book_start_time">
-                                             </div>
-                                             <!-- Form Group (last name)-->
-                                             <div class="col-md-6">
-                                                <label class="small mb-1" for="inputUsername">Ending Time of Event</label>
-                                                <input class="form-control" id="inputUsername" type="time" placeholder="Enter ending time of the event" name="book_end_time">
-                                             </div>
+                                             <div class="col-md-12">
+                                                <label class="small mb-1" for="inputUsername">Input Event Details</label>
+                                                <textarea class="form-control" name="event_details"></textarea>
+                                              </div>
                                           </div>
                                           <!-- Form Group (email address)-->
                                            <div class="mb-3">
@@ -337,7 +354,7 @@
                                           <div class="row gx-3 mb-3">
                                              <!-- Form Group (phone number)-->
                                              <div class="col-md-6">
-                                                 <a href="#" class="btn btn-primary btn-md btn-block text-capitalize">Proceed payment thru cash</a>
+                                                 <button type="submit" class="btn btn-primary btn-md btn-block text-capitalize" name="proceedBookingWithCash">Proceed payment thru cash</button>
                                              </div>
                                               <div class="col-md-6">
                                                  <a href="#" class="btn btn-info btn-md btn-block text-capitalize">Proceed payment with PayPal</a>

@@ -213,10 +213,12 @@ $conn = $database;
 
                                         $query = "SELECT * FROM portfolio
                                         JOIN vendor ON portfolio.vendor_Id = vendor.vendorId
-                                        WHERE vendor.vendorStatus = '1'
+                                        WHERE vendor.vendorStatus = '1' 
                                         ";
                                         $result = mysqli_query($conn,$query);
                                         while($row = mysqli_fetch_assoc($result)) {
+
+                                        $portfolioSessionStatus = $row['portfolioSessionStatus'];
 
                                         $fetchId        = $row['vendor_Id'];
                                         $fetchFirstName = $row['vendorFirstName'];
@@ -241,9 +243,15 @@ $conn = $database;
                                             <td><?php echo $concatName ?></td>
                                             <td><?php echo $positionDisplay ?></td>
                                             <td><a href="view_portfolio.php?VID=<?php echo $fetchId ?>" class="btn btn-primary">View Portfolio</a></td>
-                                            <td><a href="book_vendor.php?VID=<?php echo $fetchId ?>" class="btn btn-success">Booked Vendor</a></td>
+                                            <td>
+                                                <?php  if($portfolioSessionStatus == 1) { ?>
+                                                    <a href="book_vendor.php?VID=<?php echo $fetchId ?>" class="btn btn-success">Booked Vendor</a>
+                                                <?php } else if($portfolioSessionStatus == 0 OR $portfolioSessionStatus == 2) {  ?>
+                                                    <a class="btn btn-light">Booked Vendor</a>
+                                                <?php } ?>
+                                            </td>
 
-                                        </tr>
+                                        </tr> 
                                        <?php } ?>
                                     </tbody>
                                 </table>

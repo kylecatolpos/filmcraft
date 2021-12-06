@@ -50,5 +50,28 @@ if(isset($_POST['actionVendorProfile'])) {
 }
 
 
+if(isset($_POST['actionEditVendorLocation'])) {
+
+	$vendor_id = $_POST['id'];
+	$vendor_lat = $_POST['vendor_lat'];
+	$vendor_long = $_POST['vendor_long'];
+
+	$sql = "UPDATE vendor SET vendorLatitude = '$vendor_lat', vendorLongitude = '$vendor_long' WHERE vendorId = '$vendor_id' ";
+	$result = mysqli_query($conn,$sql);
+
+	var_dump($conn);
+
+
+	if($result) {
+		header("Location:../user_vendor/index.php");
+	} else {
+		mysqli_error($conn);
+	}
+
+
+
+}
+
+
 
 ?>

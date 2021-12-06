@@ -1,4 +1,3 @@
-<!-- -->
 <?php 
 
 include("sessions.php");
@@ -7,6 +6,88 @@ include("header.php");
 
 include("../function/database.php");
 $conn = $database;
+
+// Portfolio Session Status
+
+
+// Number of Bookings For Free Account
+
+
+// Pending Booking Request
+
+
+// Booking Completed
+
+// $sqlAccountStatus = "SELECT * FROM portfolio_session 
+// JOIN portfolio ON portfolio.portfolioId = portfolio_session.portfolioSessionPortfolioId
+// WHERE portfolioSessionVendorId = '$displayId'
+// ";
+// $resultAccountStatus = mysqli_query($conn,$sqlAccountStatus);
+// $rowAccountStatus = mysqli_fetch_assoc($resultAccountStatus);
+
+
+// $portfolioSessionId = $rowAccountStatus['portfolioSessionId'];
+
+// $portfolioSessionStatus = $rowAccountStatus['portfolioSessionStatus'];
+
+// if($portfolioSessionStatus == 0) {
+//     $account_status = 'Not In Session';
+// } else if($portfolioSessionStatus == 1) {
+//     $account_status = 'In Session';
+// } else if($portfolioSessionStatus == 2) {
+//     $account_status = 'Expire Session';
+// }
+
+// $start_session = $rowAccountStatus['portfolioSessionStartSession'];
+// $end_session = $rowAccountStatus['portfolioSessionEndSession'];
+
+// if($start_session == "") {
+//     $start = "";
+// } else {
+//     //$start = date('F d, Y H:i:s A',strtotime($start_session));
+//     $start = date('Y-m-d H:i:s ',strtotime($start_session));
+
+// }
+
+// if($end_session == "") {
+//     $end = "";
+// } else {
+//     //$end = date('F d, Y H:i:s A',strtotime($end_session));
+//     $end = date('Y-m-d H:i:s ',strtotime($end_session));
+// }
+
+// $now = date('Y-m-d H:i:s');
+
+// var_dump($now);
+
+// if ($now >= $end_session) {
+//     echo "expire";
+//     portfolioSessionExpireSession($portfolioSessionId);
+// } else {
+//     echo "not yet";
+//     portfolioSessionInSession($portfolioSessionId);
+// }
+
+
+// function portfolioSessionExpireSession($portfolioSessionId) {
+//     include("../function/database.php");
+//     $conn = $database;
+//     $get_id = $portfolioSessionId;
+
+//     $sql = "UPDATE portfolio_session SET portfolioSessionStatus = 0 
+//     WHERE portfolioSessionId = '$portfolioSessionId' ";
+//     $result = mysqli_query($conn,$sql);
+// }
+
+// function portfolioSessionInSession($portfolioSessionId) {
+//     include("../function/database.php");
+//     $conn = $database;
+//     $get_id = $portfolioSessionId;
+
+//     $sql = "UPDATE portfolio_session SET portfolioSessionStatus = 1 
+//     WHERE portfolioSessionId = '$portfolioSessionId' ";
+//     $result = mysqli_query($conn,$sql);
+// }
 
 
 ?>
@@ -106,19 +187,18 @@ $conn = $database;
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Account Status</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Free</div>
+                                                Portfolio Session - (<?php //echo $account_status ?>)</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                                         </div>
                                         <div class="col-auto">
-                                            Session Start - Session End
+                                            <?php //echo $start ?> - <?php //echo $end ?>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                              <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-6 col-md-6 mb-4">
+                        <!-- <div class="col-xl-6 col-md-6 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
@@ -133,7 +213,7 @@ $conn = $database;
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
 
 
@@ -196,4 +276,4 @@ $conn = $database;
 
 <!-- -->
 <?php include("footer.php"); ?>
-<!-- -->
+<!--

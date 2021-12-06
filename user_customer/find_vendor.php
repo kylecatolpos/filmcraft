@@ -18,6 +18,10 @@ $conn = $database;
 $array1 = array();
 
     $getVendor = "SELECT * FROM vendor";
+    // $getVendor = "SELECT * FROM portfolio 
+    // JOIN vendor ON vendor.vendorId = portfolio.vendor_Id
+    // WHERE portfolioSessionStatus = 1 
+    // ";
     $resultGetVendor = mysqli_query($conn,$getVendor);
     while($get_vendor_row = mysqli_fetch_assoc($resultGetVendor)) {
 

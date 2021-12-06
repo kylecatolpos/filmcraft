@@ -57,6 +57,8 @@ while($getRow = mysqli_fetch_assoc($getResult)) {
 
    $booking_rate = $getRow['portfolioBookingRate'];
 
+   $portfolioSessionStatus = $getRow['portfolioSessionStatus'];
+
 
 }
 
@@ -201,6 +203,26 @@ body {
                             <span class="badge badge-success badge-btn">(Verified)</span></h5>
                             <?php } ?>
                             <small class="text-muted">Account</small>
+                    </li>
+                       <li class="list-inline-item mx-5">
+                             <?php 
+
+                            if($portfolioSessionStatus == 0) {
+
+                            ?> 
+                            <h5 class="font-weight-bold mb-0 d-block">
+                            <span class="badge badge-danger badge-btn">Not In Session</span></h5>
+                            <?php 
+
+                            } else if($portfolioSessionStatus == 1) {
+                            ?>
+                            <h5 class="font-weight-bold mb-0 d-block">
+                            <span class="badge badge-success badge-btn">In Session</span></h5>
+                            <?php } else if($portfolioSessionStatus == 2) { ?>
+                             <h5 class="font-weight-bold mb-0 d-block">
+                             <span class="badge badge-danger badge-btn">Expire Session</span></h5>
+                            <?php } ?>
+                            <small class="text-muted">Portfolio Session</small>
                     </li>
                       <li class="list-inline-item mx-5">
                         <h5 class="font-weight-bold mb-0 d-block"><?php echo $booking_rate ?> PHP</h5><small class="text-muted">Minimum Booking Rate </small>

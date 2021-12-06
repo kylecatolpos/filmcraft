@@ -185,7 +185,7 @@ $conn = $database;
                                                 </li>
                                             </ul>
                                         </div>
-                                        <a class="card-footer d-flex align-items-center justify-content-between" href="#!" style="text-decoration: none;">
+                                        <a class="card-footer d-flex align-items-center justify-content-between" href="subscription-basic.php?UID=<?php echo $displayId ?>" style="text-decoration: none;">
                                             Get started!
                                            <i class="fa fa-arrow-circle-right" style="font-size:20px;"></i>
                                         </a>

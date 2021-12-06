@@ -62,6 +62,9 @@ while($portfolioInfoRow = mysqli_fetch_assoc($portfolioInfoResult)) {
     } else if($position == "Videographer") {
         $positionDisplay = "Videographer";
     }
+
+    $portfolioSessionStatus = $portfolioInfoRow['portfolioSessionStatus'];
+
 }
 
 ?>
@@ -281,7 +284,12 @@ body {
                     <div class="media-body mb-5 text-white">
                         <h4 class="mt-0 mb-1"><?php echo $fullname ?></h4>
                         <p class="small mb-4"><?php echo $position ?></p>
-                          <a href="book_vendor.php?VID=<?php echo $VID ?>" class="btn btn-success"> Booked Vendor </a>  
+                         <?php  if($portfolioSessionStatus == 1) { ?>
+                            <a href="book_vendor.php?VID=<?php echo $VID ?>" class="btn btn-success"> Booked Vendor </a>  
+                         <?php } else if($portfolioSessionStatus == 0 OR $portfolioSessionStatus == 2) {  ?>
+                            <a class="btn btn-light">Booked Vendor</a>
+                         <?php } ?>
+                          
                           <!-- <a href="#" class="btn btn-primary"> Rate Vendor </a> -->
                     </div>
                 </div>
@@ -306,6 +314,26 @@ body {
                             <span class="badge badge-success badge-btn">(Verified)</span></h5>
                             <?php } ?>
                             <small class="text-muted">Account</small>
+                    </li>
+                      <li class="list-inline-item mx-4">
+                             <?php 
+
+                            if($portfolioSessionStatus == 0) {
+
+                            ?> 
+                            <h5 class="font-weight-bold mb-0 d-block">
+                            <span class="badge badge-danger badge-btn">(Not In Session)</span></h5>
+                            <?php 
+
+                            } else if($portfolioSessionStatus == 1) {
+                            ?>
+                            <h5 class="font-weight-bold mb-0 d-block">
+                            <span class="badge badge-success badge-btn">(In Session)</span></h5>
+                            <?php } else if($portfolioSessionStatus == 2) { ?>
+                             <h5 class="font-weight-bold mb-0 d-block">
+                             <span class="badge badge-danger badge-btn">(Expire Session)</span></h5>
+                            <?php } ?>
+                            <small class="text-muted">Portfolio Session</small>
                     </li>
                       <li class="list-inline-item mx-5">
                         <h5 class="font-weight-bold mb-0 d-block"><?php echo $booking_rate ?> PHP</h5><small class="text-muted">Minimum Booking Rate </small>

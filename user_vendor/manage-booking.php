@@ -94,15 +94,18 @@ $conn = $database;
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Customer Name</th>
-                                            <th>Vendor Booked</th>
-                                            <th>Status</th>
-                                            <th>Start Of Transaction</th>
-                                            <th>End Of Transaction</th>
-                                            <th>Action</th>
+                                            <th>Vendor</th>
+                                            <th>Downpayment</th>
+                                            <th>Downpayment Status</th>
+                                            <th>Total Price</th>
+                                            <th>Balance</th>
+                                            <th>Event Date</th>
+                                            <th>Event Time</th>
+                                            <th>Payment Method</th>
+                                            <th>Booking Status</th>
                                         </tr>
                                     </thead>
                                  
@@ -110,44 +113,73 @@ $conn = $database;
 
                                         <?php 
 
-                                        $queryBooking = "SELECT * FROM booking JOIN customer ON booking.customer_Id = customer.customerId JOIN vendor ON booking.vendor_Id = vendor.vendorId 
-                                        WHERE booking.vendor_Id = '$displayId' 
-                                        ";
-                                        $resultBooking = mysqli_query($conn,$queryBooking);
-                                        while($rowBooking = mysqli_fetch_assoc($resultBooking)) {
+                                        $query = "SELECT * FROM booking 
+                                        JOIN customer ON customer.customerId = booking.customer_Id
+                                        JOIN vendor ON vendor.vendorId = booking.vendor_Id
+                                        WHERE vendor_Id = '$displayId' ";
+                                        $resultQuery = mysqli_query($conn,$query);
 
-                                        $cfname = $rowBooking['customerFirstName'];
-                                        $clname = $rowBooking['customerLastName'];
+                                        while($rowQuery = mysqli_fetch_assoc($resultQuery)) {
 
-                                        $customerFullName = $cfname.' '.$clname;
+                                        $customerFirstName = $rowQuery['customerFirstName'];
+                                        $customerLastName = $rowQuery['customerLastName'];
+                                        $customerFullName = $customerFirstName.' '.$customerLastName;
 
-                                        $vfname = $rowBooking['vendorFirstName'];
-                                        $vlname = $rowBooking['vendorLastName'];
+                                        $bookingDP = $rowQuery['bookingDp'];
 
-                                        $vendorFullName = $vfname.' '.$vlname;
+                                        $bookingDpStatus = $rowQuery['bookingDpStatus'];
 
-                                        $bookingStartDate = $rowBooking['bookingStartDate'];
-                                        $bookingEndDate = $rowBooking['bookingEndDate'];
+                                        $eventFinalPrice = $rowQuery['eventFinalPrice'];
+                                        $eventBalance = $rowQuery['eventBalance'];
+
+
+                                        $eventStartDate = $rowQuery['eventStartDate'];
+                                        $eventEndDate = $rowQuery['eventEndDate'];
+                                        $eventStartTime = $rowQuery['eventStartTime'];
+                                        $eventEndTime = $rowQuery['eventEndTime'];
+
+
+                                        $startDate = date('F d, Y',strtotime($eventStartDate));
+                                        $endDate = date('F d, Y',strtotime($eventEndDate));
+                                        $startTime = date('H:i:s A',strtotime($eventStartTime));
+                                        $endTime = date('H:i:s A',strtotime($eventEndTime));
+
+                                        $eventDetails = $rowQuery['eventDetails'];
+                                        $bookingPaymentMethod = $rowQuery['bookingPaymentMethod'];
+                                        $bookingPaymentStatus = $rowQuery['bookingStatus'];
 
                                         ?>
 
                                         <tr>
                                             <td><?php echo $customerFullName ?></td>
-                                            <td><?php echo $vendorFullName ?></td>
-                                            <td>Pending</td>
-                                            <td><?php echo $bookingStartDate ?></td>
-                                            <td><?php echo $bookingEndDate ?></td>
+                                            <td><?php echo $bookingDP ?></td>
                                             <td>
-                                                <a class="btn btn-primary">Accept</a>
-                                                <a class="btn btn-danger">Decline</a>
+                                             <?php if($bookingDpStatus == 1) { ?>
+                                                Pending
+                                             <?php } else if($bookingDpStatus == 2) { ?>
+                                                Paid
+                                             <?php } ?>
+                                            </td>
+                                            <td><?php echo $eventFinalPrice ?></td>
+                                            <td><?php echo $eventBalance ?></td>
+                                            <td><?php echo $startDate ?> - <?php echo $endDate ?> </td>
+                                            <td><?php echo $startTime ?> - <?php echo $endTime ?> </td>
+                                            <td><?php echo $bookingPaymentMethod ?></td>
+                                            <td>
+                                                 <?php if($bookingPaymentStatus == 1) { ?>
+                                                Not Yet Paid
+                                             <?php } else if($bookingPaymentStatus == 2) { ?>
+                                                Balance
+                                             <?php } ?>
                                             </td>
                                         </tr>
-
+                                       
+                                        
                                         <?php } ?>
-                                       
-                                       
+
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                     </div>

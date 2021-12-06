@@ -191,11 +191,20 @@ body {
                                 <div class="card mb-4">
                                     <div class="card-header">Account Details</div>
                                     <div class="card-body">
-                                            <!-- Form Group (username)-->
-                                            <div class="mb-3">
-                                                <label class="small mb-1" for="inputUsername">Email Address</label>
+                                          <div class="row gx-3 mb-3">
+                                                <!-- Form Group (last name)-->
+                                                <div class="col-md-6">
+                                                    <label class="small mb-1" for="inputLastName">Vendor Location</label>
+                                                    <a href="add-vendor-location.php?VL=<?php echo $displayId?>" class="btn btn-success btn-block">Add Location In Map</a>
+                                                </div>
+                                                <!-- Form Group (first name)-->
+                                                <div class="col-md-6">
+                                                    <label class="small mb-1" for="inputUsername">Email Address</label>
                                                 <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="<?php echo $email ?>" name="email">
+                                                </div>
+                                               
                                             </div>
+                                          
                                             <!-- Form Row-->
                                             <div class="row gx-3 mb-3">
                                                 <!-- Form Group (first name)-->

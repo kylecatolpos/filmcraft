@@ -8,6 +8,21 @@ include("header.php");
 include("../function/database.php");
 $conn = $database;
 
+// pending vendor accounts;
+$sqlPending = "SELECT * FROM vendor WHERE vendorStatus = 0 ";
+$resultPending = mysqli_query($conn,$sqlPending);
+$pendingCount = mysqli_num_rows($resultPending);
+
+// count all active vendor accounts;
+$sqlVendorAccount = "SELECT * FROM vendor WHERE vendorStatus = 1";
+$resultVendorAccount = mysqli_query($conn,$sqlVendorAccount);
+$vendorAccountCount = mysqli_num_rows($resultVendorAccount);
+
+// count all active customer accounts;
+$sqlCustomerAccount = "SELECT * FROM customer WHERE customerStatus = 1";
+$resultCustomerAccount = mysqli_query($conn,$sqlCustomerAccount);
+$customerAccountCount = mysqli_num_rows($resultCustomerAccount);
+
 // fix for by pass URL links
 // if($displayId == NULL) {
 //    header("Location:logout.php");
@@ -99,14 +114,14 @@ $conn = $database;
                     <div class="row">
 
                         <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-6 col-md-6 mb-4">
+                        <div class="col-xl-6 col-md-4 mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Pending New Accounts</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
+                                                Pending New Vendor Accounts</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php  echo $pendingCount ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -117,17 +132,35 @@ $conn = $database;
                         </div>
 
                         <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-6 col-md-6 mb-4">
+                        <div class="col-xl-6 col-md-4 mb-4">
                             <div class="card border-left-info shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                                 Number of Active Vendor Accounts</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $vendorAccountCount ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-users fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                         <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-6 col-md-4 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                                Number of Active Customer Accounts</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php  echo $customerAccountCount?></div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-user fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>

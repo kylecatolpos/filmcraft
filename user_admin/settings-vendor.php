@@ -193,7 +193,7 @@ body {
                                    <tbody>
                                       <?php 
 
-                                      $getVendor = "SELECT * FROM portfolio JOIN vendor ON vendor.vendorId = portfolio.vendor_Id WHERE portfolio.portfolioStatus = 0 ";
+                                      $getVendor = "SELECT * FROM portfolio JOIN vendor ON vendor.vendorId = portfolio.vendor_Id ";
                                       $resultVendor = mysqli_query($conn,$getVendor);
 
                                       while($rowVendor = mysqli_fetch_assoc($resultVendor)) {
@@ -202,11 +202,21 @@ body {
                                         <tr>
                                             <td><?php echo $rowVendor['vendorFirstName'] ?> <?php echo $rowVendor['vendorLastName'] ?></td>
                                             <td><?php echo $rowVendor['vendorPosition'] ?></td>
+                                            
+
+                                            <?php if($rowVendor['vendorStatus'] == 0) { ?>
                                             <td>Not Verified</td>
                                             <td>
                                                <a href="../function/acceptacc_settings_vendor.php?VID=<?php echo $rowVendor['vendorId'] ?>" class="btn btn-primary btn-sm" href="">Accept</a>
                                                <!-- <a class="btn btn-danger btn-sm">Cancel</a> -->
                                             </td>
+                                          <?php } else if($rowVendor['vendorStatus'] == 1) { ?>
+                                             <td>Verified</td>
+                                             <td>
+                                               <a class="btn btn-secondary btn-sm" href="">Accept</a>
+                                               <!-- <a class="btn btn-danger btn-sm">Cancel</a> -->
+                                             </td>
+                                          <?php } ?>
                                        </tr>
                                       <?php } ?>
                                     </tbody>

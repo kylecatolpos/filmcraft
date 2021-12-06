@@ -31,7 +31,7 @@ if(isset($_POST['actionLogin'])) {
         $_SESSION['displayName'] = $row['adminFirstName'].' '. $row['adminLastName'];
         $_SESSION['displayImage'] = $row['adminProfileImage'];
         $number = 1;
-        header("Location:../user_admin/index.php"); 
+        header("Location:../user_admin/index.php");
      }
 
 
@@ -65,7 +65,7 @@ if(isset($_POST['actionLogin'])) {
 
 
         if($number != 1 ) {
-            header("Location:../login.php");
+           header("Location:../login.php");
         }
 
 

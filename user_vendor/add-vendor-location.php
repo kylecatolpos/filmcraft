@@ -7,29 +7,35 @@ include("header.php");
 include("../function/database.php");
 $conn = $database;
 
-$getInfoSql = "SELECT * FROM admin WHERE adminId = '$displayId' ";
+$getInfoSql = "SELECT * FROM vendor WHERE vendorId = '$displayId' ";
 $getResult  = mysqli_query($conn,$getInfoSql);
 
-while($getRow = mysqli_fetch_assoc($getResult)) {
-    $email          = $getRow['adminEmail'];
-    $firstname      = $getRow['adminFirstName'];
-    $lastname       = $getRow['adminLastName'];
-    $gender         = $getRow['adminGender'];
-    $birthdate      = $getRow['adminBirthdate'];
-    $phonenumber    = $getRow['adminNumber'];
-    $address        = $getRow['adminAddress'];
 
-    // check if gender is none;
+while($getRow = mysqli_fetch_assoc($getResult)) {
+    $email          = $getRow['vendorEmail'];
+    $firstname      = $getRow['vendorFirstName'];
+    $lastname       = $getRow['vendorLastName'];
+    $gender         = $getRow['vendorGender'];
+    $birthdate      = $getRow['vendorBirthdate'];
+    $phonenumber    = $getRow['vendorNumber'];
+    $address        = $getRow['vendorAddress'];
+
+    $profile_image  = $getRow['vendorProfileImage'];
+
+    $lat            = $getRow['vendorLatitude'];
+    $long           = $getRow['vendorLongitude'];
+
+     // check if gender is none;
     if($gender == 'None') {
        $displayGender = 'I prefer not to say';
     } else {
        $displayGender = $gender;
     }
- 
 
 }
 
 ?>
+
 
 <style>
     
@@ -56,7 +62,7 @@ body {
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-          <!-- Sidebar -->
+         <!-- Sidebar -->
         <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#395232">
 
             <!-- Sidebar - Brand -->
@@ -78,18 +84,20 @@ body {
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="portfolio.php">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>Portfolio</span></a>
+                <a class="nav-link" href="manage-portfolio.php">
+                     <i class="fas fa-fw fa-users"></i>
+                    <span>Manage Portfolio</span></a>
                 </li>
 
 
               <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="booking.php">
+                <a class="nav-link" href="manage-booking.php">
                     <i class="far fa-fw fa-bookmark"></i>
-                    <span>Booking</span></a>
+                    <span>Manage Booking</span></a>
                 </li>
+
+    
         </ul>
         <!-- End of Sidebar -->
 
@@ -110,27 +118,26 @@ body {
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        <!-- Notifications -->
+                         <!-- Notifications -->
                           <?php include("notifications.php") ?>
                         <!-- Notifications -->
-
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $displayName ?></span>
-                               <img class="img-profile rounded-circle"
+                                 <img class="img-profile rounded-circle"
                                     src="<?php echo $displayImage ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="profile.php">
+                                <a class="dropdown-item active" href="profile.php">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item active" href="settings-vendor.php">
+                                <a class="dropdown-item" href="settings-subscription.php">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
@@ -147,74 +154,70 @@ body {
                 </nav>
                 <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
+                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-5 text-gray-800">Settings</h1>
-
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-						<li class="nav-item">
-                           <a class="nav-link" href="settings-vendor.php">Vendor Management</a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link active" href="settings-customer.php">Customer Management</a>
-                        </li>
-						<li class="nav-item">
-						    <a class="nav-link" href="settings-admin.php">Admin Management</a>
-						</li> 
-                        <li class="nav-item">
-                            <a class="nav-link" href="settings-events.php">Events Management</a>
-                        </li> 
-						<li class="nav-item">
-						    <a class="nav-link" href="settings-reports.php">Generate Reports</a>
-						</li>
-				     </ul>
-						<div class="tab-content" id="myTabContent">
-						  <div class="tab-pane fade show active">
-						  	<div class="card">
-						  		<div class="card-body">
-						  	
-						
-                               <!-- Page Heading -->
-                            <h1 class="h3 mb-5 text-gray-800">Account Management for Customer</h1>
-
-						  	  <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable">
-                                    <thead>
-                                        <tr>
-                                            <th>Customer Name</th>
-                                            <th>Customer Email</th>
-                                         </tr>
-                                    </thead>
-                                 
-                                   <tbody>
-                                      <?php 
-
-                                      $getCustomer = "SELECT * FROM customer WHERE customerStatus = 1";
-                                      $resultCustomer = mysqli_query($conn,$getCustomer);
-
-                                      while($rowCustomer = mysqli_fetch_assoc($resultCustomer)) {
-
-                                      ?>
-                                        <tr>
-                                            <td><?php echo $rowCustomer['customerFirstName'] ?> <?php echo $rowCustomer['customerLastName'] ?></td>
-                                            <td><?php echo $rowCustomer['customerEmail'] ?></td>
-                                       </tr>
-                                      <?php } ?>
-                                    </tbody>
-                                </table>
-                            </div>
-						  		</div>
-						  	</div>
-						  </div>
-						</div>
-
+                    <h1 class="h3 mb-5 text-gray-800">Vendor Location</h1>
                   
-                
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Edit Vendor Location</h6>
+                        </div>
+
+                       <form method="POST" action="../function/vendor_profile.php">
+                        <div class="card-body">
+
+                    <input type="hidden" value="<?php echo $displayId ?>" name="id">
+                   
+
+                     <div class="col-md-12 mx-auto">
+                         <div class="row">
+                            <div class="col-xl-8">
+                                <!-- Profile picture card-->
+                                <div class="card mb-4 mb-xl-0">
+                                    <div class="card-header">Current Location In Map</div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div id="map"></div>
+                                              <style type="text/css">
+                                                 #map { height: 480px; width:100%; }
+                                              </style>
+                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <!-- Account details card-->
+                                <div class="card mb-4">
+                                    <div class="card-header">Location Details</div>
+                                    <div class="card-body">
+                                          <div class="row gx-3 mb-3">
+                                            <label class="small mb-1" for="inputUsername">Display Vendor Latitude</label>
+                                                <input class="form-control" id="display_latitude" type="text" readonly placeholder="Display Vendor Latitude" name="vendor_lat">
+                                                </div>
+
+                                          <div class="row gx-3 mb-3">
+                                            <label class="small mb-1" for="inputUsername">Display Vendor Longitude</label>
+                                                <input class="form-control" id="display_longitude" type="text" readonly placeholder="Display Vendor Longtitude"  name="vendor_long">
+                                                </div>
+                                               
+                                            
+                                            <!-- Save changes button-->
+                                            <button class="btn btn-primary" type="submit" name="actionEditVendorLocation">Save changes</button>
+                                            <a class="btn btn-danger text-white" href="profile.php">Cancel</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                 </div>
+                               </div>
+                            </form>
+                         </div>
                       </div>
                 <!-- /.container-fluid -->
-                 </div>
+                  </div>
             <!-- End of Main Content -->
 
 
@@ -229,14 +232,12 @@ body {
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- -->
+       <!-- -->
    <?php include("logout-modal.php") ?>
    <!-- -->
-
 
 <?php 
 
 include("footer.php");
 
 ?>
-
