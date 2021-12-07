@@ -207,8 +207,8 @@ body {
                                             <td><?php echo $rowEvents['eventName'] ?></td>
                                             <td><?php echo $rowEvents['eventDescription'] ?></td>
                                             <td>
-                                               <a href="../function/admin_settings.php?CID=<?php echo $rowCustomer['customerId'] ?>" class="btn btn-primary btn-sm" href="">Edit</a>
-                                               <a href="../function/admin_settings.php?CID=<?php echo $rowCustomer['customerId'] ?>" class="btn btn-danger btn-sm" href="">Delete</a>
+                                               <a href="#../function/admin_settings.php?CID=<?php echo $rowCustomer['customerId'] ?>" class="btn btn-primary btn-sm" href="">Edit</a>
+                                               <a href="#../function/admin_settings.php?CID=<?php echo $rowCustomer['customerId'] ?>" class="btn btn-danger btn-sm" href="">Delete</a>
                                             </td>
                                        </tr>
                                       <?php } ?>

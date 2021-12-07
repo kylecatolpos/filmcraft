@@ -18,13 +18,14 @@ if(isset($_POST['actionRegister'])) {
  	$image = "../files/images/profile_pic/default-profile.png";
  	$status = 0;
  	$usertype   = $_POST['usertype'];
+ 	$bday = '0000-00-00';
  
 
  	// hash password
  	$hash_password = md5($pass);
 
  	// creation for vendor account
- 	$sql = "INSERT INTO vendor (vendorId,vendorEmail,vendorPassword,vendorFirstName,vendorLastName,vendorGender,vendorBirthdate,vendorNumber,vendorAddress,vendorType,vendorPosition,vendorProfileImage,vendorStatus,vendorUserType) VALUES (NULL,'$email','$hash_password','$fname','$lname','$empty','$empty','$empty','$empty','$empty','$position','$image','$status','$usertype') ";
+ 	$sql = "INSERT INTO vendor (vendorId,vendorEmail,vendorPassword,vendorFirstName,vendorLastName,vendorGender,vendorBirthdate,vendorNumber,vendorAddress,vendorType,vendorPosition,vendorProfileImage,vendorStatus,vendorUserType, vendorLatitude,vendorLongitude) VALUES (NULL,'$email','$hash_password','$fname','$lname','$empty','$bday','$empty','$empty','$empty','$position','$image','$status','$usertype','$empty','$empty') ";
  	
  	if(mysqli_query($conn,$sql)) {
  	$latest_id = mysqli_insert_id($conn);
@@ -56,13 +57,14 @@ if(isset($_POST['actionRegister'])) {
  	$image = "../files/images/profile_pic/default-profile.png";
  	$status = 1;
  	$usertype   = $_POST['usertype'];
+ 	$bday = '0000-00-00';
  
 
  	// hash password
  	$hash_password = md5($pass);
 
  	// creation for customer account
- 	$sql = "INSERT INTO customer (customerId,customerEmail,customerPassword,customerFirstName,customerLastName,customerGender,customerBirthdate,customerNumber,customerAddress,customerProfileImage,customerStatus,customerUserType) VALUES (NULL,'$email','$hash_password','$fname','$lname','$empty','$empty','$empty','$empty','$image','$status','$usertype') ";
+ 	$sql = "INSERT INTO customer (customerId,customerEmail,customerPassword,customerFirstName,customerLastName,customerGender,customerBirthdate,customerNumber,customerAddress,customerProfileImage,customerStatus,customerUserType) VALUES (NULL,'$email','$hash_password','$fname','$lname','$empty','$bday','$empty','$empty','$image','$status','$usertype') ";
  	$result = mysqli_query($conn,$sql);
 
  	if($result) {

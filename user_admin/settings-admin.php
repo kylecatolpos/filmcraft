@@ -181,7 +181,7 @@ body {
 
                                 <!-- Page Heading -->
                             <div class="card-title text-right" style="background-color:none;">
-                                 <a href="add-settings-admin.php" class="btn btn-success">Add Admin</a>
+                                 <a href="#add-settings-admin.php" class="btn btn-success">Add Admin</a>
                             </div>
 
 
