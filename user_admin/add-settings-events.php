@@ -199,7 +199,7 @@ body {
                                             <!-- Form Row-->
                                         
                                             <!-- Save changes button-->
-                                            <button class="btn btn-primary" type="submit" name="actionAddWorks">Save changes</button>
+                                            <button class="btn btn-primary" type="submit" name="actionAddEvents">Save changes</button>
                                             <a class="btn btn-danger text-white" href="settings-events.php">Cancel</a>
                                     </div>
                                 </div>

@@ -1,11 +1,77 @@
 <?php 
 
+
 include("sessions.php");
 
 include("header.php"); 
 
 include("../function/database.php");
 $conn = $database;
+
+$UID = $displayId;
+
+$portfolioInfoQuery    = "SELECT * FROM portfolio WHERE vendor_Id = '$UID' ";
+$portfolioInfoResult   = mysqli_query($conn,$portfolioInfoQuery);
+
+while($portfolioInfoRow = mysqli_fetch_assoc($portfolioInfoResult)) {
+    $id        = $portfolioInfoRow['portfolioId'];
+    $workid    = $portfolioInfoRow['vendorWork_Id'];
+    $firstname = $portfolioInfoRow['portfolioFirstName'];
+    $lastname  = $portfolioInfoRow['portfolioLastName'];
+
+    $fullname  = $firstname.' '.$lastname;
+
+    $address   = $portfolioInfoRow['portfolioAddress'];
+    $email     = $portfolioInfoRow['portfolioEmail'];
+    $position  = $portfolioInfoRow['portfolioVendorPosition'];
+
+    $image     = $portfolioInfoRow['portfolioProfileImage'];
+
+    $start_price = $portfolioInfoRow['portfolioStartPrice'];
+
+    $end_price = $portfolioInfoRow['portfolioEndPrice'];
+
+
+    $booking_rate = $portfolioInfoRow['portfolioBookingRate'];
+
+    // $portfolioID = $portfolioInfoRow['portfolioId'];
+
+    // get subscription status
+    $portfolioSessionStatus = $portfolioInfoRow['portfolioSessionStatus'];
+
+}
+
+// current session logic
+$sqlSession = "SELECT * FROM portfolio_session WHERE portfolioSessionPortfolioId = '$id' AND portfolioSessionVendorId = '$UID' AND portfolioSessionStatus = 1 ";
+$resultSession = mysqli_query($conn,$sqlSession);
+$numRowsSession = mysqli_num_rows($resultSession);
+
+
+if($portfolioSessionStatus == 0) {
+    $format_start = "0000-00-00";
+    $format_end = "0000-00-00";
+
+} else if($portfolioSessionStatus == 1) {
+    while($display_session = mysqli_fetch_assoc($resultSession)) {
+        $session_start = $display_session['portfolioSessionStartSession'];
+        $session_end = $display_session['portfolioSessionEndSession'];
+
+        $format_start = date('F d, Y H:i:s A',strtotime($session_start));
+        $format_end = date('F d, Y H:i:s A',strtotime($session_end));
+    }
+} else if($portfolioSessionStatus == 2)  {
+    $sqlExpire = "SELECT * FROM portfolio_session WHERE portfolioSessionPortfolioId = '$id' AND portfolioSessionVendorId = '$UID' AND portfolioSessionStatus = 0 ORDER BY portfolioSessionEndSession DESC ";
+    $resultExpire = mysqli_query($conn,$sqlExpire);
+    $rowExpire = mysqli_fetch_assoc($resultExpire);
+
+    $session_start = $rowExpire['portfolioSessionStartSession'];
+    $session_end = $rowExpire['portfolioSessionEndSession'];
+
+    $format_start = date('F d, Y H:i:s A',strtotime($session_start));
+    $format_end = date('F d, Y H:i:s A',strtotime($session_end));
+
+}
+
 
 // Portfolio Session Status
 
@@ -30,13 +96,7 @@ $conn = $database;
 
 // $portfolioSessionStatus = $rowAccountStatus['portfolioSessionStatus'];
 
-// if($portfolioSessionStatus == 0) {
-//     $account_status = 'Not In Session';
-// } else if($portfolioSessionStatus == 1) {
-//     $account_status = 'In Session';
-// } else if($portfolioSessionStatus == 2) {
-//     $account_status = 'Expire Session';
-// }
+
 
 // $start_session = $rowAccountStatus['portfolioSessionStartSession'];
 // $end_session = $rowAccountStatus['portfolioSessionEndSession'];
@@ -187,11 +247,26 @@ $conn = $database;
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Portfolio Session - (<?php //echo $account_status ?>)</div>
+                                                Portfolio Session 
+                                                    <?php if($portfolioSessionStatus == 0) {
+
+                                                    ?> 
+                                                    <h5 class="font-weight-bold mb-0 d-block">
+                                                    <span class="badge badge-danger badge-btn">(Not In Session)</span></h5>
+                                                    <?php 
+
+                                                    } else if($portfolioSessionStatus == 1) {
+                                                    ?>
+                                                    <h5 class="font-weight-bold mb-0 d-block">
+                                                    <span class="badge badge-success badge-btn">(In Session)</span></h5>
+                                                    <?php } else if($portfolioSessionStatus == 2) { ?>
+                                                     <h5 class="font-weight-bold mb-0 d-block">
+                                                     <span class="badge badge-danger badge-btn">(Expire Session)</span></h5>
+                                                    <?php } ?></div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
                                         </div>
                                         <div class="col-auto">
-                                            <?php //echo $start ?> - <?php //echo $end ?>
+                                            <?php echo $format_start ?> -<?php echo $format_end ?>
                                         </div>
                                     </div>
                                 </div>

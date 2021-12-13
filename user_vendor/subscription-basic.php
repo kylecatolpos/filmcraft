@@ -1,5 +1,6 @@
 <?php 
 
+
 include("sessions.php");
 
 include("header.php");
@@ -33,8 +34,40 @@ while($portfolioInfoRow = mysqli_fetch_assoc($portfolioInfoResult)) {
 
     $booking_rate = $portfolioInfoRow['portfolioBookingRate'];
 
-    $portfolioID = $portfolioInfoRow['portfolioId'];
+    // $portfolioID = $portfolioInfoRow['portfolioId'];
 
+    // get subscription status
+    $portfolioSessionStatus = $portfolioInfoRow['portfolioSessionStatus'];
+
+}
+
+// current session logic
+$sqlSession = "SELECT * FROM portfolio_session WHERE portfolioSessionPortfolioId = '$id' AND portfolioSessionVendorId = '$UID' AND portfolioSessionStatus = 1 ";
+$resultSession = mysqli_query($conn,$sqlSession);
+$numRowsSession = mysqli_num_rows($resultSession);
+
+
+if($portfolioSessionStatus == 0) {
+    $format_start = "0000-00-00";
+    $format_end = "0000-00-00";
+} else if($portfolioSessionStatus == 1) {
+    while($display_session = mysqli_fetch_assoc($resultSession)) {
+        $session_start = $display_session['portfolioSessionStartSession'];
+        $session_end = $display_session['portfolioSessionEndSession'];
+
+        $format_start = date('F d, Y H:i:s A',strtotime($session_start));
+        $format_end = date('F d, Y H:i:s A',strtotime($session_end));
+    }
+} else if($portfolioSessionStatus == 2)  {
+    $sqlExpire = "SELECT * FROM portfolio_session WHERE portfolioSessionPortfolioId = '$id' AND portfolioSessionVendorId = '$UID' AND portfolioSessionStatus = 0 ORDER BY portfolioSessionEndSession DESC ";
+    $resultExpire = mysqli_query($conn,$sqlExpire);
+    $rowExpire = mysqli_fetch_assoc($resultExpire);
+
+    $session_start = $rowExpire['portfolioSessionStartSession'];
+    $session_end = $rowExpire['portfolioSessionEndSession'];
+
+    $format_start = date('F d, Y H:i:s A',strtotime($session_start));
+    $format_end = date('F d, Y H:i:s A',strtotime($session_end));
 }
 
 
@@ -159,17 +192,17 @@ body {
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-5 text-gray-800">Subscription Basic</h1>
+                    <h1 class="h3 mb-5 text-gray-800">Basic Subscription</h1>
                   
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Subscription Basic</h6>
+                        <div class="card-header py-3 text-right">
+                            <a href="settings-subscription.php" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Return</a>
                         </div>
 
                         <div class="card-body">
                              <div class="card mb-4">
-                                    <div class="card-header">Input Vendor Details</div>
+                                    <div class="card-header">Your Subscription Details</div>
                                     <div class="card-body">
                                         <form action="../function/subscription-basic-pay-cash.php" method="POST" enctype="multipart/form-data">
 
@@ -180,23 +213,53 @@ body {
 
                                              <div class="row gx-3 mb-3">
                                                 <div class="col-md-6">
-                                                    <label class="small mb-1" for="inputLastName">Email Address</label>
-                                                    <input class="form-control" id="inputLastName" type="text" placeholder="Enter your email address" name="email">
+                                                    <label class="small mb-1" for="inputLastName">Subscription Status</label>
+                                                    <span class="form-control" style="border:0">
+                                                    <?php 
+
+                                                    if($portfolioSessionStatus == 0) {
+
+                                                    ?> 
+                                                    <h5 class="font-weight-bold mb-0 d-block">
+                                                    <span class="badge badge-danger badge-btn">(Not In Session)</span></h5>
+                                                    <?php 
+
+                                                    } else if($portfolioSessionStatus == 1) {
+                                                    ?>
+                                                    <h5 class="font-weight-bold mb-0 d-block">
+                                                    <span class="badge badge-success badge-btn">(In Session)</span></h5>
+                                                    <?php } else if($portfolioSessionStatus == 2) { ?>
+                                                     <h5 class="font-weight-bold mb-0 d-block">
+                                                     <span class="badge badge-danger badge-btn">(Expire Session)</span></h5>
+                                                    <?php } ?>
+                                                    </span>
+
                                                 </div>
+
                                             </div>
 
                                         
                                               <!-- Form Row-->
                                             <div class="row gx-3 mb-3">
                                                 <!-- Form Group (first name)-->
-                                                <div class="col-md-6">
-                                                    <label class="small mb-1" for="inputFirstName">First name</label>
-                                                    <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" name="firstname">
+                                                <div class="col-md-4">
+                                                    <label class="small mb-1" for="inputFirstName">Subscription Fee</label>
+                                                    <span class="form-control" style="border:0">
+                                                        ₱ 500.00
+                                                    </span>
                                                 </div>
                                                 <!-- Form Group (last name)-->
-                                                <div class="col-md-6">
-                                                    <label class="small mb-1" for="inputLastName">Last name</label>
-                                                    <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" name="lastname">
+                                                <div class="col-md-4">
+                                                    <label class="small mb-1" for="inputLastName">Subsription Start On</label>
+                                                    <span class="form-control" style="border:0">
+                                                        <?php echo $format_start; ?>
+                                                    </span>
+                                                </div>
+                                                 <div class="col-md-4">
+                                                    <label class="small mb-1" for="inputLastName">Subsription Expire On</label>
+                                                    <span class="form-control" style="border:0">
+                                                        <?php echo $format_end; ?>
+                                                    </span>
                                                 </div>
                                             </div>
 
@@ -204,32 +267,35 @@ body {
                                              <div class="row gx-3 mb-3">
                                                 <!-- Form Group (first name)-->
                                                 <div class="col-md-12">
-                                                    <label class="small mb-1" for="inputAddress">Address</label>
-                                                    <input class="form-control" id="inputAddress" type="text" placeholder="Enter your address" name="address">
+                                                    <label class="small mb-1" for="inputAddress"></label>
+                                                    <span class="form-control" style="border-bottom:0;border-left:0;border-right:0;">
+                                                    Total Payment: 
+                                                    </span>
+
                                                 </div>
                                               
                                             </div>
 
-                                        <!-- Form Group (email address)-->
-                                           <div class="mb-3">
-                                            <h4><strong>Select Mode of Payment:</strong></h4>
-                                          </div>
                                           <!-- Form Row-->
                                           <div class="row gx-3 mb-3">
                                              <!-- Form Group (phone number)-->
-                                             <div class="col-md-6">
-                                                 <a href="#" class="btn btn-primary btn-md btn-block text-capitalize">Proceed payment thru cash</a>
-                                             </div>
-                                              <div class="col-md-6">
-                                                 <a href="#" class="btn btn-info btn-md btn-block text-capitalize">Proceed payment with PayPal</a>
+                                              <div class="col-md-12 text-center">
+
+                                                <?php 
+
+                                                if($portfolioSessionStatus != 1 ) {
+
+                                                ?>
+                                                   <div id="paypal-payment-button">
+                                                   </div>
+                                               <?php } else { ?>    
+                                                    <h1 class="text-danger">
+                                                        Currently In Subscription
+                                                    </h1>
+                                               <?php } ?>
+
                                              </div>
                                           </div> 
-
-
-                                            <!-- Form Row-->
-                                            <!-- Save changes button-->
-                                            <button class="btn btn-primary" type="submit" name="actionSubscribeBasic">Submit</button>
-                                            <a class="btn btn-danger text-white" href="settings-subscription.php">Cancel</a>
                                         </form>
                                     </div>
                                 </div>
@@ -262,3 +328,60 @@ body {
 include("footer.php");
 
 ?>
+
+<script src="https://www.paypal.com/sdk/js?client-id=AQ1gFL8npPe_QYF_RG0BvPjQeNPv2lY8MLMGFMdmmEUPAG9Ddo8IDcU0IXt4yYImzGvSRff9Ow6h3Dmv&currency=PHP&disable-funding=credit,card" data-sdk-integration-source="button-factory"></script>
+   <!-- Latest compiled and minified JavaScript -->
+
+
+<script>
+    paypal.Buttons({
+    style : {
+        color: 'gold',
+        shape: 'pill',
+        layout: 'vertical',
+        label: 'pay'
+    },
+    createOrder: function (data, actions) {
+        return actions.order.create({
+            purchase_units : [{
+                name: "Basic Monthly Subscription",
+                amount: {
+                    currency_code: "PHP",
+                    value: '500'
+
+                }
+            }]
+        });
+    },
+    onApprove: function (data, actions) {
+        return actions.order.capture().then(function (details) {
+            console.log(details)
+            var uid = <?php echo $UID ?>;
+            var pid = <?php echo $id ?>;
+           
+            // URL which to send the value to.
+            const url = "../function/add_vendor_subscription_basic.php?UID="+ uid+"&PID="+ pid;
+
+            // Message to send. In this example an object with a state property.
+            // You can change the properties to whatever you want.
+            const message = { status: 'success' };
+
+            // Send it to the URL with the POST method 
+            // and send the message in JSON format.
+            fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(message)
+            }).catch(function(error) {
+                console.log(error); // Display error if there is one.
+            });
+
+            })
+    },
+    onCancel: function (data) {
+        //window.location.replace("http://localhost:63342/tutorial/paypal/Oncancel.php")
+        var uid = <?php echo $UID ?>;
+        var pid = <?php echo $id ?>;
+        const url = "../function/add_vendor_subscription_basic.php?UID="+ uid;
+    }
+}).render('#paypal-payment-button');
+</script>

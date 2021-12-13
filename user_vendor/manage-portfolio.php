@@ -178,16 +178,8 @@ body {
                 <div class="media align-items-end profile-head">
                     <div class="profile mr-3 mb-4"> <img src="<?php echo $portfolio_image ?>" alt="..." width="130" class="rounded mb-2 img-thumbnail" style="height: 100px;"> </div>
                     <div class="media-body mb-5 text-white">
-                        <h4 class="mt-0 mb-1"><?php echo $fullname ?></h4>
-                        <p class="small mb-4"><?php echo $positionDisplay ?></p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="bg-light p-4 d-flex justify-content-center text-center mt-3">
-               <ul class="list-inline mb-0">
-                    <li class="list-inline-item mx-5">
-                             <?php 
+                          <?php 
 
                             if($status == 0) {
 
@@ -202,8 +194,16 @@ body {
                             <h5 class="font-weight-bold mb-0 d-block">
                             <span class="badge badge-success badge-btn">(Verified)</span></h5>
                             <?php } ?>
-                            <small class="text-muted">Account</small>
-                    </li>
+                        <h4 class="mt-0 mb-1"><?php echo $fullname ?></h4>
+
+                        <p class="small mb-4"><?php echo $positionDisplay ?></p>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-light p-4 d-flex justify-content-center text-center mt-3">
+               <ul class="list-inline mb-0">
                        <li class="list-inline-item mx-5">
                              <?php 
 
@@ -278,7 +278,9 @@ body {
                                     <tbody>
                                       <?php 
 
-                                      $queryWorks = "SELECT * FROM works WHERE portfolioWorks_id = '$workid' ";
+                                      $queryWorks = "SELECT * FROM works 
+                                      JOIN events ON works.occassion_type = events.eventId
+                                      WHERE portfolioWorks_id = '$workid'  ";
                                       $resultWorks = mysqli_query($conn,$queryWorks);
 
                                       while($rowWorks = mysqli_fetch_assoc($resultWorks)) {
@@ -293,12 +295,12 @@ body {
                                             ?>
 
                                             <td><img src="<?php echo $rowWorks['occassion_file'] ?>" width="320" height="240"></td>
-                                            <td><?php echo $rowWorks['occassion_type'] ?></td>
+                                            <td><?php echo $rowWorks['eventName'] ?></td>
                                             <td><?php echo $rowWorks['occassion'] ?></td>
 
                                              <td>
-                                                <a class="btn btn-primary">Edit</a>
-                                                <a class="btn btn-danger">Delete</a>
+                                                <a href="edit-works-portfolio.php?eid=<?php echo $rowWorks['worksId'] ?>" class="btn btn-primary">Edit</a>
+                                                <a href="../function/delete_vendor_works.php?did=<?php echo $rowWorks['worksId'] ?>" class="btn btn-danger">Delete</a>
                                             </td>
 
                                         <?php } else if($rowWorks['occassion_file_type'] == 'video/mp4') { ?>
@@ -307,12 +309,12 @@ body {
                                                   <source src="<?php echo $rowWorks['occassion_file'] ?>" type="<?php echo $rowWorks['occassion_file_type'] ?>">
                                                  </video>
                                              </td>
-                                            <td><?php echo $rowWorks['occassion_type'] ?></td>
+                                            <td><?php echo $rowWorks['eventName'] ?></td>
                                             <td><?php echo $rowWorks['occassion'] ?></td>
 
                                             <td>
-                                                <a class="btn btn-primary">Edit</a>
-                                                <a class="btn btn-danger">Delete</a>
+                                                <a href="edit-works-portfolio.php?eid=<?php echo $rowWorks['worksId'] ?>" class="btn btn-primary">Edit</a>
+                                                <a href="../function/delete_vendor_works.php?did=<?php echo $rowWorks['worksId'] ?>" class="btn btn-danger">Delete</a>
                                             </td>
 
                                              <?php } ?>

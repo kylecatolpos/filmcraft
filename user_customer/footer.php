@@ -34,6 +34,7 @@
         <script>
 
       var obj = <?php echo json_encode($array1); ?>;
+
       var lat;
       var lng;
       var sess = '<?php echo $sess ?>';

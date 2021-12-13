@@ -4,7 +4,7 @@
 include("database.php");
 $conn = $database;
 
-if(isset($_POST['actionAddWorks'])) {
+if(isset($_POST['actionAddEvents'])) {
 
 	// POST variables
 	$eventname = $_POST['eventname'];

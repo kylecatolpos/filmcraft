@@ -19,6 +19,8 @@ while($getRow = mysqli_fetch_assoc($getResult)) {
     $phonenumber    = $getRow['adminNumber'];
     $address        = $getRow['adminAddress'];
 
+    $profile_image  = $getRow['adminProfileImage'];
+
     // check if gender is none;
     if($gender == 'None') {
        $displayGender = 'I prefer not to say';
@@ -27,6 +29,18 @@ while($getRow = mysqli_fetch_assoc($getResult)) {
     }
  
 
+}
+
+$edit_events = $_GET['eid'];
+
+$sqlGetEvent = "SELECT * FROM events";
+$getEventResult = mysqli_query($conn,$sqlGetEvent);
+
+while($rowEventResult = mysqli_fetch_assoc($getEventResult)) {
+    $event_id = $rowEventResult['eventId'];
+    $event_name = $rowEventResult['eventName'];
+    $event_description = $rowEventResult['eventDescription'];
+    $eventImage = $rowEventResult['eventImage'];
 }
 
 ?>
@@ -120,7 +134,7 @@ body {
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $displayName ?></span>
-                               <img class="img-profile rounded-circle"
+                                <img class="img-profile rounded-circle"
                                     src="<?php echo $displayImage ?>">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -130,7 +144,7 @@ body {
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
-                                <a class="dropdown-item active" href="settings-vendor.php">
+                                <a class="dropdown-item active" href="settings-customer.php">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Settings
                                 </a>
@@ -152,79 +166,66 @@ body {
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-5 text-gray-800">Settings</h1>
-
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-						<li class="nav-item">
-                           <a class="nav-link" href="settings-vendor.php">Vendor Management</a>
-                        </li>
-                        <li class="nav-item">
-                           <a class="nav-link" href="settings-customer.php">Customer Management</a>
-                        </li>
-						<li class="nav-item">
-						    <a class="nav-link" href="settings-admin.php">Admin Management</a>
-						</li> 
-                        <li class="nav-item">
-                            <a class="nav-link active" href="settings-events.php">Events Management</a>
-                        </li> 
-						<li class="nav-item">
-						    <a class="nav-link" href="settings-reports.php">Generate Reports</a>
-						</li>
-				     </ul>
-						<div class="tab-content" id="myTabContent">
-						  <div class="tab-pane fade show active">
-						  	<div class="card">
-						  		<div class="card-body">
-						  	
-                             <h1 class="h3 mb-2 text-gray-800">Events Management</h1>
-                            
-                               <!-- Page Heading -->
-                            <div class="card-title text-right" style="background-color:none;">
-                                 <a href="add-settings-events.php" class="btn btn-success">Add Events</a>
-                            </div>
-
-						  	  <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable">
-                                    <thead>
-                                        <tr>
-                                            <th>Event Image</th>
-                                            <th>Event Name</th>
-                                            <th>Event Description</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                 
-                                   <tbody>
-                                      <?php 
-
-                                      $getEvents = "SELECT * FROM events";
-                                      $resultEvents = mysqli_query($conn,$getEvents);
-
-                                      while($rowEvents = mysqli_fetch_assoc($resultEvents)) {
-
-                                      ?>
-                                        <tr>
-                                            <td><img src="<?php echo $rowEvents['eventImage'] ?>" width="320" height="240"></td>
-                                            <td><?php echo $rowEvents['eventName'] ?></td>
-                                            <td><?php echo $rowEvents['eventDescription'] ?></td>
-                                            <td>
-                                               <a href="edit-settings-events.php?eid=<?php echo $rowEvents['eventId'] ?>" class="btn btn-primary btn-sm" href="">Edit</a>
-                                               <a href="../function/delete_settings_events.php?did=<?php echo $rowEvents['eventId'] ?>" class="btn btn-danger btn-sm" href="">Delete</a>
-                                            </td>
-                                       </tr>
-                                      <?php } ?>
-                                    </tbody>
-                                </table>
-                            </div>
-						  		</div>
-						  	</div>
-						  </div>
-						</div>
-
                   
-                
+                              <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Adding Events</h6>
+                        </div>
+
+                        <form action="../function/edit_settings_events.php" method="POST" enctype="multipart/form-data">
+
+                        <input type="hidden" value="<?php echo $event_id ?>" name="id">
+                        <input type="hidden" value="<?php echo $eventImage ?>" name="event_image">
+                    
+                        <div class="card-body">
+                               <div class="col-md-12 mx-auto">
+                          <div class="row">
+                            <div class="col-xl-4">
+                                <!-- Profile picture card-->
+                                <div class="card mb-4 mb-xl-0">
+                                    <div class="card-header">Add New Events </div>
+                                    <div class="card-body text-center">
+                                        <!-- Profile picture image-->
+                                        <img class="img-account-profile rounded-circle mb-2" src="<?php echo $eventImage ?>" style="width: 200px;height: 200px;">
+                                        <!-- Profile picture help block-->
+                                        <div class="small font-italic text-muted mb-4">Upload Image Here</div>
+                                        <!-- Profile picture upload button-->
+                                        <input type="file" name="files">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-8">
+                                <!-- Account details card-->
+                                <div class="card mb-4">
+                                    <div class="card-header">Add New Events </div>
+                                    <div class="card-body">
+                                            <!-- Form Group (username)-->
+                                            <div class="mb-3">
+                                                <label class="small mb-1" for="inputUsername">Event Name</label>
+                                                <input class="form-control" id="inputUsername" type="text" value="<?php echo $event_name ?>" name="eventname">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="small mb-1" for="inputUsername">Event Description</label>
+                                                <input class="form-control" id="inputUsername" type="text" value="<?php echo $event_description ?>" name="eventdescription">
+                                            </div>
+                                            <!-- Form Row-->
+                                        
+                                            <!-- Save changes button-->
+                                            <button class="btn btn-primary" type="submit" name="actionEditEvents">Save changes</button>
+                                            <a class="btn btn-danger text-white" href="settings-events.php">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            </div>
+                        </div>
+                     </form>
+                    </div>
                       </div>
                 <!-- /.container-fluid -->
-                 </div>
+                  </div>
             <!-- End of Main Content -->
 
 
@@ -239,10 +240,10 @@ body {
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- -->
+  
+   <!-- -->
    <?php include("logout-modal.php") ?>
    <!-- -->
-
 
 <?php 
 
