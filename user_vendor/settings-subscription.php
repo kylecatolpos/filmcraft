@@ -132,7 +132,7 @@ $conn = $database;
                     <!-- Content Row -->
                     <div class="row justify-content-center">
                                 <!-- Pricing column 1-->
-                                <div class="col-xl-6 col-lg-6 mb-4 mb-xl-0">
+                             <!--    <div class="col-xl-6 col-lg-6 mb-4 mb-xl-0">
                                     <div class="card h-100">
                                         <div class="card-header bg-transparent">
                                             <span class="badge bg-secondary-soft text-secondary rounded-pill py-2 px-3 mb-2" style="font-size:32px;">Free</span>
@@ -158,12 +158,11 @@ $conn = $database;
                                            <i class="fa fa-arrow-circle-right" style="font-size:20px;"></i>
                                         </a>
                                     </div>
-                                </div>
-                                <!-- Pricing column 2-->
+                                </div> -->  <!-- Pricing column 2-->
                                 <div class="col-xl-6 col-lg-6 mb-4 mb-xl-0">
                                     <div class="card h-100">
                                         <div class="card-header bg-transparent">
-                                            <span class="badge bg-primary-soft text-primary rounded-pill py-2 px-3 mb-2" style="font-size:32px;">Basic</span>
+                                            <span class="badge bg-primary-soft text-primary rounded-pill py-2 px-3 mb-2" style="font-size:32px;">Monthly Subscription</span>
                                             <div class="pricing-columns-price">
                                                 500 Pesos
                                                 <span>/ Month</span>
@@ -191,7 +190,38 @@ $conn = $database;
                                         </a>
                                     </div>
                                 </div>
-                              </div>
+                                 <div class="col-xl-6 col-lg-6 mb-4 mb-xl-0">
+                                    <div class="card h-100">
+                                        <div class="card-header bg-transparent">
+                                            <span class="badge bg-primary-soft text-primary rounded-pill py-2 px-3 mb-2" style="font-size:32px;">Yearly Subscription</span>
+                                            <div class="pricing-columns-price">
+                                                4500 Pesos 
+                                                <span>/ Year</span>
+                                            </div>
+                                        </div>
+                                        <div class="card-body p-0">
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item">
+                                                   <i class="fa fa-check-circle mr-2" style="color:#4e73df;font-size:20px;"></i>
+                                                    Unlimited Bookings
+                                                </li>
+                                                <li class="list-group-item">
+                                                   <i class="fa fa-check-circle mr-2" style="color:#4e73df;font-size:20px;"></i>
+                                                    Can Display Portfolio
+                                                </li>
+                                                <li class="list-group-item mb-5">
+                                                   <i class="fa fa-check-circle mr-2" style="color:#4e73df;font-size:20px;"></i>
+                                                    Has Access to Mobile App
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <a class="card-footer d-flex align-items-center justify-content-between" href="#subscription-basic.php?UID=<?php echo $displayId ?>" style="text-decoration: none;">
+                                            Get started!
+                                           <i class="fa fa-arrow-circle-right" style="font-size:20px;"></i>
+                                        </a>
+                                    </div>
+                                  </div>
+                               </div>
                             </div>
                           </div>
                         </div>
