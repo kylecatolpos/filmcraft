@@ -1,37 +1,21 @@
 <?php 
 
+include("sessions.php");
+
 include("header.php");
 
 include("../function/database.php");
 $conn = $database;
 
+$get_portfolio_works = $_GET['VWID'];
+
 ?>
 
-<style>
-    
-    .profile-head {
-    transform: translateY(5rem)
-}
-
-.cover {
-    background-color: rgb(99, 39, 120);
-    background-size: cover;
-    background-repeat: no-repeat
-}
-
-body {
-    background: #654ea3;
-    background: linear-gradient(to right, #e96443, #904e95);
-    min-height: 100vh
-}
-
-</style>
 
 <body id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
         <!-- Sidebar -->
         <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background-color:#395232">
 
@@ -42,7 +26,7 @@ body {
                 </div>
             </a>
 
-            <!-- Nav Item - Dashboard -->
+               <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -52,20 +36,28 @@ body {
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="portfolio.php">
+             <!-- Nav Item - Dashboard -->
+              <li class="nav-item active">
+                <a class="nav-link" href="view_vendor.php">
                     <i class="fas fa-fw fa-users"></i>
-                    <span>Portfolio</span></a>
+                    <span>View Vendors</span></a>
+                </li>
+
+              <!-- Nav Item - Dashboard -->
+              <li class="nav-item">
+                <a class="nav-link" href="find_vendor.php">
+                    <i class="fas fa-fw fa-location-arrow"></i>
+                    <span>Find Vendors</span></a>
                 </li>
 
 
               <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="booking.php">
-                    <i class="far fa-fw fa-bookmark"></i>
-                    <span>Booking</span></a>
+                <a class="nav-link" href="manage_booking.php">
+                    <i class="far fa-fw fa-bookmark"></i> 
+                    <span>Manage Bookings</span></a>
                 </li>
+
         </ul>
         <!-- End of Sidebar -->
 
@@ -75,7 +67,7 @@ body {
             <!-- Main Content -->
             <div id="content">
 
-                   <!-- Topbar -->
+                     <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
@@ -166,9 +158,9 @@ body {
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Andrei Militante</span>
-                                <img class="img-profile rounded-circle"
-                                    src="../resources/img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $displayName ?></span>
+                               <img class="img-profile rounded-circle"
+                                    src="<?php echo $displayImage ?>">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -194,43 +186,70 @@ body {
                 </nav>
                 <!-- End of Topbar -->
 
-             <!-- Begin Page Content -->
+                  <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-5 text-gray-800">Show All Works Done</h1>
+                    <h1 class="h3 mb-5 text-gray-800">Show All Works</h1>
                   
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Vendor Works Done</h6>
+                        <div class="card-header py-3 text-right">
+                             <a href="view_portfolio.php?VID=<?php echo $get_portfolio_works ?>" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Return</a>
                         </div>
+
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Image / Video</th>
-                                            <th>Type Of Occassion</th>
-                                        </tr>
+                                            <th>Image/Video</th>
+                                            <th>Occassion Type</th> 
+                                            <th>Name</th>
+                                         </tr>
                                     </thead>
-                                 
-                                    <tbody>
+                                     <tbody>
+                                      <?php 
+
+                                      $queryWorks = "SELECT * FROM works 
+                                      JOIN events ON events.eventId = works.occassion_type
+                                      WHERE portfolioWorks_id = '$get_portfolio_works' ORDER BY worksId";
+                                      $resultWorks = mysqli_query($conn,$queryWorks);
+
+                                      while($rowWorks = mysqli_fetch_assoc($resultWorks)) {
+
+                                      ?>
                                         <tr>
-                                            <td><img src="../resources/img/miss.jpg  " width="100"></td>
-                                            <td>Pageant</td>
-                                        <tr>
-                                            <td><img src="../resources/img/wedds.jpg " width="100"></td>
-                                            <td>Wedding</td>
-                                            <tr>
-                                                <td><img src="../resources/img/debut.jpg " width="100"></td>
-                                                <td>Debut</td>  
-                                            </tr>
+
+                                            <?php 
+
+                                            if ($rowWorks['occassion_file_type'] == 'image/png' || $rowWorks['occassion_file_type'] == 'image/jpeg') {
+
+
+                                            ?>
+
+                                            <td><img src="<?php echo $rowWorks['occassion_file'] ?>" width="320" height="240"></td>
+                                            <td><?php echo $rowWorks['eventName'] ?></td>
+                                            <td><?php echo $rowWorks['occassion'] ?></td>
+
+                                        <?php } else if($rowWorks['occassion_file_type'] == 'video/mp4') { ?>
+
+                                            <td><video width="320" height="240" controls controlsList="nodownload">
+                                                  <source src="<?php echo $rowWorks['occassion_file'] ?>" type="<?php echo $rowWorks['occassion_file_type'] ?>">
+                                                 </video>
+                                             </td>
+                                            <td><?php echo $rowWorks['eventName'] ?></td>
+                                            <td><?php echo $rowWorks['occassion'] ?></td>
+
+
+                                             <?php } ?>
+
+
                                         </tr>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                                      <?php } ?>
+                                                 </tbody> 
+                                              </table>
+                                            </div>
                         </div>
                     </div>
 
@@ -240,6 +259,7 @@ body {
             </div>
             <!-- End of Main Content -->
 
+  
         </div>
         <!-- End of Content Wrapper -->
 
