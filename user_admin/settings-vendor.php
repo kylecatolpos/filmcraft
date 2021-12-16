@@ -184,7 +184,7 @@ body {
                                     <thead>
                                         <tr>
                                             <th>Vendor Name</th>
-                                            <th>Vendor Position</th>
+                                            <th>Vendor Email</th>
                                             <th>Vendor Status</th>
                                             <th>Actions</th>
                                         </tr>
@@ -201,8 +201,7 @@ body {
                                       ?>
                                         <tr>
                                             <td><?php echo $rowVendor['vendorFirstName'] ?> <?php echo $rowVendor['vendorLastName'] ?></td>
-                                            <td><?php echo $rowVendor['vendorPosition'] ?></td>
-                                            
+                                            <td><?php echo $rowVendor['vendorEmail'] ?></td>                                            
 
                                             <?php if($rowVendor['vendorStatus'] == 0) { ?>
                                             <td>Not Verified</td>

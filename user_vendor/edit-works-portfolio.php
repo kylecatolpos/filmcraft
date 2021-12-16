@@ -136,9 +136,10 @@ body {
                             <h6 class="m-0 font-weight-bold text-primary">Update Works</h6>
                         </div>
 
-                        <form action="../function/add_vendor_works.php" method="POST" enctype="multipart/form-data">
+                        <form action="../function/edit_vendor_works.php" method="POST" enctype="multipart/form-data">
 
-                        <input type="hidden" name="vendorWorksId" value="<?php echo $vendorWorksId ?>">
+                        <input type="hidden" name="worksId" value="<?php echo $worksID ?>">
+                        <input type="hidden" name="vendorWorksId" value="<?php echo $portfolioWorks_Id ?>">
 
 
                         <div class="card-body">
@@ -196,7 +197,7 @@ body {
                                             <!-- Form Row-->
                                         
                                             <!-- Save changes button-->
-                                            <button class="btn btn-primary" type="submit" name="actionAddWorks">Save changes</button>
+                                            <button class="btn btn-primary" type="submit" name="actionEditWorks">Save changes</button>
                                             <a class="btn btn-danger text-white" href="manage-portfolio.php">Cancel</a>
                                     </div>
                                 </div>

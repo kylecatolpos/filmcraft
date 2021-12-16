@@ -260,7 +260,7 @@ body {
                 <div class="d-flex align-items-center justify-content-between mb-3">
 
                     <h5 class="mb-0">Works Done</h5>
-                    <a href="#" class="btn btn-link text-muted">Show all</a>
+                    <a href="show-all-works.php?PWID=<?php echo $workid ?>" class="btn btn-link text-muted">Show all</a>
                 </div>
                 <a href="add-works-portfolio.php?VWID=<?php echo $workid ?>" class="btn btn-primary">ADD WORKS</a>
                 <hr>
@@ -280,7 +280,7 @@ body {
 
                                       $queryWorks = "SELECT * FROM works 
                                       JOIN events ON works.occassion_type = events.eventId
-                                      WHERE portfolioWorks_id = '$workid'  ";
+                                      WHERE portfolioWorks_id = '$workid' ORDER BY worksId LIMIT 5  ";
                                       $resultWorks = mysqli_query($conn,$queryWorks);
 
                                       while($rowWorks = mysqli_fetch_assoc($resultWorks)) {
