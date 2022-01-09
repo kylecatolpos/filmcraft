@@ -72,6 +72,16 @@ if($portfolioSessionStatus == 0) {
 
 }
 
+// pending booking request;
+$sqlPendingBooking = "SELECT * FROM booking WHERE vendor_id = '$UID' AND bookingStatus = 0 ";
+$resultPendingBooking = mysqli_query($conn,$sqlPendingBooking);
+$pendingBookingCount = mysqli_num_rows($resultPendingBooking);
+
+// count all completed bookings;
+$sqlCompletedBooking = "SELECT * FROM booking WHERE vendor_id = '$UID' AND bookingStatus = 2 ";
+$resultCompletedBooking = mysqli_query($conn,$sqlCompletedBooking);
+$completedBookingCount = mysqli_num_rows($resultCompletedBooking);
+
 
 // Portfolio Session Status
 
@@ -281,7 +291,7 @@ if($portfolioSessionStatus == 0) {
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                                 Pending Booking Request</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">1</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $pendingBookingCount ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -299,7 +309,7 @@ if($portfolioSessionStatus == 0) {
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                 Bookings Completed</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $$completedBookingCount ?></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>

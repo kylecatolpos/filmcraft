@@ -27,8 +27,6 @@ if($_GET['PID']) {
   $sqlUpdate = "UPDATE portfolio SET portfolioSessionStatus = '$portfolioSessionStatus' WHERE portfolioId = '$portfolioID' ";
   $result = mysqli_query($conn,$sqlUpdate);
 
-  // echo "<script> windows.href.location = 'index.php' </script>";
-  
   if($res AND $result) {
    	echo "<script> windows.href.location = 'index.php' </script>";
    } else {

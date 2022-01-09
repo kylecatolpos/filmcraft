@@ -191,15 +191,15 @@ body {
                                    <tbody>
                                       <tr>
                                             <td>Customer Account Management Report</td>
-                                            <td><a href="#view-report-account.php" class="btn btn-primary">View Report</a></td>
+                                            <td><a href="view-report-customer.php" target="_blank" class="btn btn-primary">View Report</a></td>
                                       </tr>
                                        <tr>
                                             <td>Vendor Account Management Report</td>
-                                            <td><a href="#view-report-account.php" class="btn btn-primary">View Report</a></td>
+                                            <td><a href="view-report-vendor.php" target="_blank" class="btn btn-primary">View Report</a></td>
                                       </tr>
                                        <tr>
                                             <td>Booking History Report</td>
-                                            <td><a href="#view-report-account.php" class="btn btn-primary">View Report</a></td>
+                                            <td><a href="#view-report-booking.php" target="_blank" class="btn btn-primary">View Report</a></td>
                                       </tr>
                                     </tbody>
                                 </table>
