@@ -162,43 +162,44 @@ body {
                     <!-- Page Heading -->
                     <h1 class="h3 mb-5 text-gray-800">Settings</h1>
 
-                     <ul class="nav nav-tabs" id="myTab" role="tablist">
+                      <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
-                           <a class="nav-link  active" href="settings.php">Booking History</a>
+                           <a class="nav-link" href="settings.php">Booking History</a>
                         </li>
                         <li class="nav-item">
-                           <a class="nav-link" href="settings-reports.php">Generate Reports</a>
+                           <a class="nav-link active" href="settings-reports.php">Generate Reports</a>
                         </li>
-                     </ul>
-
+                         </ul>
 						<div class="tab-content" id="myTabContent">
 						  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 						  	<div class="card">
-						  		<div class="card-body">
-						  	
-						
+                                <div class="card-body">
+                            
+                        
                                <!-- Page Heading -->
-                            <h1 class="h3 mb-5 text-gray-800">Customer Booking History</h1>
+                            <h1 class="h3 mb-5 text-gray-800">Generate Reports</h1>
 
-						  	  <div class="table-responsive">
+                              <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable">
                                     <thead>
                                         <tr>
-                                            <th>Vendor Name</th>
-                                            <th>Vendor Position</th>
-                                            <th>Vendor Status</th>
-                                            <th>Actions</th>
+                                            <th>Report Name</th>
+                                            <th>View Report</th>
                                         </tr>
                                     </thead>
                                  
                                    <tbody>
-                                     
+                                       <tr>
+                                            <td>Booking History Report</td>
+                                            <td><a href="#view-report-booking.php" target="_blank" class="btn btn-primary">View Report</a></td>
+                                      </tr>
                                     </tbody>
                                 </table>
                             </div>
-						  		</div>
-						  	</div>
+                                </div>
+                            </div>
 						  </div>
+						
 						 
 						</div>
 

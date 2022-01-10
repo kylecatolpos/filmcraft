@@ -132,7 +132,7 @@ $conn = $database;
                                                       <div class="card-body">
                                                         <h5 class="card-title"><strong><?php echo $rowEvents['eventName'] ?></strong></h5>
                                                         <p class="card-text" style="height: 150px;"><?php echo $rowEvents['eventDescription'] ?></p>
-                                                         <a href="#" class="btn btn-primary btn-block">View</a>
+                                                         <a href="view_event_vendor.php?eid=<?php echo $rowEvents['eventId'] ?>" class="btn btn-primary btn-block">View</a>
                                                       </div>
                                                 </div>
                                               </div>

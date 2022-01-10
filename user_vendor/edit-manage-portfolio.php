@@ -9,7 +9,9 @@ $conn = $database;
 
 $PID = $_GET['PID'];
 
-$portfolioInfoQuery    = "SELECT * FROM portfolio WHERE portfolioId = '$PID' ";
+$portfolioInfoQuery    = "SELECT * FROM portfolio 
+LEFT JOIN events ON events.eventId = portfolio.portfolioEvent
+WHERE portfolioId = '$PID' ";
 $portfolioInfoResult   = mysqli_query($conn,$portfolioInfoQuery);
 
 while($portfolioInfoRow = mysqli_fetch_assoc($portfolioInfoResult)) {
@@ -30,8 +32,11 @@ while($portfolioInfoRow = mysqli_fetch_assoc($portfolioInfoResult)) {
 
     $end_price = $portfolioInfoRow['portfolioEndPrice'];
 
-
     $booking_rate = $portfolioInfoRow['portfolioBookingRate'];
+
+    $assign_event = $portfolioInfoRow['portfolioEvent'];
+
+    $event_name = $portfolioInfoRow['eventName'];
 
 }
 
@@ -164,7 +169,6 @@ body {
                                                     <input class="form-control" id="inputLastName" type="text" placeholder="Enter your email address" value="<?php echo $email ?>" name="email">
                                                 </div>
                                             </div>
-
                                         
                                               <!-- Form Row-->
                                             <div class="row gx-3 mb-3">
@@ -183,7 +187,7 @@ body {
                             
                                              <div class="row gx-3 mb-3">
                                                 <!-- Form Group (first name)-->
-                                                <div class="col-md-8">
+                                                <div class="col-md-4">
                                                     <label class="small mb-1" for="inputAddress">Address</label>
                                                     <input class="form-control" id="inputAddress" type="text" placeholder="Enter your address" value="<?php echo $address ?>" name="address">
                                                 </div>
@@ -198,6 +202,53 @@ body {
                                                         <option value="Both">Photographer and Videographer</option>
                                                     </select>
                                                 </div>
+
+                                                <?php 
+
+                                                if($assign_event == 0) {
+
+                                                ?>
+
+                                                   <div class="col-md-4">
+                                                    <label class="small mb-1" for="inputEvent">Select An Event</label>
+                                                    <select class="form-control" name="event">
+                                                        <?php 
+
+                                                        $displayEventSql = "SELECT * FROM events";
+                                                        $resultDisplayEvent = mysqli_query($conn,$displayEventSql);
+
+                                                        while($rowDisplayEvent = mysqli_fetch_assoc($resultDisplayEvent)) {
+
+                                                        ?>
+                                                            <option value="<?php echo $rowDisplayEvent['eventId'] ?>"><?php echo $rowDisplayEvent['eventName'] ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                  </div>
+
+                                                  <?php } else if($assign_event != 0) { ?>
+
+
+                                                <div class="col-md-4">
+                                                    <label class="small mb-1" for="inputEvent">Select An Event</label>
+                                                    <select class="form-control" name="event">
+                                                        <option hidden selected><?php echo $event_name ?></option>
+                                                        <?php 
+
+                                                        $displayEventSql = "SELECT * FROM events";
+                                                        $resultDisplayEvent = mysqli_query($conn,$displayEventSql);
+
+                                                        while($rowDisplayEvent = mysqli_fetch_assoc($resultDisplayEvent)) {
+
+                                                        ?>
+                                                            <option value="<?php echo $rowDisplayEvent['eventId'] ?>"><?php echo $rowDisplayEvent['eventName'] ?></option>
+                                                        <?php } ?>
+                                                    </select>
+                                                  </div>
+
+
+
+                                                  <?php } ?>
+
                                             </div>
 
                                      
@@ -231,8 +282,6 @@ body {
                                                 <label class="small mb-1" for="inputMyDescription">Portfolio Description</label>
                                                 <textarea class="form-control" style="height:150px;" name="description" placeholder="Enter your description"></textarea>
                                             </div>
-
-
                                             <!-- Form Row-->
                                             <!-- Save changes button-->
                                             <button class="btn btn-primary" type="submit" name="actionEditPortfolio">Save changes</button>
