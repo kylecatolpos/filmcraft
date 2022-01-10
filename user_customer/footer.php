@@ -18,6 +18,43 @@
     </body>
 </html>
 
+<script>
+$(document).ready(function(){
+// updating the view with notifications using ajax
+function load_unseen_notification(view = '')
+{
+
+  var session_id = <?php echo $displayId ?>;
+  var usertype = 'customer';
+
+ $.ajax({
+  url:"../function/customer_notification.php",
+  method:"POST",
+  data:{view:view,session_id:session_id,sess_user:usertype},
+  dataType:"json",
+  success:function(data)
+  {
+   $('.dropdown-notif').html(data.notification);
+   $('#count').html(data.unseen_notification);
+     if(data.unseen_notification < 1)
+   {
+    $('span.badge').hide();
+   }
+  }
+ });
+}
+
+load_unseen_notification();
+
+// load new notifications
+$(document).on('click', '#notifToggle', function() {
+  $('span.badge').html('');
+ load_unseen_notification('yes');
+  });
+});
+</script>
+
+
 
     <!-- For Map -->
     <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.48.0/mapbox-gl.js"></script>

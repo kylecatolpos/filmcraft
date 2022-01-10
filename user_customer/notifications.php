@@ -17,7 +17,7 @@
                                
                              </div>
 
-                                <a class="dropdown-item text-center small text-gray-500" href="view-notification.php">View Notifications</a>
+                                <a class="dropdown-item text-center small text-gray-500" href="view_notification.php">View Notifications</a>
                             </div>
                         </li>
 

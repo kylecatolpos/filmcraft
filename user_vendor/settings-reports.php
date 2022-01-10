@@ -141,11 +141,11 @@ $conn = $database;
                                    <tbody>
                                       <tr>
                                             <td>Account Subscription Report</td>
-                                            <td><a href="#view-report-account.php" class="btn btn-primary">View Report</a></td>
+                                            <td><a href="view-report-subscription.php" target="_blank" class="btn btn-primary">View Report</a></td>
                                       </tr>
                                        <tr>
                                             <td>Customer Booking History Report</td>
-                                            <td><a href="#view-report-account.php" class="btn btn-primary">View Report</a></td>
+                                            <td><a href="#view-report-booking.php" class="btn btn-primary">View Report</a></td>
                                       </tr>
                                     </tbody>
                                 </table>

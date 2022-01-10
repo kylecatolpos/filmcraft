@@ -35,7 +35,7 @@ $conn = $database;
             <hr class="sidebar-divider">
 
              <!-- Nav Item - Dashboard -->
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link" href="view_vendor.php">
                     <i class="fas fa-fw fa-users"></i>
                     <span>View Vendors</span></a>
@@ -89,16 +89,16 @@ $conn = $database;
                 </nav>
                 <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
+                  <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-5 text-gray-800">View Vendor</h1>
+                    <h1 class="h3 mb-5 text-gray-800">View All Notifications</h1>
                   
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">View All Available Vendor</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">View Notifications</h6>
                         </div>
 
                         <div class="card-body">
@@ -106,57 +106,28 @@ $conn = $database;
                                 <table class="table table-bordered" id="dataTablex" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Vendor Name</th>
-                                            <th>Vendor Position</th>
-                                            <th>View Vendor Portfolio</th>
-                                            <th>Booked Vendor</th>
+                                            <th>Message</th>
+                                            <th>Date and Time</th>
                                         </tr>
                                     </thead>
                                  
                                     <tbody>
                                         <?php 
 
-                                        $query = "SELECT * FROM portfolio
-                                        JOIN vendor ON portfolio.vendor_Id = vendor.vendorId
-                                        WHERE vendor.vendorStatus = '1' 
+                                        $query = "SELECT * FROM notification WHERE notificationCustomerId = '$displayId' AND notificationUserType IN (3) ORDER BY notificationId DESC;
                                         ";
                                         $result = mysqli_query($conn,$query);
                                         while($row = mysqli_fetch_assoc($result)) {
 
-                                        $portfolioSessionStatus = $row['portfolioSessionStatus'];
+                                          $datetime_format = date('F d, Y h:i A',strtotime($row['notificationDateTime']));
+                                          $message = $row['notificationMessage'];
 
-                                        $fetchId        = $row['vendor_Id'];
-                                        $fetchFirstName = $row['vendorFirstName'];
-                                        $fetchLastName  = $row['vendorLastName'];
-
-                                        // concat name;
-                                        $concatName     = $fetchFirstName.' '.$fetchLastName;
-                                        $fetchPosition  = $row['portfolioVendorPosition'];
-
-                                          if($fetchPosition == "Both") {
-                                          $positionDisplay = "Photographer and Videographer";
-                                        } else if($fetchPosition == "None") {
-                                          $positionDisplay = "None";
-                                        } else if($fetchPosition == "Photographer") {
-                                            $positionDisplay = "Photographer";
-                                        } else if($fetchPosition == "Videographer") {
-                                            $positionDisplay = "Videographer";
-                                        }
 
                                         ?>
                                         <tr>
-                                            <td><?php echo $concatName ?></td>
-                                            <td><?php echo $positionDisplay ?></td>
-                                            <td><a href="view_portfolio.php?VID=<?php echo $fetchId ?>" class="btn btn-primary">View Portfolio</a></td>
-                                            <td>
-                                                <?php  if($portfolioSessionStatus == 1) { ?>
-                                                    <a href="book_vendor.php?VID=<?php echo $fetchId ?>" class="btn btn-success">Booked Vendor</a>
-                                                <?php } else if($portfolioSessionStatus == 0 OR $portfolioSessionStatus == 2) {  ?>
-                                                    <a class="btn btn-light">Booked Vendor</a>
-                                                <?php } ?>
-                                            </td>
-
-                                        </tr> 
+                                            <td><?php echo $message ?></td>
+                                            <td><?php echo $datetime_format ?></td>
+                                        </tr>
                                        <?php } ?>
                                     </tbody>
                                 </table>

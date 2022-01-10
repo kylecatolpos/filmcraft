@@ -55,6 +55,42 @@ coordinates.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`;
 marker.on('dragend', onDragEnd);
 </script> -->
 
+<script>
+$(document).ready(function(){
+// updating the view with notifications using ajax
+function load_unseen_notification(view = '')
+{
+
+  var session_id = <?php echo $displayId ?>;
+  var usertype = 'vendor';
+
+ $.ajax({
+  url:"../function/vendor_notification.php",
+  method:"POST",
+  data:{view:view,session_id:session_id,sess_user:usertype},
+  dataType:"json",
+  success:function(data)
+  {
+   $('.dropdown-notif').html(data.notification);
+   $('#count').html(data.unseen_notification);
+     if(data.unseen_notification < 1)
+   {
+    $('span.badge').hide();
+   }
+  }
+ });
+}
+
+load_unseen_notification();
+
+// load new notifications
+$(document).on('click', '#notifToggle', function() {
+  $('span.badge').html('');
+ load_unseen_notification('yes');
+  });
+});
+</script>
+
    <script>
 
       
