@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2022 at 01:01 AM
+-- Generation Time: Jan 10, 2022 at 10:01 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -120,14 +120,14 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`eventId`, `eventName`, `eventDescription`, `eventImage`) VALUES
-(2, 'Debut', 'Debut is a traditional filipino coming-of-age celebration which celebrates a young woman 18th birthday, the age of maturity in the Philippines.', '../files/images/works/2021-10-19_debut.jpg'),
-(3, 'Art', 'An art exhibition is traditionally the space in which art objects meet an audience. The exhibit is universally understood to be for some temporary period unless, as is rarely true, it is stated to be ', '../files/images/works/2021-10-19_art.jpg'),
-(4, 'Birthday', 'A celebration is a special enjoyable event that people organize because something pleasant has happened or because it is someone birthday or anniversary', '../files/images/works/2021-10-19_birthday.jpg'),
-(5, 'Festival', 'A festival is an event ordinarily celebrated by a community and centering on some characteristic aspect of that community and its religion or cultures.', '../files/images/works/2021-10-19_festival.jpg'),
-(6, 'Modelling', 'Is an event put on by a fashion designer to showcase their upcoming line of clothing and/or accessories', '../files/images/works/2021-10-19_modelling.jpg'),
-(7, 'Pageants', 'Pageant is a beauty contest or is an elaborate form of entertainment consisting of historical scenes and colorful costumes.', '../files/images/works/2021-10-19_pageants.jpg'),
-(8, 'Trade Shows', 'A trade show is an event held to bring together members of a particular industry to display, demonstrate, and discuss their latest products and services', '../files/images/works/2021-10-19_tradeshows.jpeg'),
-(9, 'Wedding', 'A wedding is a ceremony where two people are united in marriage.  Most wedding ceremonies involve an exchange of marriage vows by a couple, presentation of a gift (offering, rings, symbolic item, flow', '../files/images/works/2021-10-19_wedding.jpg');
+(1, 'Art', 'An art exhibition is traditionally the space in which art objects meet an audience. The exhibit is universally understood to be for some temporary period unless, as is rarely true, it is stated to be ', '../files/images/works/2021-10-19_art.jpg'),
+(2, 'Birthday', 'A celebration is a special enjoyable event that people organize because something pleasant has happened or because it is someone birthday or anniversary', '../files/images/works/2021-10-19_birthday.jpg'),
+(3, 'Debut', 'Debut is a traditional filipino coming-of-age celebration which celebrates a young woman 18th birthday, the age of maturity in the Philippines.', '../files/images/works/2021-10-19_debut.jpg'),
+(4, 'Festival', 'A festival is an event ordinarily celebrated by a community and centering on some characteristic aspect of that community and its religion or cultures.', '../files/images/works/2021-10-19_festival.jpg'),
+(5, 'Modelling', 'Is an event put on by a fashion designer to showcase their upcoming line of clothing and/or accessories', '../files/images/works/2021-10-19_modelling.jpg'),
+(6, 'Pageants', 'Pageant is a beauty contest or is an elaborate form of entertainment consisting of historical scenes and colorful costumes.', '../files/images/works/2021-10-19_pageants.jpg'),
+(7, 'Trade Shows', 'A trade show is an event held to bring together members of a particular industry to display, demonstrate, and discuss their latest products and services', '../files/images/works/2021-10-19_tradeshows.jpeg'),
+(8, 'Wedding', 'A wedding is a ceremony where two people are united in marriage.  Most wedding ceremonies involve an exchange of marriage vows by a couple, presentation of a gift (offering, rings, symbolic item, flow', '../files/images/works/2021-10-19_wedding.jpg');
 
 -- --------------------------------------------------------
 
@@ -151,7 +151,7 @@ CREATE TABLE `notification` (
 --
 
 INSERT INTO `notification` (`notificationId`, `notificationAdminId`, `notificationVendorId`, `notificationCustomerId`, `notificationMessage`, `notificationStatus`, `notificationUserType`, `notificationDateTime`) VALUES
-(1, 1, 0, 0, 'Test', 0, 1, '2022-01-09 15:19:50'),
+(1, 1, 0, 0, 'Test', 1, 1, '2022-01-09 15:19:50'),
 (2, 0, 32, 0, 'Test', 1, 2, '2022-01-09 15:19:50'),
 (3, 0, 0, 4, 'Test', 1, 3, '2022-01-09 15:19:50');
 
@@ -177,15 +177,16 @@ CREATE TABLE `portfolio` (
   `portfolioEndPrice` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `portfolioDescription` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `portfolioStatus` tinyint(4) NOT NULL,
-  `portfolioSessionStatus` tinyint(4) NOT NULL
+  `portfolioSessionStatus` tinyint(4) NOT NULL,
+  `portfolioEvent` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `portfolio`
 --
 
-INSERT INTO `portfolio` (`portfolioId`, `vendor_Id`, `vendorWork_Id`, `portfolioFirstName`, `portfolioLastName`, `portfolioAddress`, `portfolioEmail`, `portfolioVendorPosition`, `portfolioProfileImage`, `portfolioRating`, `portfolioBookingRate`, `portfolioStartPrice`, `portfolioEndPrice`, `portfolioDescription`, `portfolioStatus`, `portfolioSessionStatus`) VALUES
-(25, 32, 32, 'vendor', 'vendor', '123', 'vendor@gmail.com', 'Photographer', '../files/images/profile_pic/default-profile.png', '', '400', '5000', '', '123', 1, 0);
+INSERT INTO `portfolio` (`portfolioId`, `vendor_Id`, `vendorWork_Id`, `portfolioFirstName`, `portfolioLastName`, `portfolioAddress`, `portfolioEmail`, `portfolioVendorPosition`, `portfolioProfileImage`, `portfolioRating`, `portfolioBookingRate`, `portfolioStartPrice`, `portfolioEndPrice`, `portfolioDescription`, `portfolioStatus`, `portfolioSessionStatus`, `portfolioEvent`) VALUES
+(25, 32, 32, 'vendor', 'vendor', '123', 'vendor@gmail.com', 'Photographer', '../files/images/profile_pic/default-profile.png', '', '400', '5000', '', '', 1, 0, 2);
 
 -- --------------------------------------------------------
 
