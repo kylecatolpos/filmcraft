@@ -239,9 +239,9 @@ body {
                         <?php } ?>
                         <small class="text-muted">Vendor Rate</small>
                     </li>
-                    <li class="list-inline-item mx-5">
+                   <!--  <li class="list-inline-item mx-5">
                         <h5 class="font-weight-bold mb-0 d-block">4.5</h5><small class="text-muted">Ratings </small>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
 

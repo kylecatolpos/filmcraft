@@ -38,7 +38,7 @@ function load_unseen_notification(view = '')
    $('#count').html(data.unseen_notification);
      if(data.unseen_notification < 1)
    {
-    $('span.badge').hide();
+    $('#count').hide();
    }
   }
  });
@@ -48,7 +48,7 @@ load_unseen_notification();
 
 // load new notifications
 $(document).on('click', '#notifToggle', function() {
-  $('span.badge').html('');
+  $('#count').html('');
  load_unseen_notification('yes');
   });
 });
