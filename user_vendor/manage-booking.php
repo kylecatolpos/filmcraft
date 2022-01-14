@@ -146,7 +146,7 @@ $conn = $database;
 
                                         $eventDetails = $rowQuery['eventDetails'];
                                         $bookingPaymentMethod = $rowQuery['bookingPaymentMethod'];
-                                        $bookingPaymentStatus = $rowQuery['bookingStatus'];
+                                        $bookingPaymentStatus = $rowQuery['bookingPaymentStatus'];
 
                                         ?>
 

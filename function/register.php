@@ -39,7 +39,7 @@ if(isset($_POST['actionRegister'])) {
  	// notification; 
 
  	$notificationAdmin = 1;
- 	$notificationVendor = $latest_id;
+ 	$notificationVendor = 0;
  	$notificationCustomer = 0;
  	$notificationMessage = "A New Vendor Has Successfully Register An Account";
  	$notificationStatus = 0;
@@ -87,7 +87,7 @@ if(isset($_POST['actionRegister'])) {
 
  	$notificationAdmin = 1;
  	$notificationVendor = 0;
- 	$notificationCustomer = $latest_id;
+ 	$notificationCustomer = 0;
  	$notificationMessage = "A New Customer Has Successfully Register An Account";
  	$notificationStatus = 0;
  	$notificationType = 1;

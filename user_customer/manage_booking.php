@@ -163,7 +163,10 @@ $conn = $database;
 
                                         $eventDetails = $rowQuery['eventDetails'];
                                         $bookingPaymentMethod = $rowQuery['bookingPaymentMethod'];
-                                        $bookingPaymentStatus = $rowQuery['bookingStatus'];
+                                        $bookingPaymentStatus = $rowQuery['bookingPaymentStatus'];
+
+                                        $vendor_ID = $rowQuery['vendor_Id'];
+                                        $booking_ID = $rowQuery['bookingId'];
 
                                         ?>
 
@@ -185,10 +188,9 @@ $conn = $database;
                                             <td>
                                                  <?php if($bookingPaymentStatus == 1) { ?>
                                                 Not Yet Fully Paid
-                                                 <a href="#" class="btn btn-primary btn-sm">Pay for Fullpayment</a>
+                                                 <a href="proceed_fullpayment.php?VID=<?php echo $vendor_ID ?>&BID=<?php echo $booking_ID ?>" class="btn btn-primary btn-sm">Pay for Fullpayment</a>
                                              <?php } else if($bookingPaymentStatus == 2) { ?>
                                                 Fully Paid
-                                               
                                              <?php } ?>
                                             </td>
                                         </tr>

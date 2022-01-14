@@ -8,18 +8,18 @@ if($_GET['CID']) {
   $customerID = $_GET['CID'];
   $portfolioID = $_GET['PID'];
   $bookingID = $_GET['BID'];
+  $balance = $_GET['BAL'];
 
   $sqlBooking = "SELECT * FROM booking WHERE bookingId = '$bookingID' ";
   $resultBooking = mysqli_query($conn,$sqlBooking);
 
   while($rowBooking = mysqli_fetch_assoc($resultBooking)) {
-     $customer_final_price = $rowBooking['eventFinalPrice'];
-     $customer_bookingDp = $rowBooking['bookingDp'];
+     $customer_balance = $rowBooking['eventBalance'];
   }
 
-  $balance = $customer_final_price - $customer_bookingDp;
+  $fullpayment = $customer_balance - $balance;
 
-  $sqlBookingUpdate = "UPDATE booking SET `eventBalance` = '$balance', `bookingDpStatus` = 1, `bookingPaymentStatus` = 1 WHERE bookingId = '$bookingID' ";
+  $sqlBookingUpdate = "UPDATE booking SET `eventBalance` = '$fullpayment', `bookingDpStatus` = 1, `bookingPaymentStatus` = 2 WHERE bookingId = '$bookingID' ";
   $res = mysqli_query($conn,$sqlBookingUpdate);
  
   // $sqlUpdate = "UPDATE portfolio SET portfolioSessionStatus = '$portfolioSessionStatus' WHERE portfolioId = '$portfolioID' ";
@@ -29,7 +29,7 @@ if($_GET['CID']) {
   $notificationAdmin = 0;
   $notificationVendor = $portfolioID;
   $notificationCustomer = $customerID;
-  $notificationMessage = "Customer Has Successfully Booked A Vendor.";
+  $notificationMessage = "Customer Has Successfully Fully Paid The Vendor.";
   $notificationStatus = 0;
   $notificationType = 1;
   
