@@ -38,6 +38,9 @@ while($portfolioInfoRow = mysqli_fetch_assoc($portfolioInfoResult)) {
 
     $event_name = $portfolioInfoRow['eventName'];
 
+    // booking rate
+    //$booking_rate = (10/100)*$start_price;
+
 }
 
 
@@ -271,8 +274,8 @@ body {
                                                 </div> -->
                                                  <!-- Form Group booking-rate -->
                                                 <div class="col-md-6">
-                                                    <label class="small mb-1" for="inputStartPrice">Booking Rate</label>
-                                                    <input class="form-control" id="inputStartPrice" type="text" placeholder="Booking Rate" value="<?php echo $booking_rate ?>" name="booking-rate">
+                                                    <label class="small mb-1" for="inputStartPrice">Booking Rate (10% of Vendor Rate)</label>
+                                                    <input class="form-control" id="inputStartPrice" type="text" placeholder="Booking Rate" value="<?php echo $booking_rate ?>" name="booking-rate" readonly>
                                                 </div>
                                             </div>
 

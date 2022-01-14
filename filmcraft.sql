@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2022 at 10:01 AM
+-- Generation Time: Jan 14, 2022 at 04:42 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -151,9 +151,26 @@ CREATE TABLE `notification` (
 --
 
 INSERT INTO `notification` (`notificationId`, `notificationAdminId`, `notificationVendorId`, `notificationCustomerId`, `notificationMessage`, `notificationStatus`, `notificationUserType`, `notificationDateTime`) VALUES
-(1, 1, 0, 0, 'Test', 1, 1, '2022-01-09 15:19:50'),
-(2, 0, 32, 0, 'Test', 1, 2, '2022-01-09 15:19:50'),
-(3, 0, 0, 4, 'Test', 1, 3, '2022-01-09 15:19:50');
+(1, 1, 0, 0, 'Test', 0, 1, '2022-01-09 15:19:50'),
+(2, 0, 32, 0, 'Test', 0, 2, '2022-01-09 15:19:50'),
+(3, 0, 0, 4, 'Test', 0, 3, '2022-01-09 15:19:50');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payments`
+--
+
+CREATE TABLE `payments` (
+  `paymentId` int(11) NOT NULL,
+  `paymentVendorId` int(11) NOT NULL,
+  `paymentCustomerId` int(11) NOT NULL,
+  `paymentUserType` int(11) NOT NULL,
+  `paymentType` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `paymentAmountPaid` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `paymentDateTime` tinytext COLLATE utf8_unicode_ci NOT NULL,
+  `paymentStatus` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -180,13 +197,6 @@ CREATE TABLE `portfolio` (
   `portfolioSessionStatus` tinyint(4) NOT NULL,
   `portfolioEvent` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `portfolio`
---
-
-INSERT INTO `portfolio` (`portfolioId`, `vendor_Id`, `vendorWork_Id`, `portfolioFirstName`, `portfolioLastName`, `portfolioAddress`, `portfolioEmail`, `portfolioVendorPosition`, `portfolioProfileImage`, `portfolioRating`, `portfolioBookingRate`, `portfolioStartPrice`, `portfolioEndPrice`, `portfolioDescription`, `portfolioStatus`, `portfolioSessionStatus`, `portfolioEvent`) VALUES
-(25, 32, 32, 'vendor', 'vendor', '123', 'vendor@gmail.com', 'Photographer', '../files/images/profile_pic/default-profile.png', '', '400', '5000', '', '', 1, 0, 2);
 
 -- --------------------------------------------------------
 
@@ -243,13 +253,6 @@ CREATE TABLE `vendor` (
   `vendorLongitude` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `vendor`
---
-
-INSERT INTO `vendor` (`vendorId`, `vendorEmail`, `vendorPassword`, `vendorFirstName`, `vendorLastName`, `vendorGender`, `vendorBirthdate`, `vendorNumber`, `vendorAddress`, `vendorType`, `vendorPosition`, `vendorProfileImage`, `vendorStatus`, `vendorUserType`, `vendorLatitude`, `vendorLongitude`) VALUES
-(32, 'vendor@gmail.com', '7c3613dba5171cb6027c67835dd3b9d4', 'vendor', 'vendor', '', '0000-00-00', '', '', '', 'None', '../files/images/profile_pic/default-profile.png', 1, 'vendor', '', '');
-
 -- --------------------------------------------------------
 
 --
@@ -264,14 +267,6 @@ CREATE TABLE `works` (
   `occassion_file` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `occassion_file_type` varchar(150) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `works`
---
-
-INSERT INTO `works` (`worksId`, `portfolioWorks_Id`, `occassion`, `occassion_type`, `occassion_file`, `occassion_file_type`) VALUES
-(22, 32, '1234', '5', '../files/images/works/2021-12-16_pipe.png', 'image/png'),
-(25, 32, 'Couple Shots123', '4', '../files/videos/works/2021-12-16_Unser+Coming+Soon+Wedding+Trailer+ðŸ¤µðŸ¼ðŸ‘°ðŸ¼_+Patrizia+Palme-56mNziw4RRY.mp4', 'video/mp4');
 
 --
 -- Indexes for dumped tables
@@ -306,6 +301,12 @@ ALTER TABLE `events`
 --
 ALTER TABLE `notification`
   ADD PRIMARY KEY (`notificationId`);
+
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`paymentId`);
 
 --
 -- Indexes for table `portfolio`
@@ -351,13 +352,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `bookingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `bookingId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `customerId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -372,16 +373,22 @@ ALTER TABLE `notification`
   MODIFY `notificationId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `paymentId` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `portfolio`
 --
 ALTER TABLE `portfolio`
-  MODIFY `portfolioId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `portfolioId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `portfolio_session`
 --
 ALTER TABLE `portfolio_session`
-  MODIFY `portfolioSessionId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `portfolioSessionId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `subscription`
@@ -393,7 +400,7 @@ ALTER TABLE `subscription`
 -- AUTO_INCREMENT for table `vendor`
 --
 ALTER TABLE `vendor`
-  MODIFY `vendorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `vendorId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `works`

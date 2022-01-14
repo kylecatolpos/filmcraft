@@ -176,12 +176,12 @@ $conn = $database;
                                                 </li>
                                                 <li class="list-group-item">
                                                    <i class="fa fa-check-circle mr-2" style="color:#4e73df;font-size:20px;"></i>
-                                                    Can Display Portfolio
+                                                    Account Can Be Display In Map 
                                                 </li>
-                                                <li class="list-group-item mb-5">
+                                                <!-- <li class="list-group-item mb-5">
                                                    <i class="fa fa-check-circle mr-2" style="color:#4e73df;font-size:20px;"></i>
                                                     Has Access to Mobile App
-                                                </li>
+                                                </li> -->
                                             </ul>
                                         </div>
                                         <a class="card-footer d-flex align-items-center justify-content-between" href="subscription-basic.php?UID=<?php echo $displayId ?>" style="text-decoration: none;">
@@ -207,15 +207,15 @@ $conn = $database;
                                                 </li>
                                                 <li class="list-group-item">
                                                    <i class="fa fa-check-circle mr-2" style="color:#4e73df;font-size:20px;"></i>
-                                                    Can Display Portfolio
+                                                    Account Can Be Display In Map 
                                                 </li>
-                                                <li class="list-group-item mb-5">
+                                                <!-- <li class="list-group-item mb-5">
                                                    <i class="fa fa-check-circle mr-2" style="color:#4e73df;font-size:20px;"></i>
                                                     Has Access to Mobile App
-                                                </li>
+                                                </li> -->
                                             </ul>
                                         </div>
-                                        <a class="card-footer d-flex align-items-center justify-content-between" href="#subscription-basic.php?UID=<?php echo $displayId ?>" style="text-decoration: none;">
+                                        <a class="card-footer d-flex align-items-center justify-content-between" href="#" style="text-decoration: none;">
                                             Get started!
                                            <i class="fa fa-arrow-circle-right" style="font-size:20px;"></i>
                                         </a>

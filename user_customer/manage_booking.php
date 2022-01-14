@@ -133,7 +133,7 @@ $conn = $database;
                                         $query = "SELECT * FROM booking 
                                         JOIN customer ON customer.customerId = booking.customer_Id
                                         JOIN vendor ON vendor.vendorId = booking.vendor_Id
-                                        WHERE customer_Id = '$displayId' ";
+                                        WHERE customer_Id = '$displayId' AND booking.bookingDpStatus != 0";
                                         $resultQuery = mysqli_query($conn,$query);
 
                                         while($rowQuery = mysqli_fetch_assoc($resultQuery)) {
@@ -172,7 +172,7 @@ $conn = $database;
                                             <td><?php echo $bookingDP ?></td>
                                             <td>
                                              <?php if($bookingDpStatus == 1) { ?>
-                                                Pending
+                                                Paid
                                              <?php } else if($bookingDpStatus == 2) { ?>
                                                 Paid
                                              <?php } ?>
@@ -184,9 +184,11 @@ $conn = $database;
                                             <td><?php echo $bookingPaymentMethod ?></td>
                                             <td>
                                                  <?php if($bookingPaymentStatus == 1) { ?>
-                                                Not Yet Paid
+                                                Not Yet Fully Paid
+                                                 <a href="#" class="btn btn-primary btn-sm">Pay for Fullpayment</a>
                                              <?php } else if($bookingPaymentStatus == 2) { ?>
-                                                Balance
+                                                Fully Paid
+                                               
                                              <?php } ?>
                                             </td>
                                         </tr>

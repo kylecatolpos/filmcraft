@@ -119,7 +119,9 @@ $conn = $database;
 
                                         $query = "SELECT * FROM booking 
                                         JOIN customer ON customer.customerId = booking.customer_Id
-                                        JOIN vendor ON vendor.vendorId = booking.vendor_Id";
+                                        JOIN vendor ON vendor.vendorId = booking.vendor_Id
+                                        WHERE booking.bookingDpStatus != 0;
+                                        ";
                                         $resultQuery = mysqli_query($conn,$query);
 
                                         while($rowQuery = mysqli_fetch_assoc($resultQuery)) {
@@ -163,7 +165,7 @@ $conn = $database;
                                             <td><?php echo $bookingDP ?></td>
                                             <td>
                                              <?php if($bookingDpStatus == 1) { ?>
-                                                Pending
+                                                Paid
                                              <?php } else if($bookingDpStatus == 2) { ?>
                                                 Paid
                                              <?php } ?>
@@ -175,9 +177,9 @@ $conn = $database;
                                             <td><?php echo $bookingPaymentMethod ?></td>
                                             <td>
                                                  <?php if($bookingPaymentStatus == 1) { ?>
-                                                Not Yet Paid
+                                                Not Yet Fully Paid
                                              <?php } else if($bookingPaymentStatus == 2) { ?>
-                                                Balance
+                                                Fully Paid
                                              <?php } ?>
                                             </td>
                                         </tr>

@@ -36,11 +36,26 @@ if(isset($_POST['actionRegister'])) {
  	$createPortfolioSql = "INSERT INTO portfolio (portfolioId,vendor_Id,vendorWork_Id,portfolioFirstName,portfolioLastName,portfolioAddress,portfolioEmail,portfolioVendorPosition,portfolioProfileImage,portfolioRating,portfolioBookingRate,portfolioStartPrice,portfolioEndPrice,portfolioDescription,portfolioStatus,portfolioSessionStatus) VALUES (NULL,'$latest_id','$latest_id','$fname','$lname','$empty','$email','$position','$image','$empty','$rate','$rate','$rate','$empty','$portfolioStatus','$porfolioSessionStatus')";
  	$result = mysqli_query($conn,$createPortfolioSql);
 
- 	if($result) {
+ 	// notification; 
+
+ 	$notificationAdmin = 1;
+ 	$notificationVendor = $latest_id;
+ 	$notificationCustomer = 0;
+ 	$notificationMessage = "A New Vendor Has Successfully Register An Account";
+ 	$notificationStatus = 0;
+ 	$notificationType = 1;
+ 	
+ 	$date = new DateTime();
+  	$notificationDateTime = $date->format("Y-m-d H:i:s");
+
+ 	$sendNotificationVendor = "INSERT INTO notification (notificationId,notificationAdminId,notificationVendorId,notificationCustomerId,notificationMessage,notificationStatus,notificationUserType,notificationDateTime) VALUES (NULL,'$notificationAdmin','$notificationVendor','$notificationCustomer','$notificationMessage','$notificationStatus','$notificationType','$notificationDateTime')";
+ 	$resultSendNotificationVendor = mysqli_query($conn,$sendNotificationVendor);
+
+ 	if($result AND $resultSendNotificationVendor) {
  	  header("Location:../login.php");
  	} else {
  	  echo "Error in system";
-	}
+ 	}
   } else {
   	echo "Error: " . $sql . "<br>" . mysqli_error($conn);
   } 
@@ -65,13 +80,31 @@ if(isset($_POST['actionRegister'])) {
 
  	// creation for customer account
  	$sql = "INSERT INTO customer (customerId,customerEmail,customerPassword,customerFirstName,customerLastName,customerGender,customerBirthdate,customerNumber,customerAddress,customerProfileImage,customerStatus,customerUserType) VALUES (NULL,'$email','$hash_password','$fname','$lname','$empty','$bday','$empty','$empty','$image','$status','$usertype') ";
- 	$result = mysqli_query($conn,$sql);
+ 	
+ 	if(mysqli_query($conn,$sql)) {
 
- 	if($result) {
+ 	$latest_id = mysqli_insert_id($conn);
+
+ 	$notificationAdmin = 1;
+ 	$notificationVendor = 0;
+ 	$notificationCustomer = $latest_id;
+ 	$notificationMessage = "A New Customer Has Successfully Register An Account";
+ 	$notificationStatus = 0;
+ 	$notificationType = 1;
+ 	
+ 	$date = new DateTime();
+  	$notificationDateTime = $date->format("Y-m-d H:i:s");
+
+ 	$sendNotificationVendor = "INSERT INTO notification (notificationId,notificationAdminId,notificationVendorId,notificationCustomerId,notificationMessage,notificationStatus,notificationUserType,notificationDateTime) VALUES (NULL,'$notificationAdmin','$notificationVendor','$notificationCustomer','$notificationMessage','$notificationStatus','$notificationType','$notificationDateTime')";
+ 	$resultSendNotificationVendor = mysqli_query($conn,$sendNotificationVendor);
+
+ 	if($resultSendNotificationVendor) {
  		header("Location:../login.php");
  	} else {
  		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
  	}
+
+   }
 
  }
 

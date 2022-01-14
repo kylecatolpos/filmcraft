@@ -17,13 +17,13 @@ if($sess_user == 'vendor') {
    $session_id = $_POST['session_id'];
 
    $update_query = "UPDATE notification SET notificationStatus = '1' 
-   WHERE notificationStatus = '0' AND notificationUserType IN (2) AND notificationVendorId = '$session_id'
+   WHERE notificationStatus = '0' AND notificationUserType IN (1,2,3) AND notificationVendorId = '$session_id'
    ";
    mysqli_query($conn, $update_query);
   }
 
 $query = "SELECT * FROM notification 
-WHERE (notificationUserType IN (2) AND notificationVendorId = '$session_id') AND notificationStatus = 0
+WHERE (notificationUserType IN (1,2,3) AND notificationVendorId = '$session_id') AND notificationStatus = 0
 ORDER BY notificationId DESC LIMIT 5 ";
 $result = mysqli_query($conn, $query);
 
@@ -64,7 +64,7 @@ while($row = mysqli_fetch_array($result)) {
 }
 
 $status_query = "SELECT * FROM notification 
-WHERE notificationStatus = 0 AND (notificationUserType IN (2) AND notificationVendorId = '$session_id')
+WHERE notificationStatus = 0 AND (notificationUserType IN (1,2,3) AND notificationVendorId = '$session_id')
 ORDER BY notificationId DESC LIMIT 5
 ";
 $result_query = mysqli_query($conn, $status_query);

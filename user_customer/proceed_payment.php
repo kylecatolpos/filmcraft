@@ -8,7 +8,9 @@
    
    $VID = $_GET['VID'];
    
-   $portfolioInfoQuery    = "SELECT * FROM portfolio JOIN vendor ON portfolio.vendor_Id = vendor.vendorId WHERE portfolio.vendor_Id = '$VID'  ";
+   $portfolioInfoQuery    = "SELECT * FROM portfolio 
+   JOIN vendor ON portfolio.vendor_Id = vendor.vendorId WHERE portfolio.vendor_Id = '$VID'  ";
+
    $portfolioInfoResult   = mysqli_query($conn,$portfolioInfoQuery);
    
    while($portfolioInfoRow = mysqli_fetch_assoc($portfolioInfoResult)) {
@@ -69,8 +71,24 @@
            $positionDisplay = "Videographer";
        }
    }
+
+   $BID = $_GET['BID'];
    
+   $bookingInfoQuery    = "SELECT * FROM booking WHERE bookingId = '$BID' ";
+   $bookingInfoResult   = mysqli_query($conn,$bookingInfoQuery);
    
+   while($bookingInfoRow = mysqli_fetch_assoc($bookingInfoResult)) {
+
+
+   $booking_start_date = $bookingInfoRow['eventStartDate'];
+   $booking_end_date = $bookingInfoRow['eventEndDate'];
+   $booking_start_time = $bookingInfoRow['eventStartTime'];
+   $booking_end_time = $bookingInfoRow['eventEndTime'];
+   $booking_details = $bookingInfoRow['eventDetails'];
+   
+   }
+
+      
    ?>
 <body id="page-top">
    <!-- Page Wrapper -->
@@ -146,17 +164,16 @@
             <!-- Begin Page Content -->
             <div class="container-fluid">
                <!-- Page Heading -->
-               <h1 class="h3 mb-5 text-gray-800">Booked Selected Vendor</h1>
+               <h1 class="h3 mb-5 text-gray-800">Proceed Payment For This Vendor</h1>
                <!-- DataTales Example -->
                <div class="card shadow mb-4">
                   <div class="card-header py-3">
                      <div class="card-header py-3 text-right">
-                          <!--  <a href="view_vendor.php" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Return</a> -->
+                           <a href="../function/cancel_payment.php?BID=<?php echo $BID ?>&VID=<?php echo $VID?>" class="btn btn-danger" onclick="alert('Are you sure you want to cancel the payment?');"><i class="fa fa-arrow-left"></i> Cancel Payment </a>
                         </div>
                   </div>
                   <div class="card-body">
-                     <form method="POST" action="../function/proceed_payment.php" onsubmit="return confirm('Are you sure you want to proceed to payment?')">
-                        <div class="card-body">
+                    <div class="card-body">
 
                            <input type="hidden" value="<?php echo $displayId ?>" name="customerID">
                            <input type="hidden" value="<?php echo $fetchId ?>" name="vendorID">
@@ -221,33 +238,32 @@
                                  <div class="col-xl-12">
                                     <!-- Account details card-->
                                     <div class="card mb-4">
-                                       <div class="card-header">Enter Booked Details</div>
+                                       <div class="card-header">Selected Booked Details</div>
                                        <div class="card-body">
                                           <div class="row gx-3 mb-3">
+
+
                                              <!-- Form Group (first name)-->
                                              <div class="col-md-6">
                                                 <label class="small mb-1" for="inputUsername">Start Date of Event</label>
-                                                <input class="form-control" id="inputUsername" min="<?php echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>" type="date" name="start_date_event">
+                                                <input class="form-control" id="inputUsername" value="<?php echo $booking_start_date ?>" type="date" name="start_date_event" readonly>
                                              </div>
 
                                               <div class="col-md-6">
                                                 <label class="small mb-1" for="inputUsername">End Date of Event</label>
-                                                <input class="form-control" id="inputUsername" min="<?php 
-                                                // $add_one_day = strtotime("+ 1 day");
-                                                //echo date('Y-m-d', $add_one_day);
-                                                echo date('Y-m-d'); ?>" value="<?php echo date('Y-m-d'); ?>" type="date" name="end_date_event">
+                                                <input class="form-control" id="inputUsername" value="<?php echo $booking_end_date ?>" type="date" name="end_date_event" readonly>
                                              </div>
                                           </div>
                                           <div class="row gx-3 mb-3">
                                           
                                               <div class="col-md-6">
                                                 <label class="small mb-1" for="inputUsername">Start Time of the Event</label>
-                                                <input class="form-control" type="time" value="08:00:00" name="start_time_event" required>
+                                                <input class="form-control" type="time" value="<?php echo $booking_start_time ?>" name="start_time_event" readonly >
                                              </div>
 
                                               <div class="col-md-6">
                                                 <label class="small mb-1" for="inputUsername">End Time of the Event</label>
-                                                <input class="form-control" type="time" name="end_time_event" value="22:00:00" required>
+                                                <input class="form-control" type="time" name="end_time_event" value="<?php echo $booking_end_time ?>" readonly>
                                              </div>
                                              <!-- Form Group (last name)-->
                                            
@@ -257,18 +273,18 @@
                                              <!-- Form Group (first name)-->
                                              <div class="col-md-12">
                                                 <label class="small mb-1" for="inputUsername">Input Event Details</label>
-                                                <textarea class="form-control" name="event_details"></textarea>
+                                                <textarea class="form-control" name="event_details" value="<?php echo $booking_details ?>" readonly><?php echo $booking_details ?></textarea>
                                               </div>
                                           </div>
                                           <!-- Form Group (email address)-->
                                            <div class="mb-3">
-                                            <h4><strong>Proceed to Payment</strong></h4>
+                                            <h4><strong>Select Mode of Payment:</strong></h4>
                                           </div>
                                           <!-- Form Row-->
                                           <div class="row gx-3 mb-3 text-center">
                                              <!-- Form Group (phone number)-->
-                                              <button type="submit" class="btn btn-primary btn-block" name="proceedPaymentCustomer">Submit</button>
-                                              <a href="view_vendor.php" class="btn btn-danger btn-block">Cancel</a>
+                                              <div class="btn-block" id="paypal-payment-button">
+                                                   </div>
                                           </div>
                                        </div>
                                     </div>
@@ -298,3 +314,66 @@
    <?php 
       include("footer.php");
    ?>
+
+   <!-- Ab7UWyVXVIDKMEzVMDeN7c3MvcmLb5yzDuXTF_QKf287zkEHFkCzNDm2KSXbRhCY36sPrAp1HSzrYRz5 -->
+
+   <script src="https://www.paypal.com/sdk/js?client-id=Ab7UWyVXVIDKMEzVMDeN7c3MvcmLb5yzDuXTF_QKf287zkEHFkCzNDm2KSXbRhCY36sPrAp1HSzrYRz5&currency=PHP&disable-funding=credit,card" data-sdk-integration-source="button-factory"></script>
+   <!-- Latest compiled and minified JavaScript -->
+
+   <script>
+    var value = "<?php echo $booking_rate ?>";
+    paypal.Buttons({
+    style : {
+        color: 'gold',
+        shape: 'pill',
+        layout: 'vertical',
+        label: 'pay'
+    },
+    createOrder: function (data, actions) {
+        return actions.order.create({
+            purchase_units : [{
+                name: "Vendor Booking Payment",
+                amount: {
+                    currency_code: "PHP",
+                    value: value
+
+                }
+            }]
+        });
+    },
+    onApprove: function (data, actions) {
+        return actions.order.capture().then(function (details) {
+            console.log(details)
+            var cid = <?php echo $displayId ?>;
+            var pid = <?php echo $VID ?>;
+            var bid = <?php echo $BID ?>
+
+            // URL which to send the value to.
+            const url = "../function/add_vendor_booking_payment.php?CID="+ cid+"&PID="+ pid+"&BID="+bid;
+
+            // Message to send. In this example an object with a state property.
+            // You can change the properties to whatever you want.
+            const message = { status: 'success' };
+
+            // Send it to the URL with the POST method 
+            // and send the message in JSON format.
+            fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(message)
+            }).catch(function(error) {
+                console.log(error); // Display error if there is one.
+            });
+
+            })
+    },
+    onCancel: function (data) {
+        //window.location.replace("http://localhost:63342/tutorial/paypal/Oncancel.php")
+        var cid = <?php echo $displayId ?>;
+        var pid = <?php echo $VID ?>;
+        var bid = <?php echo $BID ?>
+
+        //var pid = <?php echo $VID ?>;
+        const url = "../function/add_vendor_booking_payment.php?CID="+ cid+"&PID="+ pid+"&BID="+bid;
+    }
+}).render('#paypal-payment-button');
+</script>

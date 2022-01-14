@@ -15,7 +15,9 @@ if(isset($_POST['actionEditPortfolio'])) {
   $start_price = $_POST['start-price'];
   $end_price = $_POST['end-price'];
   $description = $_POST['description'];
-  $booking_rate = $_POST['booking-rate'];
+  //$booking_rate = $_POST['booking-rate'];
+  // booking rate
+  $booking_rate = (30/100)*$start_price;
   $assignEvent = $_POST['event'];
 
   $display_files = $_POST["image"];
