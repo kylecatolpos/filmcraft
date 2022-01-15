@@ -199,7 +199,7 @@ body {
                                       </tr>
                                        <tr>
                                             <td>Booking History Report</td>
-                                            <td><a href="#view-report-booking.php" target="_blank" class="btn btn-primary">View Report</a></td>
+                                            <td><a href="view-report-booking.php" target="_blank" class="btn btn-primary">View Report</a></td>
                                       </tr>
                                     </tbody>
                                 </table>
